@@ -1,0 +1,34 @@
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/libs/prisma";
+import bcrypt from "bcryptjs";
+
+export async function POST(request: NextRequest) {
+    const data = await request.json();
+
+    const userFound = await prisma.user.findFirst({
+        where: {
+            email: data.email,
+        },
+    });
+
+    // Este y otros console log son solo para solucionar el problema de abajo...
+    console.log(userFound)
+
+    // No esta funcionando este if y si entra a el...
+    if(userFound) return NextResponse.json({ message: "El email ingresado corresponde a un usuario existente", status: 400 });
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+
+    const newUser = await prisma.user.create({
+        data: {
+            name: data.name,
+            lastname: data.lastname,
+            email: data.email,
+            password: hashedPassword,
+        },
+    });
+
+    // Declaro una variable password y desestructuro newUser en user (ya sin password) para
+    // poder enviar los datos al frontend sin la contraseña
+    const {password: _, ...user} = newUser;
+    return NextResponse.json(user);
+};
