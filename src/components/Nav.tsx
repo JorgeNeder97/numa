@@ -80,6 +80,12 @@ const Nav = () => {
                                 <li>
                                     <Link href="/transactions" className="text-lg">Transacciones</Link>
                                 </li>
+                                <li>
+                                    <Link href="/transactions/new/income" className="text-lg">Nuevo Ingreso</Link>
+                                </li>
+                                <li>
+                                    <Link href="/transactions/new/expense" className="text-lg">Nuevo Egreso</Link>
+                                </li>
                                 <li className="text-lg" onClick={() => signOut()}>Cerrar Sessión</li>
                             </>
                         )

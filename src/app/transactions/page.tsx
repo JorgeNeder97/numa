@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 const TransactionsPage = () => {
     return (
         <div>
-            <p>Transactions Page</p>
+            <p>Transacciones</p>
         </div>
     );
 };
