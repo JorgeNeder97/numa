@@ -1,21 +1,14 @@
 "use client";
-
-import { getTransactions } from "@/utils/getTransactions";
+import { useTransactions } from "@/hooks/useTransactions";
 
 const DashboardPage = () => {
 
-
-    // El fetch a este tipo de rutas no funciona aqui, hay que averiguar por que aqui no funciona
-    // pero en el register si.
-
-    
-    // usar el nuevo hook aqui
-    
+    const { total, loading, error } = useTransactions();
 
     return (
         <div>
             <p>Dashboard Page</p>
-            <p>Monto: {}</p>
+            <p>Monto: {loading ? <span className="loading loading-spinner text-success"></span> : error ? "X" : total}</p>
         </div>
     );
 };

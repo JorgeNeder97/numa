@@ -75,4 +75,22 @@
         background-color: var(--color-emerald-600);
         cursor: pointer;
     }
+
+    .secondary-button {
+        background-color: var(--color-red-400);
+        color: #FFFFFF;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all .3s ease-in-out;
+    }
+
+    .secondary-button:hover {
+        background-color: var(--color-red-600);
+        cursor: pointer;
+    }
+
+    .secondary-button:active {
+        background-color: var(--color-red-500);
+        cursor: pointer;
+    }
 }

@@ -1,37 +1,30 @@
 import { useEffect, useState } from "react";
 import { getTransactions } from "@/utils/getTransactions";
-
-interface Transaction {
-  id: string;
-  amount: number;
-  // Agregá otras propiedades si las necesitás
-}
+import { Transaction } from "@/models/transactions";
 
 export const useTransactions = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [total, setTotal] = useState<number>(0);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [total, setTotal] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const data = await getTransactions();
-        setTransactions(data);
-        const totalAmount = data.reduce((acc: number, tx: Transaction) => acc + tx.amount, 0);
-        setTotal(totalAmount);
-      } catch (err) {
-        setError("No se pudieron obtener las transacciones");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    useEffect(() => {
+        const fetchTransactions = async () => {
+            try {
+                const data = await getTransactions();
+                setTransactions(data);
+                const totalAmount = data.reduce((acc:number, tx:Transaction) => acc + Number(tx.amount), 0);
+                totalAmount > 0 ? setTotal(totalAmount) : setTotal(0);
+            } catch (error) {
+                setError("No se pudieron obtener las transacciones.");
+                console.log(error);
+            } finally {
+                setLoading(false);
+            };
+        };
 
-    fetchTransactions();
-  }, []);
+        fetchTransactions();
+    }, []);
 
-  return { transactions, total, loading, error };
+    return { transactions, total, loading, error };
 };
-
-// Luego lo usamos así: const { total, loading, error } = useTransactions();

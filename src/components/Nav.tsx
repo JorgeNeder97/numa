@@ -78,6 +78,9 @@ const Nav = () => {
                                     <Link href="/dashboard" className="text-lg">Dashboard</Link>
                                 </li>
                                 <li>
+                                    <Link href="/categories" className="text-lg">Categorías</Link>
+                                </li>
+                                <li>
                                     <Link href="/transactions" className="text-lg">Transacciones</Link>
                                 </li>
                                 <li>

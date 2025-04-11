@@ -19,16 +19,41 @@ model User {
   lastname String
   email String @unique
   password String
+
+
   transactions Transaction[]
+  categories Category[]
 }
 
 model Transaction {
   id Int @id @default(autoincrement())
   amount Decimal @db.Decimal(10, 2)
-  category String
+  categoryId Int
   description String?
   date DateTime
+  typeId Int
   userId Int
 
+   
+  category Category @relation(fields: [categoryId], references: [id])
+  type Type @relation(fields: [typeId], references: [id])
   user User @relation(fields: [userId], references: [id])
+}
+
+model Category {
+    id Int @id @default(autoincrement())
+    name String
+    userId Int
+
+
+    user User @relation(fields: [userId], references: [id])
+    transactions Transaction[]
+}
+
+model Type {
+    id Int @id @default(autoincrement())
+    name String
+
+    
+    transactions Transaction[]
 }
