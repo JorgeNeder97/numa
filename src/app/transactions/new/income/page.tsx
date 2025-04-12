@@ -8,7 +8,7 @@ const IncomePage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = handleSubmit((data) => {
-        console.log(data);
+        
     });
 
     return (
@@ -40,7 +40,7 @@ const IncomePage = () => {
                     <label htmlFor="category">Categoría</label>
                     <select
                         className="input"
-                        {...register("category", {
+                        {...register("categoryId", {
                             required: {
                                 value: true,
                                 message: "Debes elegir una categoría"
