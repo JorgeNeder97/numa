@@ -5,8 +5,21 @@ const newCategoryPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = handleSubmit((data) => {
-        console.log(data);
+    const onSubmit = handleSubmit(async (data) => {
+        try {
+            console.log(data);
+            const res = await fetch("/api/auth/categories", {
+                method: "POST",
+                body: JSON.stringify({
+                    name: data.name,
+                }),
+                headers: {
+                    "Content-type": "application/json",
+                },
+            });
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     return (

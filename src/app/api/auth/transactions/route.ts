@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../[...nextauth]/route";
+import { PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
 
 export async function GET() {
 
@@ -24,5 +25,6 @@ export async function GET() {
     } catch (error) {
         console.log(error);
         if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
+        else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }

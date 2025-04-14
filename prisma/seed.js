@@ -1,4 +1,5 @@
-import { prisma } from "@/libs/prisma";
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 async function main() {
     const income = await prisma.type.upsert({
         where: { name: "income" },
@@ -15,5 +16,13 @@ async function main() {
         },
     });
 };
-
-// Continuar con el seeder
+main()
+  .then(() => {
+    console.log("Seed completado");
+    prisma.$disconnect();
+  })
+  .catch((e) => {
+    console.error(e);
+    prisma.$disconnect();
+    process.exit(1);
+  });
