@@ -7,8 +7,7 @@ const newCategoryPage = () => {
 
     const onSubmit = handleSubmit(async (data) => {
         try {
-            console.log(data);
-            const res = await fetch("/api/auth/categories", {
+            await fetch("/api/auth/categories", {
                 method: "POST",
                 body: JSON.stringify({
                     name: data.name,
@@ -18,7 +17,7 @@ const newCategoryPage = () => {
                 },
             });
         } catch (error) {
-            console.log(error);
+            if(error instanceof Error) console.log(error.message);
         }
     });
 

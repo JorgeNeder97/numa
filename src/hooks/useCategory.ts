@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
-import { getCategories } from "@/utils/getCategories";
+import { getCategory } from "@/utils/getCategories";
 import { Category } from "@/models/categories";
 
-export const useCategories = () => {
-    const [categories, setCategories] = useState<Category[]>([]);
+export const useCategory = (id: number) => {
+    const [category, setCategory] = useState<Category>();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchCategories = async () => {
+        const fetchCategory = async () => {
             try {
-                const data = await getCategories();
-                setCategories(data);
+                const data = await getCategory(id);
+                setCategory(data);
             } catch (error) {
-                setError("No se puedieron obtener las categorías.");
+                setError("No se puedo obtener la categoría.");
                 console.log(error);                
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchCategories();
+        fetchCategory();
     }, []);
 
-    return { categories, loading, error };
+    return { category, loading, error };
 };

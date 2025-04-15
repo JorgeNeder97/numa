@@ -14,9 +14,6 @@ const Nav = () => {
         router.refresh();
     }, [status]);
 
-    console.log("Session: " + session?.user);
-    console.log("Status: " + status);
-
     const menuMobile = useRef<HTMLDivElement | null>(null);
 
     const handleMenu = () => {
