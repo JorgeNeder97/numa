@@ -43,10 +43,12 @@ model Transaction {
 model Category {
     id Int @id @default(autoincrement())
     name String
+    typeId Int
     userId Int
 
 
     user User @relation(fields: [userId], references: [id])
+    type Type @relation(fields: [typeId], references: [id])
     transactions Transaction[]
 }
 
@@ -56,4 +58,5 @@ model Type {
 
     
     transactions Transaction[]
+    categories Category[]
 }

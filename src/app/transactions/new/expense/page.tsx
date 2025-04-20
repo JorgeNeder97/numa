@@ -1,14 +1,43 @@
 "use client";
-import { useCategories } from "@/hooks/useCategories";
+import { DateTime } from "luxon";
+import { useExpenseCategories } from "@/hooks/useExpenseCategories";
 import { useForm } from "react-hook-form";
 
 const ExpensePage = () => {
 
-    const { categories, loading, error } = useCategories();
+    const { expenseCategories, loading, error } = useExpenseCategories();
     const { register, handleSubmit, formState: { errors } } = useForm();
     
-    const onSubmit = handleSubmit((data) => {
-        console.log(data);
+    const onSubmit = handleSubmit(async (data) => {
+        const fechaLuxon = DateTime.fromISO(data.date, { zone: "America/Argentina/Buenos_Aires" });
+
+        const fechaISO = fechaLuxon.toISO();
+
+        console.log({
+            amount: data.amount,
+            categoryId: data.categoryId,
+            description: data.description,
+            date: fechaISO,
+        });
+        
+        try {
+            const res = await fetch("/api/auth/transactions", {
+                method: "POST",
+                body: JSON.stringify({
+                    amount: data.amount,
+                    categoryId: data.categoryId,
+                    description: data.description,
+                    date: fechaISO,
+                    typeId: 2,
+                }),
+                headers: {
+                    "Content-type": "application/json",
+                },
+            });
+            console.log(res);
+        } catch (error) {
+            if(error instanceof Error) console.log(error.message);
+        }
     });
 
     return (
@@ -40,7 +69,7 @@ const ExpensePage = () => {
                     <label htmlFor="category">Categoría</label>
                     <select
                         className="input"
-                        {...register("category", {
+                        {...register("categoryId", {
                             required: {
                                 value: true,
                                 message: "Debes elegir una categoría"
@@ -50,14 +79,30 @@ const ExpensePage = () => {
                     >
                         <option className="font-extralight italic" value="" disabled hidden>Elige una categoría</option>
                         {   
-                            categories.length > 0 ? 
-                            categories.map((category, i) => (
+                            expenseCategories.length > 0 ? 
+                            expenseCategories.map((category, i) => (
                                 <option key={i} value={category.id}>{category.name}</option>
                             )) : (<option className="italic" disabled>No creaste ninguna categoría aún</option>)
                         }
                     </select>
                     <span className={errors.category ? "error-span" : "opacity-0 h-[10px]"}>{errors?.category?.message?.toString()}</span>
                 </div>
+
+                <div className="label-input">
+                    <label htmlFor="date">Fecha del Egreso</label>
+                    <input
+                        className="input h-[120px]"
+                        {...register("date", {
+                            required: {
+                                value: true,
+                                message: "Debes seleccionar la fecha del ingreso"
+                            }
+                        })}
+                        type="date"
+                    />
+                    <span className={errors.date ? "error-span" : "opacity-0 h-[10px]"}>{errors?.date?.message?.toString()}</span>
+                </div>
+
                 <div className="label-input">
                     <label htmlFor="description">Descripción</label>
                     <textarea
@@ -72,7 +117,7 @@ const ExpensePage = () => {
                     <span className={errors.description ? "error-span" : "opacity-0 h-[10px]"}>{errors?.description?.message?.toString()}</span>
                 </div>
 
-                <button className="secondary-button">
+                <button className="primary-button">
                     Guardar
                 </button>
             </form>

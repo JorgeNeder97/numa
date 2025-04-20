@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCategory } from "@/utils/getCategories";
-import { Category } from "@/models/categories";
+import { Category } from "@/models/dataTypes";
 
 export const useCategory = (id: number) => {
     const [category, setCategory] = useState<Category>();

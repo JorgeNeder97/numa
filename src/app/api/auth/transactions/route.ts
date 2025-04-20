@@ -26,5 +26,33 @@ export async function GET() {
         console.log(error);
         if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
         else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
-    }
-}
+    };
+};
+
+export async function POST(request: NextRequest) {
+    
+    const data = await request.json();
+
+    const session = await getServerSession(authOptions);
+
+    if(!session) return NextResponse.json({ message: "No autorizado" }, { status: 401 });
+
+    try {
+        const nuevaTransaccion = await prisma.transaction.create({ 
+            data: {
+                amount: Number(data.amount),
+                categoryId: Number(data.categoryId),
+                userId: Number(session.user.id),
+                typeId: Number(data.typeId),
+                description: data.description,
+                date: data.date,
+            }
+        });
+
+        return NextResponse.json(nuevaTransaccion);
+    } catch (error) {
+        console.log(error);
+        if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
+        else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
+    };
+};

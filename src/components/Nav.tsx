@@ -86,7 +86,7 @@ const Nav = () => {
                                 <li>
                                     <Link href="/transactions/new/expense" className="text-lg">Nuevo Egreso</Link>
                                 </li>
-                                <li className="text-lg" onClick={() => signOut()}>Cerrar Sessión</li>
+                                <li className="text-lg" onClick={() => signOut()}>Cerrar Sesión</li>
                             </>
                         )
                     }

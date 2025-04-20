@@ -1,10 +1,9 @@
 "use client";
-
-import { useCategories } from "@/hooks/useCategories";
+import { useIncomeCategories } from "@/hooks/useIncomeCategories";
 import Link from "next/link";
 
-const CategoriesTab = () => {
-    const { categories, loading, error } = useCategories();
+const IncomeCategoriesTab = () => {
+    const { incomeCategories, loading, error } = useIncomeCategories();
 
     const deleteCategory = async(id: number) => {
         try {
@@ -31,7 +30,7 @@ const CategoriesTab = () => {
                 {/* head */}
                 <thead>
                     <tr>
-                        <th className="text-left pl-5">Categoría</th>
+                        <th className="text-left pl-5">Ingresos</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -39,10 +38,10 @@ const CategoriesTab = () => {
                 <tbody>
                     {
                         loading ? <tr><th>Cargando Categorías...</th></tr> :
-                        categories.map((cat, i) => (
+                        incomeCategories.map((cat, i) => (
                             <tr key={i}>
                                 <td className="w-[80%] text-left pl-5">{cat.name}</td>
-                                <td className="pr-5"><Link href={`/api/auth/categories/${cat.id}`}>Edit</Link></td>
+                                <td className="pr-5"><Link href={`/categories/${cat.id}`}>Edit</Link></td>
                                 <td className="pr-5" onClick={() => deleteCategory(cat.id)}>Delete</td>
                             </tr>
                         ))
@@ -53,4 +52,4 @@ const CategoriesTab = () => {
     );
 };
 
-export default CategoriesTab;
+export default IncomeCategoriesTab;

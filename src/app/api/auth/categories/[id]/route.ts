@@ -1,5 +1,5 @@
 import { prisma } from "@/libs/prisma";
-import { CategoryParams } from "@/models/categories";
+import { CategoryParams } from "@/models/dataTypes";
 import { PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
 import { NextRequest, NextResponse } from "next/server";
 

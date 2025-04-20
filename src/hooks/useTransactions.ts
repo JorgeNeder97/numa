@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTransactions } from "@/utils/getTransactions";
-import { Transaction } from "@/models/transactions";
+import { Transaction } from "@/models/dataTypes";
 
 export const useTransactions = () => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);

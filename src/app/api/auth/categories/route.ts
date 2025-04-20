@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
         const nuevaCategoria = await prisma.category.create({
             data: {
                 name: data.name,
+                typeId: Number(data.typeId),
                 userId: Number(session.user.id)
             }
         });
@@ -63,10 +64,11 @@ export async function PATCH(request: NextRequest) {
         const res = await prisma.category.update({
             where: {
                 id: data.id,
-                userId: data.userId,
+                userId: Number(data.userId),
             },
             data: {
                 name: data.name,
+                typeId: Number(data.typeId),
             },
         });
 
