@@ -3,7 +3,8 @@ import { useTransactions } from "@/hooks/useTransactions";
 
 const DashboardPage = () => {
 
-    const { total, loading, error } = useTransactions();
+    const { transactions, total, loading, error } = useTransactions();
+    console.log(transactions);
 
     return (
         <div>

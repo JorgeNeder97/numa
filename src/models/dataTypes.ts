@@ -2,6 +2,7 @@ export interface Transaction {
     id: number,
     amount: number,
     categoryId: number,
+    typeId: number,
     description: string,
     date: string,
     userId: number,

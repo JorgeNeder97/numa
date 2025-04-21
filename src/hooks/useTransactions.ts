@@ -13,7 +13,10 @@ export const useTransactions = () => {
             try {
                 const data = await getTransactions();
                 setTransactions(data);
-                const totalAmount = data.reduce((acc:number, tx:Transaction) => acc + Number(tx.amount), 0);
+                const totalAmount = data.reduce((acc:number, tx:Transaction) => {
+                    // Check if it's an expense or an income, if it's an expense substract, otherwise plus
+                   return tx.typeId && tx.typeId == 1 ? acc + Number(tx.amount) : acc - Number(tx.amount);
+                }, 0);
                 totalAmount > 0 ? setTotal(totalAmount) : setTotal(0);
             } catch (error) {
                 setError("No se pudieron obtener las transacciones.");

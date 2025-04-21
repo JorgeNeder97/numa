@@ -2,14 +2,17 @@
 import { DateTime } from "luxon";
 import { useIncomeCategories } from "@/hooks/useIncomeCategories";
 import { useForm } from "react-hook-form";
+import { Yesteryear } from "next/font/google";
 
 const IncomePage = () => {
 
     const { incomeCategories, loading, error } = useIncomeCategories();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    console.log(new Date().toISOString());
 
     const onSubmit = handleSubmit(async (data) => {
-        const fechaLuxon = DateTime.fromISO(data.date, { zone: "America/Argentina/Buenos_Aires" });
+        const fechaActual = new Date().toISOString();
+        const fechaLuxon = DateTime.fromISO(fechaActual, { zone: "America/Argentina/Buenos_Aires" });
 
         const fechaISO = fechaLuxon.toISO();
 
@@ -88,7 +91,8 @@ const IncomePage = () => {
                     <span className={errors.category ? "error-span" : "opacity-0 h-[10px]"}>{errors?.category?.message?.toString()}</span>
                 </div>
 
-                <div className="label-input">
+                {/* Disabled for the MVP */}
+                {/* <div className="label-input">
                     <label htmlFor="date">Fecha del Ingreso</label>
                     <input
                         className="input h-[120px]"
@@ -101,7 +105,7 @@ const IncomePage = () => {
                         type="date"
                     />
                     <span className={errors.date ? "error-span" : "opacity-0 h-[10px]"}>{errors?.date?.message?.toString()}</span>
-                </div>
+                </div> */}
 
                 <div className="label-input">
                     <label htmlFor="description">Descripción</label>

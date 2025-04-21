@@ -15,7 +15,7 @@ CREATE TABLE "Transaction" (
     "amount" DECIMAL(10,2) NOT NULL,
     "category" TEXT NOT NULL,
     "description" TEXT,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" TIMESTAMP(3) WITHOUT TIME ZONE NOT NULL,
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
