@@ -5,8 +5,8 @@ import { Transaction } from "@/models/dataTypes";
 export const useTransactions = () => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [total, setTotal] = useState<number>(0);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [loadingTransactions, setLoadingTransactions] = useState<boolean>(true);
+    const [transactionsError, setTransactionsError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -19,15 +19,15 @@ export const useTransactions = () => {
                 }, 0);
                 totalAmount > 0 ? setTotal(totalAmount) : setTotal(0);
             } catch (error) {
-                setError("No se pudieron obtener las transacciones.");
+                setTransactionsError("No se pudieron obtener las transacciones.");
                 console.log(error);
             } finally {
-                setLoading(false);
+                setLoadingTransactions(false);
             };
         };
 
         fetchTransactions();
     }, []);
 
-    return { transactions, total, loading, error };
+    return { transactions, total, loadingTransactions, transactionsError };
 };

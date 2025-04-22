@@ -1,11 +1,13 @@
 "use client";
 import { useTypes } from "@/hooks/useTypes";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 const newCategoryPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { types, loading, error } = useTypes();
+    const { types, loadingTypes, typesError } = useTypes();
+    const router = useRouter();
 
     const onSubmit = handleSubmit(async (data) => {
         try {
@@ -19,6 +21,7 @@ const newCategoryPage = () => {
                     "Content-type": "application/json",
                 },
             });
+            if(res.ok && res.status == 200) router.push("/categories");
         } catch (error) {
             if(error instanceof Error) console.log(error.message);
         }
@@ -59,10 +62,14 @@ const newCategoryPage = () => {
                     >
                         <option className="font-extralight italic" value="" disabled hidden>Elige un tipo de categoría</option>
                         {   
-                            types.length > 0 ? 
-                            types.map((type, i) => (
-                                <option key={i} value={type.id}>{type.name == "income" ? "Ingreso" : "Egreso"}</option>
-                            )) : (<option className="italic" disabled>Cargando...</option>)
+                            !typesError ?
+                                loadingTypes ?
+                                    <option className="loading-option" value="" disabled>Cargando...</option>
+                                :
+                                    types.length > 0 ? 
+                                        types.map((type, i) => (<option key={i} value={type.id}>{type.name == "income" ? "Ingreso" : "Egreso"}</option>)) 
+                                    : (<option className="italic" disabled>Aún no existe ningun tipo...</option>)
+                            : <option className="error-option" value="" disabled>Se produjo un error.</option>
                         }
                     </select>
                     <span className={errors.typeId ? "error-span" : "opacity-0 h-[10px]"}>{errors?.typeId?.message?.toString()}</span>

@@ -1,41 +1,29 @@
 "use client";
-import { DateTime } from "luxon";
 import { useExpenseCategories } from "@/hooks/useExpenseCategories";
+import { getActualDate } from "@/utils/formatDates";
 import { useForm } from "react-hook-form";
 
 const ExpensePage = () => {
 
-    const { expenseCategories, loading, error } = useExpenseCategories();
+    const { expenseCategories, loadingExpenseCategories, expenseCategoriesError } = useExpenseCategories();
     const { register, handleSubmit, formState: { errors } } = useForm();
     
     const onSubmit = handleSubmit(async (data) => {
-        const fechaActual = new Date().toISOString();
-        const fechaLuxon = DateTime.fromISO(fechaActual, { zone: "America/Argentina/Buenos_Aires" });
-
-        const fechaISO = fechaLuxon.toISO();
-
-        console.log({
-            amount: data.amount,
-            categoryId: data.categoryId,
-            description: data.description,
-            date: fechaISO,
-        });
-        
+        const fecha = getActualDate();
         try {
-            const res = await fetch("/api/auth/transactions", {
+            await fetch("/api/auth/transactions", {
                 method: "POST",
                 body: JSON.stringify({
                     amount: data.amount,
                     categoryId: data.categoryId,
                     description: data.description,
-                    date: fechaISO,
+                    date: fecha,
                     typeId: 2,
                 }),
                 headers: {
                     "Content-type": "application/json",
                 },
             });
-            console.log(res);
         } catch (error) {
             if(error instanceof Error) console.log(error.message);
         }
@@ -80,10 +68,13 @@ const ExpensePage = () => {
                     >
                         <option className="font-extralight italic" value="" disabled hidden>Elige una categoría</option>
                         {   
-                            expenseCategories.length > 0 ? 
-                            expenseCategories.map((category, i) => (
-                                <option key={i} value={category.id}>{category.name}</option>
-                            )) : (<option className="italic" disabled>No creaste ninguna categoría aún</option>)
+                            !expenseCategoriesError ?
+                                (loadingExpenseCategories ?
+                                    <option className="loading-option" value="" disabled>Cargando...</option>
+                                : expenseCategories.length > 0 ? 
+                                        expenseCategories.map((category, i) => (<option key={i} value={category.id}>{category.name}</option>)) 
+                                    : (<option className="italic" disabled>No creaste ninguna categoría aún</option>))
+                            : <option className="error-select" value="" disabled>Se produjo un error.</option>
                         }
                     </select>
                     <span className={errors.category ? "error-span" : "opacity-0 h-[10px]"}>{errors?.category?.message?.toString()}</span>

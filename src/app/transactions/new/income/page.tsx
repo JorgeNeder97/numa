@@ -1,43 +1,29 @@
 "use client";
-import { DateTime } from "luxon";
 import { useIncomeCategories } from "@/hooks/useIncomeCategories";
+import { getActualDate } from "@/utils/formatDates";
 import { useForm } from "react-hook-form";
-import { Yesteryear } from "next/font/google";
 
 const IncomePage = () => {
 
-    const { incomeCategories, loading, error } = useIncomeCategories();
+    const { incomeCategories, loadingIncomeCategories, incomeCategoriesError } = useIncomeCategories();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    console.log(new Date().toISOString());
 
     const onSubmit = handleSubmit(async (data) => {
-        const fechaActual = new Date().toISOString();
-        const fechaLuxon = DateTime.fromISO(fechaActual, { zone: "America/Argentina/Buenos_Aires" });
-
-        const fechaISO = fechaLuxon.toISO();
-
-        console.log({
-            amount: data.amount,
-            categoryId: data.categoryId,
-            description: data.description,
-            date: fechaISO,
-        });
-        
+        const fecha = getActualDate();
         try {
-            const res = await fetch("/api/auth/transactions", {
+            await fetch("/api/auth/transactions", {
                 method: "POST",
                 body: JSON.stringify({
                     amount: data.amount,
                     categoryId: data.categoryId,
                     description: data.description,
-                    date: fechaISO,
+                    date: fecha,
                     typeId: 1,
                 }),
                 headers: {
                     "Content-type": "application/json",
                 },
             });
-            console.log(res);
         } catch (error) {
             if(error instanceof Error) console.log(error.message);
         }
@@ -82,10 +68,13 @@ const IncomePage = () => {
                     >
                         <option className="font-extralight italic" value="" disabled hidden>Elige una categoría</option>
                         {   
-                            incomeCategories.length > 0 ? 
-                            incomeCategories.map((category, i) => (
-                                <option key={i} value={category.id}>{category.name}</option>
-                            )) : (<option className="italic" disabled>No creaste ninguna categoría aún</option>)
+                            !incomeCategoriesError ?
+                                (loadingIncomeCategories ? 
+                                    <option className="loading-option" value="" disabled>Cargando...</option> 
+                                : incomeCategories.length > 0 ? 
+                                        incomeCategories.map((category, i) => (<option key={i} value={category.id}>{category.name}</option>)) 
+                                    : (<option className="italic" disabled>No creaste ninguna categoría aún</option>)) 
+                            : <option className="error-option" value="" disabled>Se produjo un error</option>
                         }
                     </select>
                     <span className={errors.category ? "error-span" : "opacity-0 h-[10px]"}>{errors?.category?.message?.toString()}</span>

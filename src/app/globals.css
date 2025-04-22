@@ -51,11 +51,22 @@
         -webkit-text-fill-color: #FFFFFF;
     }
 
+    .loading-option {
+        font-weight: var(--font-weight-extralight);
+        font-style: italic;
+    }
+
     .error-span {
         height: 10px;
         font-size: 13px;
         color: var(--color-red-700);
         transition: all .3s ease-in-out;
+    }
+    
+    .error-option {
+        color: var(--color-red-900);
+        font-weight: var(--font-weight-extralight);
+        font-style: italic;
     }
 
     .primary-button {

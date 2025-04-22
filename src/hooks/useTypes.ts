@@ -4,8 +4,8 @@ import { Types } from "@/models/dataTypes";
 
 export const useTypes = () => {
     const [types, setTypes] = useState<Types[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [loadingTypes, setLoadingTypes] = useState<boolean>(true);
+    const [typesError, setTypesError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchTypes = async () => {
@@ -13,15 +13,15 @@ export const useTypes = () => {
                 const data = await getTypes();
                 setTypes(data);
             } catch (error) {
-                setError("No se puedieron obtener los tipos.");
+                setTypesError("No se puedieron obtener los tipos.");
                 console.log(error);                
             } finally {
-                setLoading(false);
+                setLoadingTypes(false);
             }
         };
 
         fetchTypes();
     }, []);
 
-    return { types, loading, error };
+    return { types, loadingTypes, typesError };
 };

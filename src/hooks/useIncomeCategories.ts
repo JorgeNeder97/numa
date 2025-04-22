@@ -4,8 +4,8 @@ import { Category } from "@/models/dataTypes";
 
 export const useIncomeCategories = () => {
     const [incomeCategories, setIncomeCategories] = useState<Category[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [loadingIncomeCategories, setLoadingIncomeCategories] = useState<boolean>(true);
+    const [incomeCategoriesError, setIncomeCategoriesError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchIncomeCategories = async () => {
@@ -13,15 +13,15 @@ export const useIncomeCategories = () => {
                 const data = await getIncomeCategories();
                 setIncomeCategories(data);
             } catch (error) {
-                setError("No se puedieron obtener las categorías.");
+                setIncomeCategoriesError("No se puedieron obtener las categorías.");
                 console.log(error);                
             } finally {
-                setLoading(false);
+                setLoadingIncomeCategories(false);
             }
         };
 
         fetchIncomeCategories();
     }, []);
 
-    return { incomeCategories, loading, error };
+    return { incomeCategories, loadingIncomeCategories, incomeCategoriesError };
 };

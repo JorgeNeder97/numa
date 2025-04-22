@@ -3,7 +3,7 @@ import { useIncomeCategories } from "@/hooks/useIncomeCategories";
 import Link from "next/link";
 
 const IncomeCategoriesTab = () => {
-    const { incomeCategories, loading, error } = useIncomeCategories();
+    const { incomeCategories, loadingIncomeCategories, incomeCategoriesError } = useIncomeCategories();
 
     const deleteCategory = async(id: number) => {
         try {
@@ -37,14 +37,17 @@ const IncomeCategoriesTab = () => {
                 </thead>
                 <tbody>
                     {
-                        loading ? <tr><th>Cargando Categorías...</th></tr> :
-                        incomeCategories.map((cat, i) => (
-                            <tr key={i}>
-                                <td className="w-[80%] text-left pl-5">{cat.name}</td>
-                                <td className="pr-5"><Link href={`/categories/${cat.id}`}>Edit</Link></td>
-                                <td className="pr-5" onClick={() => deleteCategory(cat.id)}>Delete</td>
-                            </tr>
-                        ))
+                        !incomeCategoriesError ?
+                            loadingIncomeCategories ? 
+                                <tr><th>Cargando Categorías...</th></tr> 
+                            : incomeCategories.map((cat, i) => (
+                                <tr key={i}>
+                                    <td className="w-[80%] text-left pl-5">{cat.name}</td>
+                                    <td className="pr-5"><Link href={`/categories/${cat.id}`}>Edit</Link></td>
+                                    <td className="pr-5" onClick={() => deleteCategory(cat.id)}>Delete</td>
+                                </tr>
+                            ))
+                        : <tr><th>Se produjo un error.</th></tr>
                     }
                 </tbody>
             </table>

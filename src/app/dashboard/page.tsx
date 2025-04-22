@@ -3,13 +3,13 @@ import { useTransactions } from "@/hooks/useTransactions";
 
 const DashboardPage = () => {
 
-    const { transactions, total, loading, error } = useTransactions();
+    const { transactions, total, loadingTransactions, transactionsError } = useTransactions();
     console.log(transactions);
 
     return (
         <div>
             <p>Dashboard Page</p>
-            <p>Monto: {loading ? <span className="loading loading-spinner text-success"></span> : error ? "X" : total}</p>
+            <p>Monto: {loadingTransactions ? <span className="loading loading-spinner text-success"></span> : transactionsError ? "X" : total}</p>
         </div>
     );
 };

@@ -4,8 +4,8 @@ import { Category } from "@/models/dataTypes";
 
 export const useCategory = (id: number) => {
     const [category, setCategory] = useState<Category>();
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [loadingCategory, setLoadingCategory] = useState<boolean>(true);
+    const [categoryError, setCategoryError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchCategory = async () => {
@@ -13,15 +13,15 @@ export const useCategory = (id: number) => {
                 const data = await getCategory(id);
                 setCategory(data);
             } catch (error) {
-                setError("No se puedo obtener la categoría.");
+                setCategoryError("No se puedo obtener la categoría.");
                 console.log(error);                
             } finally {
-                setLoading(false);
+                setLoadingCategory(false);
             }
         };
 
         fetchCategory();
     }, []);
 
-    return { category, loading, error };
+    return { category, loadingCategory, categoryError };
 };
