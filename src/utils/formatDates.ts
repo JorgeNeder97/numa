@@ -13,6 +13,12 @@ export function getActualDate() {
     return fechaISO;
 }
 
+export function getFormatedActualDate() {
+    const fechaActual = DateTime.now().setZone("America/Argentina/Buenos_Aires");
+    const fecha = fechaActual.setLocale('es').toFormat("dd 'de' LLLL 'del' yyyy");
+    return fecha;
+}
+
 export function formatDate(date: Date | string) {
     const fecha = typeof date === "string" ? DateTime.fromISO(date) : DateTime.fromJSDate(date);
     return fecha.setLocale('es').toFormat("dd/MM");

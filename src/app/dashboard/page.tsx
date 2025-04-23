@@ -1,27 +1,30 @@
 "use client";
+import CountUp from "@/components/CountUp";
 import { useTransactions } from "@/hooks/useTransactions";
-import { formatDateToText, getActualDate } from "@/utils/formatDates";
-import { DateTime } from "luxon";
+import { getFormatedActualDate } from "@/utils/formatDates";
 
 const DashboardPage = () => {
 
-    const fechaActual = DateTime.now().setZone("America/Argentina/Buenos_Aires");
-    const fecha = fechaActual.setLocale('es').toFormat("dd 'de' LLLL 'del' yyyy");
+    const fecha = getFormatedActualDate();
 
-    const { transactions, total, loadingTransactions, transactionsError } = useTransactions();
-    console.log(transactions);
-
+    const { total, loadingTransactions, transactionsError } = useTransactions();
+    
     return (
-        <div>
-            <p>Dashboard Page</p>
-            <div className="d-stats d-stats-vertical ">
-                <div className="d-stat">
+        <div className="w-full flex flex-col gap-[20px]">
+            <div className="d-stats d-stats-vertical w-content">
+                <div className="d-stat w-full flex flex-col place-items-start gap-[10px]">
                     <div className="d-stat-title text-sm">Saldo disponible</div>
-                    <div className="d-stat-value font-normal">$ {loadingTransactions ? <span className="loading loading-spinner text-success"></span> : transactionsError ? "X" : total}</div>
+                    <div className="d-stat-value font-normal">
+                        $ {loadingTransactions ? 
+                            <span className="loading loading-spinner text-success"></span> 
+                        : transactionsError ? 
+                            "X" 
+                        : <CountUp from={0} to={total} separator="." direction="up" duration={.3} className="count-up-text" />}
+                    </div>
                     <div className="d-stat-desc">{fecha}</div>
                 </div>
 
-                <div className="d-stat">
+                {/* <div className="d-stat">
                     <div className="d-stat-title">New Users</div>
                     <div className="d-stat-value">4,200</div>
                     <div className="d-stat-desc">↗︎ 400 (22%)</div>
@@ -31,9 +34,8 @@ const DashboardPage = () => {
                     <div className="d-stat-title">New Registers</div>
                     <div className="d-stat-value">1,200</div>
                     <div className="d-stat-desc">↘︎ 90 (14%)</div>
-                </div>
+                </div> */}
             </div>
-            <p>Monto: {loadingTransactions ? <span className="loading loading-spinner text-success"></span> : transactionsError ? "X" : total}</p>
         </div>
     );
 };

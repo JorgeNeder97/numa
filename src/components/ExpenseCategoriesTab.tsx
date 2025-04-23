@@ -40,13 +40,15 @@ const ExpenseCategoriesTab = () => {
                         !expenseCategoriesError ?
                             loadingExpenseCategories ? 
                                 <tr><th className="py-5 font-thin italic">Cargando Categorías...</th></tr> 
-                            : expenseCategories.map((cat, i) => (
-                                <tr key={i} className="font-light">
-                                    <td className="w-[80%] text-left pl-5 py-5">{cat.name}</td>
-                                    <td className="pr-5 py-5 hover:cursor-pointer"><Link href={`/categories/${cat.id}`}>Edit</Link></td>
-                                    <td className="pr-5 py-5 hover:cursor-pointer" onClick={() => deleteCategory(cat.id)}>Delete</td>
-                                </tr>
-                            ))
+                            : expenseCategories.length > 0 ? 
+                                expenseCategories.map((cat, i) => (
+                                    <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">
+                                        <td className="w-[80%] text-left pl-5 pr-5 py-5">{cat.name}</td>
+                                        <td className="pr-5 py-5 hover:cursor-pointer"><Link href={`/categories/${cat.id}`}>Edit</Link></td>
+                                        <td className="pr-5 py-5 hover:cursor-pointer" onClick={() => deleteCategory(cat.id)}>Delete</td>
+                                    </tr>
+                                ))
+                            : <tr className="font-thin italic"><td className="text-left pl-5 py-5">No creaste ninguna categoría aún</td></tr>
                         : <tr><th>Se produjo un error.</th></tr>
                     }
                 </tbody>
