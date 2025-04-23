@@ -5,7 +5,8 @@
 };
 
 @theme inline {
-
+    --shadow-medium: 5px 5px 15px #CCCCCC;
+    --color-almostwhite: #EEEEEE;
 }
 
 @layer components {
@@ -103,5 +104,11 @@
     .secondary-button:active {
         background-color: var(--color-red-400);
         cursor: pointer;
+    }
+
+    .table-row {
+        padding-left: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }

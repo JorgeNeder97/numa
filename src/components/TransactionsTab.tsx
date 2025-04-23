@@ -1,0 +1,67 @@
+"use client";
+import { useTransactionsWithCategory } from "@/hooks/useTransactionsWithCategory";
+import { formatDate } from "@/utils/formatDates";
+import Link from "next/link";
+
+const TransactionsTab = () => {
+    const { transactions, loadingTransactions, transactionsError } = useTransactionsWithCategory();
+    console.log(transactions);
+    // Cambiar esto....
+    // const deleteCategory = async(id: number) => {
+    //     try {
+    //         const res = await fetch("/api/auth/categories", {
+    //             method: "DELETE",
+    //             body: JSON.stringify({
+    //                 id
+    //             }),
+    //             headers: {
+    //                 "Content-type": "application/json",
+    //             },
+    //         });
+    
+    //         if(!res || !res.ok) alert("No se pudo eliminar la categoría");
+    //         alert("Categoria eliminada");
+    //     } catch (error) {
+    //         if(error instanceof Error) console.log(error.message);
+    //     }
+    // }
+
+    return (
+        <div className="overflow-x-auto rounded bg-almostwhite shadow-medium">
+            <table className="w-full">
+                {/* head */}
+                {/* <thead>
+                    <tr>
+                        <th className="text-left pl-5 py-5"></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead> */}
+                <tbody>
+                    {
+                        !transactionsError ?
+                            loadingTransactions ? 
+                                <tr><th className="py-5 font-thin italic">Cargando Categorías...</th></tr> 
+                            : transactions.map((tx, i) => (
+                                <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">
+                                    <td className="w-[80%] text-left text-lg pl-5 py-2">{tx.category.name}</td>
+                                    <td className="w-[80%] text-left pr-5 py-2">
+                                        <div className="flex flex-col place-items-end text-sm">
+                                            <span className={tx.typeId == 1 ? "text-emerald-500 font-medium text-lg" : "text-red-500 font-medium text-lg"}>{tx.typeId == 1 ? "" : "-"}${tx.amount}</span>
+                                            <span>{formatDate(tx.date)}</span>
+                                        </div>
+                                        
+                                    </td>
+                                    {/* <td className="pr-5 py-5 hover:cursor-pointer"><Link href={`/categories/${tx.id}`}>Edit</Link></td>
+                                    <td className="pr-5 py-5 hover:cursor-pointer" onClick={() => deleteCategory(tx.id)}>Delete</td> */}
+                                </tr>
+                            ))
+                        : <tr><th>Se produjo un error.</th></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default TransactionsTab;

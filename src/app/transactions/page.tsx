@@ -1,8 +1,10 @@
+import TransactionsTab from "@/components/TransactionsTab";
+
 const TransactionsPage = () => {
     return (
-        <div>
-            <p>Transacciones</p>
-            <p>Componente que muestra la lista de transacciones con los botones modificar y eliminar</p>
+        <div className="w-full px-[10px] py-[30px] flex flex-col gap-[30px]">
+            <p className="text-xl text-center font-light">Transacciones</p>
+            <TransactionsTab />
         </div>
     );
 };

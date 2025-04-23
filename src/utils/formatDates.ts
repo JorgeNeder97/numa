@@ -12,3 +12,13 @@ export function getActualDate() {
 
     return fechaISO;
 }
+
+export function formatDate(date: Date | string) {
+    const fecha = typeof date === "string" ? DateTime.fromISO(date) : DateTime.fromJSDate(date);
+    return fecha.setLocale('es').toFormat("dd/MM");
+};
+
+export function formatDateToText(date: Date | string) {
+    const fecha = typeof date === "string" ? DateTime.fromISO(date) : DateTime.fromJSDate(date);
+    return fecha.setLocale('es').toFormat("dd LLL. yyyy");
+}

@@ -8,6 +8,10 @@ export interface Transaction {
     userId: number,
 };
 
+export interface TransactionCategory extends Transaction {
+    category: Category,
+}
+
 export interface Category {
     id: number,
     name: string,
