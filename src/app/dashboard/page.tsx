@@ -1,5 +1,6 @@
 "use client";
 import CountUp from "@/components/CountUp";
+import TransactionsPie from "@/components/TransactionsPie";
 import { useTransactions } from "@/hooks/useTransactions";
 import { getFormatedActualDate } from "@/utils/formatDates";
 
@@ -22,11 +23,11 @@ const DashboardPage = () => {
                         : <CountUp from={0} to={total} separator="." direction="up" duration={.3} className="count-up-text" />}
                     </div>
                 </div>
-                <div className="w-full h-[100px] pr-[5px] flex place-content-end">
+                <div className="w-full h-[100px] pr-[15px] flex place-content-end">
                     <span className="text-[.835rem]">{fecha}</span>
                 </div>
             </div>
-
+                <TransactionsPie />
                 {/* <div className="d-stat">
                     <div className="d-stat-value">4,200</div>
                     <div className="d-stat-desc">↗︎ 400 (22%)</div>
