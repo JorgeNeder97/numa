@@ -10,9 +10,9 @@ const DashboardPage = () => {
     const { total, loadingTransactions, transactionsError } = useTransactions();
     
     return (
-        <div className="w-full flex flex-col gap-[20px]">
-            <div className="d-stats d-stats-vertical w-content">
-                <div className="d-stat w-full flex flex-col place-items-start gap-[10px]">
+        <div className="w-full py-[30px] flex flex-col gap-[20px]">
+            <div className="w-full flex place-items-start place-content-between">
+                <div className="h-[100px] pl-5 flex flex-col place-items-start gap-[10px]">
                     <div className="d-stat-title text-sm">Saldo disponible</div>
                     <div className="d-stat-value font-normal">
                         $ {loadingTransactions ? 
@@ -21,11 +21,13 @@ const DashboardPage = () => {
                             "X" 
                         : <CountUp from={0} to={total} separator="." direction="up" duration={.3} className="count-up-text" />}
                     </div>
-                    <div className="d-stat-desc">{fecha}</div>
                 </div>
+                <div className="w-full h-[100px] pr-[5px] flex place-content-end">
+                    <span className="text-[.835rem]">{fecha}</span>
+                </div>
+            </div>
 
                 {/* <div className="d-stat">
-                    <div className="d-stat-title">New Users</div>
                     <div className="d-stat-value">4,200</div>
                     <div className="d-stat-desc">↗︎ 400 (22%)</div>
                 </div>
@@ -35,7 +37,6 @@ const DashboardPage = () => {
                     <div className="d-stat-value">1,200</div>
                     <div className="d-stat-desc">↘︎ 90 (14%)</div>
                 </div> */}
-            </div>
         </div>
     );
 };
