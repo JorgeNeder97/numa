@@ -1,6 +1,6 @@
 "use client";
 import { useTransactionsWithCategory } from "@/hooks/useTransactionsWithCategory";
-import { formatDate } from "@/utils/formatDates";
+import { formatDate } from "@/utils/general/formatDates";
 import Link from "next/link";
 
 const TransactionsTab = () => {

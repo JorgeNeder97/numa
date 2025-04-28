@@ -1,6 +1,6 @@
 "use client";
 import { useExpenseCategories } from "@/hooks/useExpenseCategories";
-import { getActualDate } from "@/utils/formatDates";
+import { getActualDate } from "@/utils/general/formatDates";
 import { useForm } from "react-hook-form";
 
 const ExpensePage = () => {

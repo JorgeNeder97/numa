@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { getExpensesAmount, getIncomesAmount } from "@/utils/getAmountByCategory";
 
@@ -7,7 +8,7 @@ export const useAmountPerCategory = (type:number) => {
     const [amountPerCategoryError, setAmountPerCategoryError] = useState<string | null>(null);
 
     useEffect(() => {
-        if(type === 0) {
+        if(type === 1) {
             const fetchIncomes = async () => {
                 try {
                     const data = await getIncomesAmount();
@@ -21,7 +22,7 @@ export const useAmountPerCategory = (type:number) => {
             }
 
             fetchIncomes();
-        } else if(type === 1) {
+        } else if(type === 2) {
             const fetchExpenses = async () => {
                 try {
                     const data = await getExpensesAmount();

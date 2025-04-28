@@ -4,6 +4,7 @@ import "./globals.css";
 import "./normalize.css";
 import Nav from "@/components/Nav";
 import { Providers } from "./providers";
+import Footer from "@/components/Footer";
 
 const kanit = Kanit({
     weight: ["200", "300", "400", "500", "600", "700"],
@@ -27,6 +28,7 @@ export default function RootLayout({
             <Providers>
                 <Nav />
                 {children}
+                <Footer />
             </Providers>
         </body>
         </html>

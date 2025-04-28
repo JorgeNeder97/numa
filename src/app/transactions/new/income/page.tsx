@@ -1,6 +1,6 @@
 "use client";
 import { useIncomeCategories } from "@/hooks/useIncomeCategories";
-import { getActualDate } from "@/utils/formatDates";
+import { getActualDate } from "@/utils/general/formatDates";
 import { useForm } from "react-hook-form";
 
 const IncomePage = () => {

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { getTransactions } from "@/utils/getTransactions";
 import { Transaction } from "@/models/dataTypes";

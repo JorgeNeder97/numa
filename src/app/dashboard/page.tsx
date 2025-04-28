@@ -2,7 +2,7 @@
 import CountUp from "@/components/CountUp";
 import TransactionsPie from "@/components/TransactionsPie";
 import { useTransactions } from "@/hooks/useTransactions";
-import { getFormatedActualDate } from "@/utils/formatDates";
+import { getFormatedActualDate } from "@/utils/general/formatDates";
 
 const DashboardPage = () => {
 
@@ -12,7 +12,8 @@ const DashboardPage = () => {
     
     return (
         <div className="w-full py-[30px] flex flex-col gap-[20px]">
-            <div className="w-full flex place-items-start place-content-between">
+
+            <div className="w-full flex place-items-start place-content-between rounded-b-3xl border-b-4 border-emerald-400">
                 <div className="h-[100px] pl-5 flex flex-col place-items-start gap-[10px]">
                     <div className="d-stat-title text-sm">Saldo disponible</div>
                     <div className="d-stat-value font-normal">
@@ -27,17 +28,12 @@ const DashboardPage = () => {
                     <span className="text-[.835rem]">{fecha}</span>
                 </div>
             </div>
-                <TransactionsPie />
-                {/* <div className="d-stat">
-                    <div className="d-stat-value">4,200</div>
-                    <div className="d-stat-desc">↗︎ 400 (22%)</div>
-                </div>
+            
 
-                <div className="d-stat">
-                    <div className="d-stat-title">New Registers</div>
-                    <div className="d-stat-value">1,200</div>
-                    <div className="d-stat-desc">↘︎ 90 (14%)</div>
-                </div> */}
+
+            <TransactionsPie type={2} />
+            <TransactionsPie type={1} />
+                
         </div>
     );
 };

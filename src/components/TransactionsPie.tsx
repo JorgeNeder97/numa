@@ -1,68 +1,78 @@
-import React, { useEffect, useRef } from 'react';
-import * as echarts from 'echarts';
-import { useAmountPerCategory } from '@/hooks/useAmountPerCategory';
+"use client";
+import React, { useEffect, useRef } from "react";
+import * as echarts from "echarts";
+import { useAmountPerCategory } from "@/hooks/useAmountPerCategory";
 
+const TransactionsPie = ({ type }: { type: number }) => {
+    const chartRef = useRef<HTMLDivElement>(null);
 
-const TransactionsPie = (type:number) => {
-  const chartRef = useRef<HTMLDivElement>(null);
+    const { amountPerCategory, loadingAmountPerCategory, amountPerCategoryError } = useAmountPerCategory(type);
 
-  useEffect(() => {
-    // Ver como agregar estos datos al grafico
-    const {amountPerCategory, loadingAmountPerCategory, amountPerCategoryError} = useAmountPerCategory(type)
-    
-    if (!chartRef.current) return;
+    const data = amountPerCategory.map((item) => {
+        return { value: item.total, name: item.categoryName };
+    });
 
-    const myChart = echarts.init(chartRef.current);
-    
-    const option: echarts.EChartsOption = {
-      title: {
-        text: 'Gastos del mes',
-        left: 'center'
-      },
-      tooltip: {
-        trigger: 'item'
-      },
-      color: ['#5470c6', '#91cc75', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'],
-      series: [
-        {
-          name: 'Egresos',
-          type: 'pie',
-          radius: '50%',
-          colorBy: "data",
-          data: [
-            // Ver como traer desde la base de datos la suma de todas las transacciones separadas por categoría
-            // Ej: la suma de gastos varios, la suma de clases de ingles, etc...
-            { value: 1048, name: 'Gastos Varios' },
-            { value: 735, name: 'Clases de Inglés' },
-            { value: 580, name: 'Higiene personal' },
-            { value: 484, name: 'Teléfono' },
-            { value: 300, name: 'Comida' }
-          ],
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
-    };
+    useEffect(() => {
 
-    myChart.setOption(option);
+        if (!chartRef.current) return;
 
-    // Limpieza al desmontar el componente
-    return () => {
-      myChart.dispose();
-    };
-  }, []);
+        const myChart = echarts.init(chartRef.current);
 
-  return (
-    <div
-      ref={chartRef}
-      style={{ width: '100%', height: '400px' }}
-    />
-  );
+        const option: echarts.EChartsOption = {
+            title: {
+                text: type == 1 ? "Ingresos del mes" : "Egresos del mes",
+                left: "center",
+            },
+            tooltip: {
+                trigger: "item",
+            },
+            color: type === 1 ? [
+                "#91cc75",
+                "#5470c6",
+                "#73c0de",
+                "#3ba272",
+                "#fc8452",
+                "#9a60b4",
+                "#ea7ccc",
+                "#ee6666",
+            ] :
+            [
+                "#ee6666",
+                "#9a60b4",
+                "#fc8452",
+                "#ea7ccc",
+                "#91cc75",
+                "#5470c6",
+                "#73c0de",
+                "#3ba272",
+            ],
+            series: [
+                {
+                    name: type == 1 ? "Ingresos" : "Egresos",
+                    type: "pie",
+                    radius: "50%",
+                    colorBy: "data",
+                    data,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: "rgba(0, 0, 0, 0.5)",
+                        },
+                    },
+                },
+            ],
+        };
+
+        myChart.setOption(option);
+
+        // Limpieza al desmontar el componente
+        return () => {
+            myChart.dispose();
+        };
+    }, [amountPerCategory]);
+
+    return <div ref={chartRef} style={{ width: "100%", height: "400px" }} />;
 };
 
 export default TransactionsPie;
