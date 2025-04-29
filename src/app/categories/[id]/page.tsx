@@ -47,7 +47,7 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
     });
 
     return (
-        <div className="w-full flex place-items-center place-content-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
             <form className="form" onSubmit={onSubmit}>
                 <div className="label-input mb-5">
                     <h2 className="w-full text-3xl font-medium">Editar Categoría</h2>

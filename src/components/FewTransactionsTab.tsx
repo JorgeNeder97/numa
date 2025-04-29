@@ -15,7 +15,7 @@ const FewTransactionsTab = () => {
                                 <tr><th className="py-5 font-thin italic">Cargando Últimas Transacciones...</th></tr> 
                             : transactions.map((tx, i) => (
                                 <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">
-                                    <td className="w-[80%] text-left text-lg pl-5 pr-5 py-2">{tx.category.name}</td>
+                                    <td className="w-[80%] text-left text-[16px] pl-5 pr-5 py-2">{tx.category.name}</td>
                                     <td className="w-[80%] text-left pr-5 py-2">
                                         <div className="flex flex-col place-items-end text-sm">
                                             <span className={tx.typeId == 1 ? "text-emerald-500 font-medium text-lg" : "text-red-500 font-medium text-lg"}>{tx.typeId == 1 ? "" : "-"}${tx.amount}</span>

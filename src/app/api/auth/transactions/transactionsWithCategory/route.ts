@@ -18,6 +18,9 @@ export async function GET() {
             include: {
                 category: true,
             },
+            orderBy: {
+                date: "desc",
+            },
         });
 
         if(transactions) return NextResponse.json(transactions);

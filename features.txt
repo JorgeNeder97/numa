@@ -1,0 +1,5 @@
+Si al ingresar el usuario esta logueado debería mostrarse el dashboard no el home.
+Que pasa con el grafico si el usuario aun no tiene egresos.
+Mostrar un modal o una leyenda al completar un formulario con exito.
+Verificar la correcta redirección de los formularios al completarlos.
+Revisar bien los colores del grafico de torta en los egresos y en los ingresos.

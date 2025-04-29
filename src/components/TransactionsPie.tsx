@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import { truncateString } from "@/utils/general/strings";
 import { useAmountPerCategory } from "@/hooks/useAmountPerCategory";
 
 const TransactionsPie = ({ type }: { type: number }) => {
@@ -9,7 +10,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
     const { amountPerCategory, loadingAmountPerCategory, amountPerCategoryError } = useAmountPerCategory(type);
 
     const data = amountPerCategory.map((item) => {
-        return { value: item.total, name: item.categoryName };
+        return { value: item.total, name: truncateString(item.categoryName, 28) };
     });
 
     useEffect(() => {
@@ -22,30 +23,35 @@ const TransactionsPie = ({ type }: { type: number }) => {
             title: {
                 text: type == 1 ? "Ingresos del mes" : "Gastos del mes",
                 left: "center",
+                textStyle: {
+                    fontSize: "28px",
+                    fontFamily: "Kanit",
+                    color: "#00bc7d"
+                }
             },
             tooltip: {
                 trigger: "item",
             },
-            color: type === 1 ? [
-                "#91cc75",
-                "#5470c6",
-                "#73c0de",
-                "#3ba272",
-                "#fc8452",
-                "#9a60b4",
-                "#ea7ccc",
-                "#ee6666",
-            ] :
-            [
-                "#ee6666",
-                "#9a60b4",
-                "#fc8452",
-                "#ea7ccc",
-                "#91cc75",
-                "#5470c6",
-                "#73c0de",
-                "#3ba272",
-            ],
+            // color: type === 1 ? [
+            //     "#91cc75",
+            //     "#5470c6",
+            //     "#73c0de",
+            //     "#3ba272",
+            //     "#fc8452",
+            //     "#9a60b4",
+            //     "#ea7ccc",
+            //     "#ee6666",
+            // ] :
+            // [
+            //     "#ff3333",
+            //     "#eacc1c",
+            //     "#91cc75",
+            //     "#5470c6",
+            //     "#fc8452",
+            //     "#9a60b4",
+            //     "#73c0de",
+            //     "#3ba272",
+            // ],
             series: [
                 {
                     name: type == 1 ? "Ingresos" : "Egresos",

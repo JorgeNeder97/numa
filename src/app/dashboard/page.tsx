@@ -14,7 +14,7 @@ const DashboardPage = () => {
     const { total, loadingTransactions, transactionsError } = useTransactions();
     
     return (
-        <div className="w-full pt-[30px] flex flex-col gap-[20px]">
+        <div className="w-full min-h-[calc(100vh-150px)] pt-[30px] flex flex-col gap-[20px]">
 
             <section className="w-full flex place-items-start place-content-between rounded-b-3xl border-b-4 border-emerald-400">
                 <div className="h-[100px] pl-5 flex flex-col place-items-start gap-[10px]">

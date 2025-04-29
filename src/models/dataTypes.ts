@@ -1,29 +1,37 @@
+import { ReactNode } from "react";
+
 export interface Transaction {
-    id: number,
-    amount: number,
-    categoryId: number,
-    typeId: number,
-    description: string,
-    date: string,
-    userId: number,
+    id: number;
+    amount: number;
+    categoryId: number;
+    typeId: number;
+    description: string;
+    date: string;
+    userId: number;
 };
 
 export interface TransactionCategory extends Transaction {
-    category: Category,
+    category: Category;
 }
 
 export interface Category {
-    id: number,
-    name: string,
-    userId: number,
-    typeId: number,
+    id: number;
+    name: string;
+    userId: number;
+    typeId: number;
 };
 
 export interface CategoryParams {
-    params: Promise<{ id: number }>,
+    params: Promise<{ id: number }>;
 };
 
 export interface Types {
-    id: number,
-    name: string,
+    id: number;
+    name: string;
+}
+
+export interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    children: ReactNode;
 }

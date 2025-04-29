@@ -30,7 +30,7 @@ const ExpensePage = () => {
     });
 
     return (
-        <div className="w-full flex place-items-center place-content-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
             <form className="form" onSubmit={onSubmit}>
                 <div className="label-input mb-5">
                     <h2 className="w-full text-3xl font-medium">Nuevo Egreso</h2>
@@ -99,7 +99,7 @@ const ExpensePage = () => {
                 <div className="label-input">
                     <label htmlFor="description">Descripción</label>
                     <textarea
-                        className="input h-[120px]"
+                        className="input h-[120px] py-3"
                         {...register("description", {
                             required: {
                                 value: true,

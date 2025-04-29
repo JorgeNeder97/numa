@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const CategoriesPage = () => {
     return (
-        <div className="w-full px-[30px] py-[30px] flex flex-col gap-[20px]">
+        <div className="w-full min-h-[calc(100vh-150px)] px-[30px] py-[30px] flex flex-col gap-[20px]">
             <h2 className="text-xl text-center font-light">Categorías</h2>
             <IncomeCategoriesTab />
             <ExpenseCategoriesTab />
