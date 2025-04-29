@@ -9,9 +9,9 @@ export async function getCategory(id: number) {
 };
 
 export async function getIncomeCategories() {
-    fetchToGet("/api/auth/categories/income");
+    return fetchToGet("/api/auth/categories/income");
 };
 
 export async function getExpenseCategories() {
-    fetchToGet("/api/auth/categories/expense");
+    return fetchToGet("/api/auth/categories/expense");
 };

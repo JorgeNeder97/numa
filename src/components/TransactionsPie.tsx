@@ -20,7 +20,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
 
         const option: echarts.EChartsOption = {
             title: {
-                text: type == 1 ? "Ingresos del mes" : "Egresos del mes",
+                text: type == 1 ? "Ingresos del mes" : "Gastos del mes",
                 left: "center",
             },
             tooltip: {
