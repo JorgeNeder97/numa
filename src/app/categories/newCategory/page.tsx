@@ -1,10 +1,13 @@
 "use client";
-import { useTypes } from "@/hooks/useTypes";
+import { useState } from "react";
+import Modal from "@/components/Modal";
 import { useForm } from "react-hook-form";
+import { useTypes } from "@/hooks/useTypes";
 import { useRouter } from "next/navigation";
 
 const newCategoryPage = () => {
 
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { types, loadingTypes, typesError } = useTypes();
     const router = useRouter();
@@ -21,14 +24,19 @@ const newCategoryPage = () => {
                     "Content-type": "application/json",
                 },
             });
-            if(res.ok && res.status == 200) router.push("/categories");
+            if(res.ok && res.status == 200) setIsOpen(true);
         } catch (error) {
             if(error instanceof Error) console.log(error.message);
         }
     });
 
+    const onContinue = () => {
+        setIsOpen(false);
+        router.push("/categories")
+    }
+
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[30px]">
             <form className="form" onSubmit={onSubmit}>
                 <div className="label-input mb-5">
                     <h2 className="w-full text-3xl font-medium">Nueva Categoría</h2>
@@ -79,6 +87,13 @@ const newCategoryPage = () => {
                     Guardar
                 </button>
             </form>
+
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false}>
+                <div className="flex flex-col place-content-center gap-[20px]">
+                    <span className="modal-text-succed">Operación exitosa</span>
+                    <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
+                </div>
+            </Modal>
         </div>
     );
 };

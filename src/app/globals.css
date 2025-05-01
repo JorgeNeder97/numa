@@ -7,6 +7,18 @@
 @theme inline {
     --shadow-medium: 5px 5px 15px #CCCCCC;
     --color-almostwhite: #EEEEEE;
+    --animate-fadeIn: fade 0.3s ease-out;
+
+    @keyframes fadeIn {
+        0%: { 
+            opacity: 0;
+            transform: scale(0.95);
+        },
+        100%: { 
+            opacity: 1; 
+            transform: scale(1);
+        }
+    }
 }
 
 @layer components {
@@ -88,6 +100,24 @@
         cursor: pointer;
     }
 
+    .inverse-primary-button {
+        background-color: var(--color-neutral-300);
+        color: var(--color-emerald-800);
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all .3s ease-in-out;
+    }
+
+    .inverse-primary-button:hover {
+        background-color: var(--color-neutral-200);
+        cursor: pointer;
+    }
+
+    .inverse-primary-button:active {
+        background-color: var(--color-neutral-100);
+        cursor: pointer;
+    }
+
     .secondary-button {
         background-color: var(--color-red-500);
         color: #FFFFFF;
@@ -106,9 +136,33 @@
         cursor: pointer;
     }
 
+    .inverse-secondary-button {
+        background-color: var(--color-neutral-300);
+        color: var(--color-red-700);
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all .3s ease-in-out;
+    }
+
+    .inverse-secondary-button:hover {
+        background-color: var(--color-neutral-200);
+        cursor: pointer;
+    }
+
+    .inverse-secondary-button:active {
+        background-color: var(--color-neutral-100);
+        cursor: pointer;
+    }
+
     .table-row {
         padding-left: 5px;
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+
+    .modal-text-succed {
+        text-align: center;
+        font-size: var(--text-lg);
+        color: var(--color-neutral-200);
     }
 }

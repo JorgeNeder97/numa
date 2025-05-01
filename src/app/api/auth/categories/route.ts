@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
+import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../[...nextauth]/route";
-import { PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
+import { PrismaClientKnownRequestError, PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
 
 
 export async function GET() {
@@ -89,17 +90,33 @@ export async function DELETE(request: NextRequest) {
     if(!session) return NextResponse.json({ message: "No autorizado" }, { status: 401 });
 
     try {
-        const categoriaEliminada = await prisma.category.delete({
+        // Lo hacemos así porque "delete" solo recibe una condicion en el where
+
+        const categoria = await prisma.category.findFirst({
             where: {
                 id: data.id,
                 userId: Number(session.user.id),
             },
         });
 
+        if(!categoria) return NextResponse.json({ message: "La categoría no fue encontrada o pertenece a mas de un usuario" }, { status: 404 });
+
+
+        const categoriaEliminada = await prisma.category.delete({
+            where: { id: data.id },
+        });
+
         return NextResponse.json(categoriaEliminada);
     } catch (error) {
         console.log(error);
-        if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
+        
+    // 
+        if(error instanceof Prisma.PrismaClientKnownRequestError) {
+            if(error.code == "P2003") return NextResponse.json({ message: "La categoría no se puede eliminar debido a que ya está en uso" }, { status: 403 });
+        }
+        if(error instanceof Error) {
+            return NextResponse.json({ message: error.message }, { status: 500 });
+        }
         else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
     };
 };

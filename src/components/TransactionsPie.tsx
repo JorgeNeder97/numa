@@ -78,7 +78,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
         };
     }, [amountPerCategory]);
 
-    return <div ref={chartRef} style={{ width: "100%", height: "400px" }} />;
+    return <div ref={chartRef} style={{ width: "100%", height: "400px" }} className="pt-[20px]" />;
 };
 
 export default TransactionsPie;

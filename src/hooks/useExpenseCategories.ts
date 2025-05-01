@@ -6,22 +6,22 @@ export const useExpenseCategories = () => {
     const [expenseCategories, setExpenseCategories] = useState<Category[]>([]);
     const [loadingExpenseCategories, setLoadingExpenseCategories] = useState<boolean>(true);
     const [expenseCategoriesError, setExpenseCategoriesError] = useState<string | null>(null);
-
+    
+    const fetchExpenseCategories = async () => {
+        try {
+            const data = await getExpenseCategories();
+            setExpenseCategories(data);
+        } catch (error) {
+            setExpenseCategoriesError("No se puedieron obtener las categorías.");
+            console.log(error);                
+        } finally {
+            setLoadingExpenseCategories(false);
+        }
+    };
+    
     useEffect(() => {
-        const fetchExpenseCategories = async () => {
-            try {
-                const data = await getExpenseCategories();
-                setExpenseCategories(data);
-            } catch (error) {
-                setExpenseCategoriesError("No se puedieron obtener las categorías.");
-                console.log(error);                
-            } finally {
-                setLoadingExpenseCategories(false);
-            }
-        };
-
         fetchExpenseCategories();
     }, []);
 
-    return { expenseCategories, loadingExpenseCategories, expenseCategoriesError };
+    return { expenseCategories, loadingExpenseCategories, expenseCategoriesError, refetch: fetchExpenseCategories };
 };

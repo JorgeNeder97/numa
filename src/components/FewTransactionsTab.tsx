@@ -6,7 +6,7 @@ const FewTransactionsTab = () => {
     const { transactions, loadingTransactions, transactionsError } = useFewTransactionsWithCategory();
 
     return (
-        <div className="overflow-x-auto rounded bg-almostwhite shadow-medium">
+        <div className="overflow-x-auto rounded bg-almostwhite ">
             <table className="w-full">
                 <tbody>
                     {

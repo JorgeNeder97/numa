@@ -34,4 +34,6 @@ export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     children: ReactNode;
+    exitButton: boolean;
+    style: "Success" | "Warning" | "Error";
 }
