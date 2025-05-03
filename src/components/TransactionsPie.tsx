@@ -8,7 +8,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
     const chartRef = useRef<HTMLDivElement>(null);
 
     const { amountPerCategory, loadingAmountPerCategory, amountPerCategoryError } = useAmountPerCategory(type);
-
+    console.log(amountPerCategory);
     const data = amountPerCategory.map((item) => {
         return { value: item.total, name: truncateString(item.categoryName, 28) };
     });
