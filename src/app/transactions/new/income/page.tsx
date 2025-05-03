@@ -1,17 +1,31 @@
 "use client";
+import Modal from "@/components/Modal";
 import { useIncomeCategories } from "@/hooks/useIncomeCategories";
 import { getActualDate } from "@/utils/general/formatDates";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const IncomePage = () => {
 
+    // Redirige al usuario
+    const router = useRouter();
+
+    // Manejan el modal y su estilo/contenido
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+
+    // Obtener las categorías de ingresos
     const { incomeCategories, loadingIncomeCategories, incomeCategoriesError } = useIncomeCategories();
+    
+    // React-hook-form
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    // OnSubmit...
     const onSubmit = handleSubmit(async (data) => {
         const fecha = getActualDate();
         try {
-            await fetch("/api/auth/transactions", {
+            const res = await fetch("/api/auth/transactions", {
                 method: "POST",
                 body: JSON.stringify({
                     amount: data.amount,
@@ -24,10 +38,26 @@ const IncomePage = () => {
                     "Content-type": "application/json",
                 },
             });
+
+            // Si es un error cambia el modal y lo muestra
+            if(!res || res.status !== 200) {
+                setIsError(true);
+                setIsOpen(true);
+            }
+              
+            // Si es exitoso muestra el modal
+            if(res.ok && res.status == 200) setIsOpen(true);
+
         } catch (error) {
             if(error instanceof Error) console.log(error.message);
         }
     });
+
+    // Redirige al usuario al presionar "continuar" en el modal
+    const onContinue = () => {
+        setIsOpen(false);
+        router.push("/transactions")
+    }
 
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
@@ -77,24 +107,8 @@ const IncomePage = () => {
                             : <option className="error-option" value="" disabled>Se produjo un error</option>
                         }
                     </select>
-                    <span className={errors.category ? "error-span" : "opacity-0 h-[10px]"}>{errors?.category?.message?.toString()}</span>
+                    <span className={errors.categoryId ? "error-span" : "opacity-0 h-[10px]"}>{errors?.categoryId?.message?.toString()}</span>
                 </div>
-
-                {/* Disabled for the MVP */}
-                {/* <div className="label-input">
-                    <label htmlFor="date">Fecha del Ingreso</label>
-                    <input
-                        className="input h-[120px]"
-                        {...register("date", {
-                            required: {
-                                value: true,
-                                message: "Debes seleccionar la fecha del ingreso"
-                            }
-                        })}
-                        type="date"
-                    />
-                    <span className={errors.date ? "error-span" : "opacity-0 h-[10px]"}>{errors?.date?.message?.toString()}</span>
-                </div> */}
 
                 <div className="label-input">
                     <label htmlFor="description">Descripción</label>
@@ -114,6 +128,22 @@ const IncomePage = () => {
                     Guardar
                 </button>
             </form>
+
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style={isError ? "Error" : "Success"}>
+                {
+                    isError ?
+                        <div className="flex flex-col place-content-center gap-[20px]">
+                            <span className="modal-text-succed">Operación fallida</span>
+                            <p className="modal-text-succed text-normal">No se pudo generar el Ingreso</p>
+                            <button className="inverse-secondary-button" onClick={onContinue}>Continuar</button>
+                        </div>
+                    :
+                    <div className="flex flex-col place-content-center gap-[20px]">
+                        <span className="modal-text-succed">Operación exitosa</span>
+                        <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
+                    </div>
+                }
+            </Modal>
         </div>
     );
 };

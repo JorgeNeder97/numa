@@ -7,6 +7,24 @@ const LastExpense = () => {
 
     const { lastTransaction, loadingLastTransaction, lastTransactionError } = useLastTransaction(2);
 
+    if(!lastTransaction) return (
+        <div className="h-[100px] flex flex-col flex-1 min-w-0 place-items-start gap-[10px]">
+            <div className="d-stat-title text-sm">Último Egreso</div>
+            <div className="d-stat-value font-normal">
+                ${" "}
+                <CountUp
+                    from={0}
+                    to={0}
+                    separator="."
+                    direction="up"
+                    duration={0.3}
+                    className="count-up-text"
+                />
+            </div>
+        </div>
+    );
+
+
     return (
         <div className="h-[100px] flex flex-col flex-1 min-w-0 place-items-start gap-[10px]">
             {
@@ -28,7 +46,7 @@ const LastExpense = () => {
                             className="count-up-text"
                         />
                         </div>
-                        <div className="d-stat-desc">{truncateString(lastTransaction.category.name, 28)}</div>
+                        <div className="d-stat-desc text-[16px]">{truncateString(lastTransaction.category.name, 28)}</div>
                     </>
                 )
             }

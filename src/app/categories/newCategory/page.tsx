@@ -6,12 +6,21 @@ import { useTypes } from "@/hooks/useTypes";
 import { useRouter } from "next/navigation";
 
 const newCategoryPage = () => {
-
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { types, loadingTypes, typesError } = useTypes();
+    
+    // Redirige al usuario
     const router = useRouter();
 
+    // Manejan el Modal y su estilo/contenido
+    const [isError, setIsError] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    // React-hook-form
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    // Obtener el tipo de categoría (ingreso y egreso)
+    const { types, loadingTypes, typesError } = useTypes();
+
+    // OnSubmit...
     const onSubmit = handleSubmit(async (data) => {
         try {
             const res = await fetch("/api/auth/categories", {
@@ -24,12 +33,22 @@ const newCategoryPage = () => {
                     "Content-type": "application/json",
                 },
             });
+           
+            // Si es un error cambia el modal y lo muestra
+            if(!res || res.status !== 200) {
+                setIsError(true);
+                setIsOpen(true);
+            }
+              
+            // Si es exitoso muestra el modal
             if(res.ok && res.status == 200) setIsOpen(true);
+       
         } catch (error) {
             if(error instanceof Error) console.log(error.message);
         }
     });
 
+    // Redirige al usuario al presionar "continuar" en el modal
     const onContinue = () => {
         setIsOpen(false);
         router.push("/categories")
@@ -88,11 +107,20 @@ const newCategoryPage = () => {
                 </button>
             </form>
 
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false}>
-                <div className="flex flex-col place-content-center gap-[20px]">
-                    <span className="modal-text-succed">Operación exitosa</span>
-                    <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
-                </div>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style={isError ? "Error" : "Success"}>
+                {
+                    isError ?
+                        <div className="flex flex-col place-content-center gap-[20px]">
+                            <span className="modal-text-succed">Operación fallida</span>
+                            <p className="modal-text-succed text-normal">La categoría que intentas eliminar se encuentra en uso</p>
+                            <button className="inverse-secondary-button" onClick={onContinue}>Continuar</button>
+                        </div>
+                    :
+                    <div className="flex flex-col place-content-center gap-[20px]">
+                        <span className="modal-text-succed">Operación exitosa</span>
+                        <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
+                    </div>
+                }
             </Modal>
         </div>
     );
