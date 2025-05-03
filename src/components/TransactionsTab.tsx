@@ -5,6 +5,17 @@ import { formatDate } from "@/utils/general/formatDates";
 const TransactionsTab = () => {
     const { transactions, loadingTransactions, transactionsError } = useTransactionsWithCategory();
 
+    if(transactions.length === 0) return (
+        <div className="overflow-x-auto rounded bg-almostwhite shadow-medium">
+            <table className="w-full">
+                <tbody>
+                    <tr><th className="py-5 font-thin italic">No registraste ninguna transacción aún</th></tr> 
+                </tbody>
+            </table>
+        </div>
+    );
+
+
     return (
         <div className="overflow-x-auto rounded bg-almostwhite shadow-medium">
             <table className="w-full">

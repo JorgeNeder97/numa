@@ -9,8 +9,10 @@ import { getFormatedActualDate } from "@/utils/general/formatDates";
 
 const DashboardPage = () => {
 
+    // Obtener la fecha actual formateada
     const fecha = getFormatedActualDate();
 
+    // Obtener el monto total
     const { total, loadingTransactions, transactionsError } = useTransactions();
     
     return (
@@ -31,7 +33,6 @@ const DashboardPage = () => {
                     <span className="text-[.835rem]">{fecha}</span>
                 </div>
             </section>
-            
 
             <section className="w-full flex py-[20px] px-[25px] place-items-start place-content-between gap-[30px]">
                 <LastExpense />

@@ -78,6 +78,12 @@ const TransactionsPie = ({ type }: { type: number }) => {
         };
     }, [amountPerCategory]);
 
+    if(amountPerCategory.length === 0) return (
+        <div className="w-full min-h-[200px] flex flex-col gap-[20px] place-content-center place-items-center">
+            <span className="">Aún no registraste ningún movimiento</span>            
+        </div>
+    );
+    
     return <div ref={chartRef} style={{ width: "100%", height: "400px" }} className="pt-[20px]" />;
 };
 

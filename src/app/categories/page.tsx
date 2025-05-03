@@ -8,9 +8,7 @@ const CategoriesPage = () => {
             <h2 className="text-xl text-center font-light">Categorías</h2>
             <IncomeCategoriesTab />
             <ExpenseCategoriesTab />
-            <button className="primary-button">
-                <Link href="/categories/newCategory">Nueva Categoría</Link>
-            </button>
+            <Link href="/categories/newCategory" className="primary-button">Nueva Categoría</Link>
         </div>
     );
 };
