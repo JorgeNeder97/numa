@@ -113,7 +113,7 @@ const IncomePage = () => {
                 <div className="label-input">
                     <label htmlFor="description">Descripción</label>
                     <textarea
-                        className="input h-[120px]"
+                        className="input h-[100px] py-3"
                         {...register("description", {
                             required: {
                                 value: true,

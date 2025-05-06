@@ -56,6 +56,9 @@ const Nav = () => {
                         status === "unauthenticated" ? (
                             <>
                                 <li>
+                                    <Link href="/" className="text-lg">Home</Link>
+                                </li>
+                                <li>
                                     <Link href="/auth/login" className="text-lg">Acceder</Link>
                                 </li>
                                 <li>

@@ -28,6 +28,7 @@
         width: 80vw;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 20px;
         background-color: #FAFAFA;
         box-shadow: 5px 5px 15px #CCCCCC;
@@ -57,6 +58,10 @@
         color: #FFFFFF;
         padding-left: 10px;
     }
+
+    .input:focus {
+        outline: 2px solid var(--color-emerald-500);
+    }
     
     /* Esto evita que el autollenado del navegador cambie el color del input */
     .input:-webkit-autofill {
@@ -83,7 +88,7 @@
     }
 
     .primary-button {
-        background-color: var(--color-emerald-500);
+        background-color: var(--color-emerald-600);
         color: #FFFFFF;
         padding: 10px 20px;
         border-radius: 5px;

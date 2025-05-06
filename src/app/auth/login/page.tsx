@@ -25,7 +25,7 @@ const LoginPage = () => {
     });
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center place-items-center py-[50px]">
             <form className="form" onSubmit={onSubmit}>
                 <div className="label-input mb-5">
                     <h2 className="w-full text-3xl font-medium">Acceso</h2>
@@ -69,8 +69,8 @@ const LoginPage = () => {
                     <span className={errors.password || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}{backError === "La contraseña ingresada es incorrecta." && backError}</span>
                 </div>
 
-                <div className="label-input">
-                    <button className="translate-y-[20px] primary-button w-full">Iniciar Sesión</button>
+                <div className="label-input mt-[30px]">
+                    <button className="primary-button w-full">Iniciar Sesión</button>
                 </div>
             </form>
         </div>

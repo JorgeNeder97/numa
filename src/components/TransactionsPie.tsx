@@ -10,7 +10,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
     const { amountPerCategory, loadingAmountPerCategory, amountPerCategoryError } = useAmountPerCategory(type);
     console.log(amountPerCategory);
     const data = amountPerCategory.map((item) => {
-        return { value: item.total, name: truncateString(item.categoryName, 28) };
+        return { value: item.total, name: truncateString(item.categoryName, 23) };
     });
 
     useEffect(() => {
@@ -32,26 +32,6 @@ const TransactionsPie = ({ type }: { type: number }) => {
             tooltip: {
                 trigger: "item",
             },
-            // color: type === 1 ? [
-            //     "#91cc75",
-            //     "#5470c6",
-            //     "#73c0de",
-            //     "#3ba272",
-            //     "#fc8452",
-            //     "#9a60b4",
-            //     "#ea7ccc",
-            //     "#ee6666",
-            // ] :
-            // [
-            //     "#ff3333",
-            //     "#eacc1c",
-            //     "#91cc75",
-            //     "#5470c6",
-            //     "#fc8452",
-            //     "#9a60b4",
-            //     "#73c0de",
-            //     "#3ba272",
-            // ],
             series: [
                 {
                     name: type == 1 ? "Ingresos" : "Egresos",
@@ -78,7 +58,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
         };
     }, [amountPerCategory]);
 
-    if(!loadingAmountPerCategory && amountPerCategory.length === 0) return (
+    if(!loadingAmountPerCategory && amountPerCategory.length == 0) return (
         <div className="w-full min-h-[200px] flex flex-col gap-[20px] place-content-center place-items-center">
             <span className="">Aún no registraste ningún movimiento</span>            
         </div>

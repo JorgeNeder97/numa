@@ -46,7 +46,7 @@ const LastExpense = () => {
                             className="count-up-text"
                         />
                         </div>
-                        <div className="d-stat-desc text-[16px]">{truncateString(lastTransaction.category.name, 28)}</div>
+                        <div className="d-stat-desc text-[16px]">{truncateString(lastTransaction.category.name, 20)}</div>
                     </>
                 )
             }

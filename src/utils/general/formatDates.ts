@@ -6,16 +6,13 @@ import { DateTime } from "luxon";
 // ✅ Solución: Guardar la fecha con hora ya ajustada a UTC-3
 // En lugar de usar:
 
-// ts
-// Copiar
-// Editar
+
 // const fechaISO = fechaLuxon.toUTC().toISO();
 // Podés simplemente restar 3 horas manualmente antes de guardar, para forzar la hora ajustada a tu zona.
 
 // ✔️ Código corregido
-// ts
-// Copiar
-// Editar
+
+
 // import { DateTime } from "luxon";
 
 // export function getActualDate() {
@@ -34,25 +31,28 @@ import { DateTime } from "luxon";
 
 // Si son las 22:30 en Argentina, vas a guardar 2024-08-06T19:30:00.000Z, que sigue perteneciendo al 6 de agosto en tu zona horaria.
 
-// 🚫 Alternativa menos recomendable
-// También podrías guardar la fecha en America/Argentina/Buenos_Aires sin convertir a UTC, pero PostgreSQL la va a seguir interpretando como UTC si usás timestamp o timestamptz, lo que puede ser más confuso a largo plazo.
-
-// ¿Querés que también se ajuste esta lógica para permitir al usuario elegir otra fecha manual si quiere?
-
 
 // El problema esta en que si usamos esta funcion, al crear 2 transacciones el mismo día el programa no
 // entiende cual es la ultima y se desordenan
+
+
 export function getActualDate() {
     // Fecha actual en UTC-3
     const fechaLuxon = DateTime.now().setZone("America/Argentina/Buenos_Aires");
     
+    const fechaAjustada = fechaLuxon.minus({ hours: 3});
+
+    return fechaAjustada.toISO();
+
+// Codigo Anterior
+
     // Setear la hora en 00:00:00
-    const fechaSinHora = fechaLuxon.startOf("day");
+    // const fechaSinHora = fechaLuxon.startOf("day");
 
     // Convertir ISO con zona UTC para Prisma
-    const fechaISO = fechaSinHora.toUTC().toISO();
+    // const fechaISO = fechaSinHora.toUTC().toISO();
 
-    return fechaISO;
+    // return fechaISO;
 }
 
 export function getFormatedActualDate() {
