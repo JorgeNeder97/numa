@@ -1,5 +1,47 @@
 import { DateTime } from "luxon";
 
+// Probar esto para evitar el error en la fecha:
+// Exactamente, ese es un comportamiento muy común: Prisma y PostgreSQL guardan automáticamente las fechas en UTC, y cuando una transacción se guarda por ejemplo a las 21:30 en UTC-3, eso corresponde a 00:30 del día siguiente en UTC, y puede "mover" tu transacción al día siguiente si estás usando .toUTC().toISO() con la hora activa.
+
+// ✅ Solución: Guardar la fecha con hora ya ajustada a UTC-3
+// En lugar de usar:
+
+// ts
+// Copiar
+// Editar
+// const fechaISO = fechaLuxon.toUTC().toISO();
+// Podés simplemente restar 3 horas manualmente antes de guardar, para forzar la hora ajustada a tu zona.
+
+// ✔️ Código corregido
+// ts
+// Copiar
+// Editar
+// import { DateTime } from "luxon";
+
+// export function getActualDate() {
+//   const fechaBuenosAires = DateTime.now().setZone("America/Argentina/Buenos_Aires");
+  
+//   // Restar 3 horas para compensar la conversión a UTC al guardar en DB
+//   const fechaAjustada = fechaBuenosAires.minus({ hours: 3 });
+
+//   return fechaAjustada.toISO(); // No hace falta convertir a UTC, ya está compensada
+// }
+// De esta forma:
+
+// Prisma guarda la fecha en UTC, como siempre.
+
+// Pero ya viene "ajustada" como si fuera UTC-3.
+
+// Si son las 22:30 en Argentina, vas a guardar 2024-08-06T19:30:00.000Z, que sigue perteneciendo al 6 de agosto en tu zona horaria.
+
+// 🚫 Alternativa menos recomendable
+// También podrías guardar la fecha en America/Argentina/Buenos_Aires sin convertir a UTC, pero PostgreSQL la va a seguir interpretando como UTC si usás timestamp o timestamptz, lo que puede ser más confuso a largo plazo.
+
+// ¿Querés que también se ajuste esta lógica para permitir al usuario elegir otra fecha manual si quiere?
+
+
+// El problema esta en que si usamos esta funcion, al crear 2 transacciones el mismo día el programa no
+// entiende cual es la ultima y se desordenan
 export function getActualDate() {
     // Fecha actual en UTC-3
     const fechaLuxon = DateTime.now().setZone("America/Argentina/Buenos_Aires");

@@ -62,7 +62,7 @@ const IncomeCategoriesTab = () => {
                                     <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">
                                         <td className="w-[80%] text-left pl-5 pr-5 py-5">{cat.name}</td>
                                         <td className="pr-5 py-5"><Link href={`/categories/${cat.id}`}><EditIcon className="w-[20px] h-[20px] hover:cursor-pointer" /></Link></td>
-                                        <td className="pr-5 py-5"><DeleteIcon className="w-[25px] h-[25px] translate-y-[-1px] hover:cursor-pointer" onClick={() => deleteCategory(cat.id)} /></td>
+                                        <td className="pr-5 py-5"><DeleteIcon className="w-[25px] h-[25px] hover:cursor-pointer" onClick={() => deleteCategory(cat.id)} /></td>
                                     </tr>
                                 ))
                             : <tr className="font-thin italic"><td className="text-left pl-5 py-5">No creaste ninguna categoría aún</td></tr>

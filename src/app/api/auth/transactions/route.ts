@@ -56,3 +56,37 @@ export async function POST(request: NextRequest) {
         else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
     };
 };
+
+export async function DELETE(request: NextRequest) {
+    
+    const data = await request.json();
+
+    const session = await getServerSession(authOptions);
+
+    if(!session) return NextResponse.json({ message: "No autorizado" }, { status: 401 });
+
+    try {
+        // Lo hacemos así porque "delete" solo recibe una condicion en el where
+
+        const transaction = await prisma.transaction.findFirst({
+            where: {
+                id: data.id,
+                userId: Number(session.user.id),
+            },
+        });
+
+        if(!transaction) return NextResponse.json({ message: "La transacción no fue encontrada" }, { status: 404 });
+
+
+        const transaccionEliminada = await prisma.transaction.delete({
+            where: { id: data.id },
+        });
+
+        return NextResponse.json(transaccionEliminada);
+    } catch (error) {
+        if(error instanceof Error) {
+            return NextResponse.json({ message: error.message }, { status: 500 });
+        }
+        else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
+    };
+};

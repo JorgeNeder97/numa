@@ -22,7 +22,7 @@ const Nav = () => {
     };
 
     return (
-        <nav className="h-[80px] flex place-items-center place-content-between bg-neutral-100 pl-[30px] pr-[10px]">
+        <nav className="h-[80px] sticky top-0 z-[100] flex place-items-center place-content-between bg-neutral-100 pl-[30px] pr-[10px]">
             <Link href="/"><h1 className="text-emerald-500 text-4xl font-semibold">Numa</h1></Link>
             
             <label className="absolute top-[25px] right-6 z-50 d-swap d-swap-rotate text-emerald-500 lg:hidden outline-none">
@@ -50,7 +50,7 @@ const Nav = () => {
                     points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
                 </svg>
             </label>
-            <div className="lg:hidden h-[calc(100vh-80px)] w-2/3 max-w-[300px] fixed z-30 flex place-content-center top-[80px] right-0 translate-x-100 bg-neutral-100 py-[30px] transition-all duration-[.5s] ease-in-out" ref={menuMobile}>
+            <div className="lg:hidden h-[calc(100vh-80px)] w-2/3 max-w-[300px] fixed z-[100] flex place-content-center top-[80px] right-0 translate-x-100 bg-neutral-100 py-[30px] transition-all duration-[.5s] ease-in-out" ref={menuMobile}>
                 <ul className="h-[100vh] flex flex-col place-items-center gap-[15px]">
                     {
                         status === "unauthenticated" ? (

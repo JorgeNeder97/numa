@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, exitButton, st
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className={`rounded-lg shadow-lg p-6 relative w-8/12 max-w-md animate-fadeIn ${style === "Success" ? "bg-emerald-600" : style === "Error" ? "bg-red-600" : style === "Warning" ? "bg-amber-500" : ""}`}>
+            <div className={`rounded-lg shadow-lg p-6 relative w-8/12 max-w-md animate-fadeIn ${style === "Success" ? "bg-emerald-700" : style === "Error" ? "bg-red-700" : style === "Warning" ? "bg-emerald-700" : ""}`}>
                 {
                     exitButton ? 
                         <button

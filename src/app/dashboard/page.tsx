@@ -35,8 +35,8 @@ const DashboardPage = () => {
             </section>
 
             <section className="w-full flex py-[20px] px-[25px] place-items-start place-content-between gap-[30px]">
-                <LastExpense />
                 <LastIncome />
+                <LastExpense />
             </section>
 
             <TransactionsPie type={2} />
