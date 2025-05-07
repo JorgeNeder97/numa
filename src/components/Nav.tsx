@@ -22,16 +22,16 @@ const Nav = () => {
     };
 
     return (
-        <nav className="h-[80px] sticky top-0 z-[100] flex place-items-center place-content-between bg-neutral-100 pl-[30px] pr-[10px]">
-            <Link href="/"><h1 className="text-emerald-500 text-4xl font-semibold">Numa</h1></Link>
+        <nav className="h-[80px] sticky top-0 z-[100] flex place-items-center place-content-between bg-emerald-700 pl-[30px] pr-[10px]">
+            <Link href="/"><h1 className="text-neutral-200 text-4xl font-semibold">Numa</h1></Link>
             
-            <label className="absolute top-[25px] right-6 z-50 d-swap d-swap-rotate text-emerald-500 lg:hidden outline-none">
+            <label className="absolute top-[25px] right-6 z-50 d-swap d-swap-rotate lg:hidden outline-none">
                 {/* this hidden checkbox controls the state */}
                 <input type="checkbox" onClick={handleMenu} />
 
                 {/* hamburger icon */}
                 <svg
-                    className="d-swap-off d-fill-current text-emerald-500"
+                    className="d-swap-off d-fill-current text-neutral-200"
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
                     height="32"
@@ -41,7 +41,7 @@ const Nav = () => {
 
                 {/* close icon */}
                 <svg
-                    className="d-swap-on d-fill-current text-emerald-500"
+                    className="d-swap-on d-fill-current text-neutral-200"
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
                     height="32"
