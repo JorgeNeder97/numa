@@ -31,7 +31,7 @@ const Nav = () => {
 
                 {/* hamburger icon */}
                 <svg
-                    className="d-swap-off d-fill-current text-neutral-200"
+                    className="d-swap-off d-fill-current invert"
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
                     height="32"
@@ -41,7 +41,7 @@ const Nav = () => {
 
                 {/* close icon */}
                 <svg
-                    className="d-swap-on d-fill-current text-neutral-200"
+                    className="d-swap-on d-fill-current invert"
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
                     height="32"
@@ -67,7 +67,7 @@ const Nav = () => {
                             </>
                         ) : status === "loading" ? (
                             <>
-                                <span className="loading loading-spinner text-primary"></span>
+                                <span className="d-loading d-loading-spinner text-primary"></span>
                             </>
                         ) : (
                             <>
