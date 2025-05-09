@@ -6,7 +6,20 @@
 
 @theme inline {
     --shadow-medium: 5px 5px 15px #CCCCCC;
+    --ease-in-menu: cubic-bezier(0.35,0.02,0.27,0.77);
+    
     --color-almostwhite: #EEEEEE;
+    --color-primary: #00BC7D;
+    --color-secondary: #CCFFEE;
+    --color-tertiary: #00754E;
+    --color-darkPrimary: #003322;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-error: #BD1600;
+    --color-errorLight: #FFBDBD;
+    --color-errorDark: #330000;
+    --color-info: #337AFF;
+
     --animate-fadeIn: fade 0.3s ease-out;
 
     @keyframes fadeIn {
@@ -172,5 +185,19 @@
         text-align: center;
         font-size: var(--text-lg);
         color: var(--color-neutral-200);
+    }
+
+    .navigationIconContainer {
+        display: flex;
+        height: 55.65px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+
+    .navigationIconText {
+        font-weight: medium;
+        font-size: 11px;
     }
 }

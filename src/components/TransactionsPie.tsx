@@ -52,8 +52,17 @@ const TransactionsPie = ({ type }: { type: number }) => {
 
         myChart.setOption(option);
 
+        // Adapta el grafico al ancho de la pantalla
+        const handleResize = () => {
+            myChart.resize();
+        };
+
+        // Al adaptarse la pantalla ejecuta la función de arriba
+        window.addEventListener("resize", handleResize);
+
         // Limpieza al desmontar el componente
         return () => {
+            window.removeEventListener("resize", handleResize);
             myChart.dispose();
         };
     }, [amountPerCategory]);
