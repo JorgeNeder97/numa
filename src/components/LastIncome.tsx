@@ -31,7 +31,7 @@ const LastIncome = () => {
                 loadingLastTransaction ? (
                     <span className="loading loading-spinner text-success"></span>
                 ) : lastTransactionError ? (
-                    "X"
+                    "Se produjo un error"
                 ) : lastTransaction && (
                     <>
                         <div className="d-stat-title text-[.875rem]">Último Ingreso - {formatDate(lastTransaction.date)}</div>

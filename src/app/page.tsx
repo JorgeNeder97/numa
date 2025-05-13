@@ -1,6 +1,6 @@
 const HomePage = () => {
     return (
-        <div className="min-h-[calc(100vh-150px)]">
+        <div className="min-h-[calc(100vh-80px-70px)]">
             <p>HomePage</p>
         </div>
     );

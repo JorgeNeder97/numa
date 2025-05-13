@@ -1,14 +1,19 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 const RegisterPage = () => {
 
+    const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
+
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
+
     const router = useRouter();
 
     const onSubmit = handleSubmit(async (data) => {
+        setLoadingFetch(true);
 
         const res = await fetch("/api/auth/register", {
             method: "POST",
@@ -22,6 +27,8 @@ const RegisterPage = () => {
                 "Content-Type": "application/json",
             },
         });
+
+        setLoadingFetch(false);
 
         if(res.ok && res.status === 200) router.push("/auth/login");
     });
@@ -136,7 +143,12 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="label-input">
-                    <button className="translate-y-[20px] primary-button w-full">Registrarse</button>
+                    <button className="translate-y-[20px] primary-button w-full">
+                        {
+                            loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
+                            : "Registrarse"
+                        }
+                    </button>
                 </div>
             </form>
         </div>

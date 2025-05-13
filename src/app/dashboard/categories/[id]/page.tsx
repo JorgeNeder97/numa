@@ -17,6 +17,9 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false); 
     const [isError, setIsError] = useState<boolean>(false); 
 
+    // Maneja el spinner de carga
+    const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
+
     // Obtener el id con los params de la url
     const categoryParams = use(params);
     const categoryId = Number(categoryParams.id); 
@@ -42,6 +45,9 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
     const onSubmit = handleSubmit(async (data) => {
         if(status === "authenticated") {
             try {
+                // Spinner de carga
+                setLoadingFetch(true);
+
                 const res = await fetch("/api/auth/categories", {
                     method: "PATCH",
                     body: JSON.stringify({
@@ -55,6 +61,8 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                     },
                 });
     
+                setLoadingFetch(false);
+
                 // Si es un error cambia el modal y lo muestra
                 if(!res || res.status !== 200) {
                     setIsError(true);
@@ -124,7 +132,10 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                 </div>
 
                 <button className="primary-button w-full text-[1rem]">
-                    Guardar Cambios
+                    {
+                        loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
+                        : "Guardar Cambios"
+                    }
                 </button>
             </form>
 
@@ -132,13 +143,13 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                 {
                     isError ?
                         <div className="flex flex-col place-content-center gap-[20px]">
-                            <span className="modal-text-succed">Operación fallida</span>
-                            <p className="modal-text-succed text-normal">No se pudo modificar la categoría</p>
+                            <span className="modal-title">Operación fallida</span>
+                            <p className="modal-text">No se pudo modificar la categoría</p>
                             <button className="inverse-secondary-button" onClick={onContinue}>Continuar</button>
                         </div>
                     :
                     <div className="flex flex-col place-content-center gap-[20px]">
-                        <span className="modal-text-succed">Operación exitosa</span>
+                        <span className="modal-title">Operación exitosa</span>
                         <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
                     </div>
                 }

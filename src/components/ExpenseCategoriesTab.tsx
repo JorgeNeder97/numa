@@ -74,13 +74,13 @@ const ExpenseCategoriesTab = () => {
                 {
                     isError ?
                         <div className="flex flex-col place-content-center gap-[20px]">
-                            <span className="modal-text-succed">Operación fallida</span>
-                            <p className="modal-text-succed text-normal">La categoría que intentas eliminar se encuentra en uso</p>
+                            <span className="modal-title">Operación fallida</span>
+                            <p className="modal-text">La categoría que intentas eliminar se encuentra en uso</p>
                             <button className="inverse-secondary-button" onClick={onContinue}>Continuar</button>
                         </div>
                     :
                     <div className="flex flex-col place-content-center gap-[20px]">
-                        <span className="modal-text-succed">Operación exitosa</span>
+                        <span className="modal-title">Operación exitosa</span>
                         <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
                     </div>
                 }

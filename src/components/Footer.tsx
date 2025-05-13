@@ -34,7 +34,7 @@ const Footer = () => {
 
     if(status === "authenticated")
     return (
-        <footer className=" bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-around">
+        <footer className={pathname === "/bienvenido" || pathname === "/auth/login" ? "hidden" : `bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-around`}>
             <Link href="/dashboard" className={linkDashboard("/dashboard")}>
                 <DashboardIcon />
                 <span className="navigationIconText">Dashboard</span>
@@ -54,15 +54,18 @@ const Footer = () => {
         </footer>
     );
     else if(status === "loading") return (
-        <footer className=" bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-center">
+        <footer className={pathname === "/bienvenido" ? "hidden" : `bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-center`}>
             <span className="d-loading d-loading-spinner text-primary"></span>
         </footer>
     );
     
     else return (
-        <footer className="relative bg-emerald-700 w-full h-[70px] flex px-[20px] place-items-center">
-            <h2 className="text-white text-4xl font-semibold">Numa</h2>
-            <span className="absolute bottom-1 right-2 text-neutral-100 text-[10px]">
+        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-tertiary w-full h-[70px] flex px-[20px] place-items-center`}>
+            <div className="w-full flex place-items-center place-content-start">
+                <h2 className="text-white text-[1rem] font-semibold">Designed & Developed by</h2>
+
+            </div>
+            <span className="absolute bottom-1 right-3 text-neutral-100 text-[10px]">
                 © 2025 Numa. Todos los derechos reservados.
             </span>
         </footer>

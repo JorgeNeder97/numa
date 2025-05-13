@@ -3,7 +3,7 @@ import Modal from "@/components/Modal";
 import { useExpenseCategories } from "@/hooks/useExpenseCategories";
 import { getActualDate } from "@/utils/general/formatDates";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const ExpensePage = () => {
@@ -15,16 +15,27 @@ const ExpensePage = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
 
+    // Maneja el spinner de carga
+    const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
+
     // Obtener las categorías de egresos
     const { expenseCategories, loadingExpenseCategories, expenseCategoriesError } = useExpenseCategories();
     
     // React-hook-form
     const { register, handleSubmit, formState: { errors } } = useForm();
     
+     // Verifica que hayan categorías de ingresos
+    useEffect(() => {
+        if(!loadingExpenseCategories && expenseCategories.length === 0) setIsOpen(true);
+    }, [loadingExpenseCategories, expenseCategories])
+
     // onSubmit...
     const onSubmit = handleSubmit(async (data) => {
         const fecha = getActualDate();
         try {
+            // Spinner de carga
+            setLoadingFetch(true);
+
             const res = await fetch("/api/auth/transactions", {
                 method: "POST",
                 body: JSON.stringify({
@@ -38,6 +49,8 @@ const ExpensePage = () => {
                     "Content-type": "application/json",
                 },
             });
+
+            setLoadingFetch(false);
 
             // Si es un error cambia el modal y lo muestra
             if(!res || res.status !== 200) {
@@ -57,6 +70,12 @@ const ExpensePage = () => {
     const onContinue = () => {
         setIsOpen(false);
         router.push("/dashboard/transactions")
+    }
+
+    // Redirige al usuario al presionar "Generar categoría" en el modal
+    const handleGenerate = () => {
+        setIsOpen(false);
+        router.push("/dashboard/categories/newCategory");
     }
 
     return (
@@ -127,21 +146,31 @@ const ExpensePage = () => {
                 </div>
 
                 <button className="primary-button w-full text-[1rem]">
-                    Generar Egreso
+                    {
+                        loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
+                        : "Generar Egreso"
+                    }
                 </button>
             </form>
 
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style={isError ? "Error" : "Success"}>
                 {
+                    !loadingExpenseCategories && expenseCategories.length === 0 ? 
+                        <div className="flex flex-col place-content-center gap-[20px]">
+                            <span className="modal-title">No tienes categorías de Egresos</span>
+                            <p className="modal-text">Para generar un nuevo egreso debes tener al menos una <span className="font-semibold">categoría de egresos</span></p>
+                            <button className="inverse-primary-button" onClick={handleGenerate}>Generar categoría</button>
+                        </div>
+                    :
                     isError ?
                         <div className="flex flex-col place-content-center gap-[20px]">
-                            <span className="modal-text-succed">Operación fallida</span>
-                            <p className="modal-text-succed text-normal">No se pudo generar el Egreso</p>
+                            <span className="modal-title">Operación fallida</span>
+                            <p className="modal-text">No se pudo generar el Egreso</p>
                             <button className="inverse-secondary-button" onClick={onContinue}>Continuar</button>
                         </div>
                     :
                     <div className="flex flex-col place-content-center gap-[20px]">
-                        <span className="modal-text-succed">Operación exitosa</span>
+                        <span className="modal-title">Operación exitosa</span>
                         <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
                     </div>
                 }

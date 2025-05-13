@@ -7,19 +7,24 @@ import { useState } from "react";
 const LoginPage = () => {
 
     const [backError, setBackError] = useState<string | null>(null);
+    const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const router = useRouter();
     const onSubmit = handleSubmit(async (data) => {
+        setLoadingFetch(true);
         const res = await signIn('credentials', {
             email: data.email,
             password: data.password,
             redirect: false,
         });
 
+        setLoadingFetch(false);
+
         if(res?.error) setBackError(res.error);
 
         else {
-            router.push("/dashboard");
+            router.push("/bienvenido");
             router.refresh();
         }
     });
@@ -72,7 +77,12 @@ const LoginPage = () => {
                 </div>
 
                 <div className="label-input">
-                    <button className="primary-button w-full">Iniciar Sesión</button>
+                    <button className="primary-button w-full">
+                        {
+                            loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
+                            : "Iniciar Sesión"
+                        }
+                    </button>
                 </div>
             </form>
         </div>

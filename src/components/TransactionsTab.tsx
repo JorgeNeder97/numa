@@ -12,6 +12,9 @@ const TransactionsTab = () => {
     const [isError, setIsError] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
 
+    // Maneja el spinner de carga
+    const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
+
     const { transactions, loadingTransactions, transactionsError, refetch } = useTransactionsWithCategory();
 
     if(transactions.length === 0 && !loadingTransactions) return (
@@ -26,6 +29,9 @@ const TransactionsTab = () => {
 
     const deleteTransaction = async () => {
         try {
+            // Spinner de carga
+            setLoadingFetch(true);
+
             const res = await fetch("/api/auth/transactions", {
                 method: "DELETE",
                 body: JSON.stringify({
@@ -36,6 +42,8 @@ const TransactionsTab = () => {
                 },
             });
     
+            setLoadingFetch(false);
+
             // Si es un error cambia el modal y lo muestra
             if(!res || res.status !== 200) {
                 setIsError(true);
@@ -94,7 +102,12 @@ const TransactionsTab = () => {
                                 <span className="text-lg text-start pb-5"><span className="text-xl font-bold tracking-wide">Descripción</span>: {tx.description}</span>
                                 <span className="text-lg text-start"><span className="text-xl font-bold tracking-wide">Monto:</span> {tx.typeId == 1 ? "$" + tx.amount : "-$" + tx.amount}</span>
                             </div>
-                            <button className="secondary-button" onClick={() => deleteTransaction()}>Eliminar Transacción</button>
+                            <button className="secondary-button" onClick={() => deleteTransaction()}>
+                                {
+                                    loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
+                                    : "Eliminar Transacción"
+                                }
+                            </button>
                         </div>
                     ))
                 }
@@ -104,13 +117,13 @@ const TransactionsTab = () => {
                 {
                     isError ?
                     <div className="flex flex-col place-content-center gap-[20px]">
-                        <span className="modal-text-succed">Operación fallida</span>
-                        <p className="modal-text-succed text-normal">No se pudo eliminar la transacción</p>
+                        <span className="modal-title">Operación fallida</span>
+                        <p className="modal-text">No se pudo eliminar la transacción</p>
                         <button className="inverse-secondary-button" onClick={onContinue}>Continuar</button>
                     </div>
                     :
                     <div className="flex flex-col place-content-center gap-[20px]">
-                        <span className="modal-text-succed">Operación exitosa</span>
+                        <span className="modal-title">Operación exitosa</span>
                         <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
                     </div>
                 }
