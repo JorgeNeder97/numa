@@ -8,7 +8,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
     const chartRef = useRef<HTMLDivElement>(null);
 
     const { amountPerCategory, loadingAmountPerCategory, amountPerCategoryError } = useAmountPerCategory(type);
-    console.log(amountPerCategory);
+
     const data = amountPerCategory.map((item) => {
         return { value: item.total, name: truncateString(item.categoryName, 23) };
     });
@@ -26,7 +26,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
                 textStyle: {
                     fontSize: "28px",
                     fontFamily: "Kanit",
-                    color: "#00bc7d"
+                    color: "#00754E"
                 }
             },
             tooltip: {

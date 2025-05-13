@@ -20,15 +20,22 @@ const Footer = () => {
 
     const linkClass = (path: string) =>
     `navigationIconContainer relative flex flex-col items-center ${
+        pathname.startsWith(path)
+            ? "after:content-[''] after:absolute after:bottom-[-7] after:w-full after:h-[3px] after:bg-white after:rounded-full"
+            : ""
+    }`;
+
+    const linkDashboard = (path: string) => 
+        `navigationIconContainer relative flex flex-col items-center ${
         pathname === path
-            ? "after:content-[''] after:absolute after:bottom-[-10] after:w-full after:h-[3px] after:bg-white after:rounded-full"
+            ? "after:content-[''] after:absolute after:bottom-[-7] after:w-full after:h-[3px] after:bg-white after:rounded-full"
             : ""
     }`;
 
     if(status === "authenticated")
     return (
-        <footer className=" bg-emerald-700 text-white w-full h-[100px] sticky bottom-0 flex px-[20px] place-items-center place-content-around">
-            <Link href="/dashboard" className={linkClass("/dashboard")}>
+        <footer className=" bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-around">
+            <Link href="/dashboard" className={linkDashboard("/dashboard")}>
                 <DashboardIcon />
                 <span className="navigationIconText">Dashboard</span>
             </Link>
@@ -40,13 +47,17 @@ const Footer = () => {
                 <TransactionsIcon />
                 <span className="navigationIconText">Transacciones</span>
             </Link>
-            <Link href="" className={linkClass("/dashboard/settings")}>
+            <Link href="/dashboard/settings" className={linkClass("/dashboard/settings")}>
                 <SettingsIcon />
                 <span className="navigationIconText">Ajustes</span>
             </Link>
         </footer>
     );
-    else if(status === "loading") return <span className="d-loading d-loading-spinner text-primary"></span>
+    else if(status === "loading") return (
+        <footer className=" bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-center">
+            <span className="d-loading d-loading-spinner text-primary"></span>
+        </footer>
+    );
     
     else return (
         <footer className="relative bg-emerald-700 w-full h-[70px] flex px-[20px] place-items-center">

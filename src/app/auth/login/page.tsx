@@ -27,49 +27,51 @@ const LoginPage = () => {
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center place-items-center py-[50px]">
             <form className="form" onSubmit={onSubmit}>
-                <div className="label-input mb-5">
-                    <h2 className="w-full text-3xl font-medium">Acceso</h2>
-                </div>
-                <div className="label-input">
-                    <label htmlFor="email" className="label">Email</label>
-                    <input 
-                        type="email" 
-                        className="input" 
-                        {...register("email", {
-                            required: {
-                                value: true,
-                                message: "Debes ingresar tu email",
-                            },
-                            maxLength: {
-                                value: 50,
-                                message: "Debes ingresar un email válido",
-                            },
-                        })}
-                        onChange={() => setBackError(null)}
-                    />
-                    <span className={errors.email || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.email?.message?.toString() || ""}{backError === "No se encontró el usuario." && backError}</span>
-                </div>
-                <div className="label-input">
-                    <label htmlFor="password" className="label">Contraseña</label>
-                    <input 
-                        type="password" 
-                        className="input" 
-                        {...register("password", {
-                            required: {
-                                value: true,
-                                message: "Debes ingresar una contraseña",
-                            },
-                            minLength: {
-                                value: 6,
-                                message: "Debes ingresar una contraseña válida"
-                            }
-                        })}
-                        onChange={() => setBackError(null)}
-                    />
-                    <span className={errors.password || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}{backError === "La contraseña ingresada es incorrecta." && backError}</span>
+                <div className="w-full flex flex-col place-items-center gap-[20px]">
+                    <div className="label-input mb-5">
+                        <h2 className="w-full text-3xl font-medium">Acceso</h2>
+                    </div>
+                    <div className="label-input">
+                        <label htmlFor="email" className="label">Email</label>
+                        <input 
+                            type="email" 
+                            className="input" 
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: "Debes ingresar tu email",
+                                },
+                                maxLength: {
+                                    value: 50,
+                                    message: "Debes ingresar un email válido",
+                                },
+                            })}
+                            onChange={() => setBackError(null)}
+                        />
+                        <span className={errors.email || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.email?.message?.toString() || ""}{backError === "No se encontró el usuario." && backError}</span>
+                    </div>
+                    <div className="label-input">
+                        <label htmlFor="password" className="label">Contraseña</label>
+                        <input 
+                            type="password" 
+                            className="input" 
+                            {...register("password", {
+                                required: {
+                                    value: true,
+                                    message: "Debes ingresar una contraseña",
+                                },
+                                minLength: {
+                                    value: 6,
+                                    message: "Debes ingresar una contraseña válida"
+                                }
+                            })}
+                            onChange={() => setBackError(null)}
+                        />
+                        <span className={errors.password || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}{backError === "La contraseña ingresada es incorrecta." && backError}</span>
+                    </div>
                 </div>
 
-                <div className="label-input mt-[30px]">
+                <div className="label-input">
                     <button className="primary-button w-full">Iniciar Sesión</button>
                 </div>
             </form>

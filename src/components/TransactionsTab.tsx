@@ -14,7 +14,7 @@ const TransactionsTab = () => {
 
     const { transactions, loadingTransactions, transactionsError, refetch } = useTransactionsWithCategory();
 
-    if(transactions.length === 0) return (
+    if(transactions.length === 0 && !loadingTransactions) return (
         <div className="overflow-x-auto rounded bg-almostwhite shadow-medium">
             <table className="w-full">
                 <tbody>
@@ -64,7 +64,7 @@ const TransactionsTab = () => {
                     {
                         !transactionsError ?
                             loadingTransactions ? 
-                                <tr><th className="py-5 font-thin italic">Cargando Transacciones...</th></tr> 
+                                <tr><th className="py-5 font-thin italic flex place-items-center place-content-center gap-[10px]"><span className="d-loading d-loading-spinner text-primary"></span> Cargando Transacciones...</th></tr> 
                             : transactions.map((tx, i) => (
                                 <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">
                                     <td className="w-[80%] text-left text-lg pl-5 pr-5 py-2">{tx.category.name}</td>
@@ -72,7 +72,7 @@ const TransactionsTab = () => {
                                     
                                     <td className="w-[80%] text-left pr-5 py-2">
                                         <div className="flex flex-col place-items-end text-sm">
-                                            <span className={tx.typeId == 1 ? "text-emerald-500 font-medium text-lg" : "text-red-500 font-medium text-lg"}>{tx.typeId == 1 ? "" : "-"}${tx.amount}</span>
+                                            <span className={tx.typeId == 1 ? "text-tertiary font-medium text-lg" : "text-error font-medium text-lg"}>{tx.typeId == 1 ? "" : "-"}${tx.amount}</span>
                                             <span>{formatDate(tx.date)}</span>
                                         </div>
                                     </td>
@@ -87,12 +87,12 @@ const TransactionsTab = () => {
                 {
                     transactions?.map((tx) => ( 
                         tx.id === id &&
-                        <div key={tx.id} className="flex flex-col place-content-center gap-[25px] text-white">
+                        <div key={tx.id} className="flex flex-col place-content-center gap-[100px] text-white">
                             <div className="flex flex-col place-content-center gap-[15px]">
                                 <span className="text-2xl font-bold text-center">{tx.typeId == 1 ? "Ingreso" : "Egreso"}</span>
-                                <span className="text-lg text-center border-t-1 border-b-1 py-3"><span className="text-xl font-bold">Categoría</span> <br/> {tx.category.name}</span>
-                                <span className="text-lg text-center border-b-1 pb-3"><span className="text-xl font-bold">Descripción</span> <br/> {tx.description}</span>
-                                <span className="text-lg text-center"><span className="text-xl font-bold">Monto:</span> {tx.typeId == 1 ? "$" + tx.amount : "-$" + tx.amount}</span>
+                                <span className="text-lg text-start border-t-1 py-5"><span className="text-xl font-bold tracking-wide">Categoría</span>: {tx.category.name}</span>
+                                <span className="text-lg text-start pb-5"><span className="text-xl font-bold tracking-wide">Descripción</span>: {tx.description}</span>
+                                <span className="text-lg text-start"><span className="text-xl font-bold tracking-wide">Monto:</span> {tx.typeId == 1 ? "$" + tx.amount : "-$" + tx.amount}</span>
                             </div>
                             <button className="secondary-button" onClick={() => deleteTransaction()}>Eliminar Transacción</button>
                         </div>

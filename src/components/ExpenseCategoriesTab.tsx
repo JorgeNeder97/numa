@@ -55,7 +55,7 @@ const ExpenseCategoriesTab = () => {
                     {
                         !expenseCategoriesError ?
                             loadingExpenseCategories ? 
-                                <tr><th className="py-5 font-thin italic">Cargando Categorías...</th></tr> 
+                                <tr><th className="py-5 font-thin italic flex place-items-center place-content-center gap-[10px]"><span className="d-loading d-loading-spinner text-primary"></span> Cargando Categorías...</th></tr> 
                             : expenseCategories.length > 0 ? 
                                 expenseCategories.map((cat, i) => (
                                     <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">

@@ -23,10 +23,11 @@ const Nav = () => {
     };
 
     return (
-        <nav className="h-[80px] sticky top-0 z-[200] flex place-items-center place-content-between bg-tertiary pl-[30px] pr-[10px]">
-            <Link href="/"><h1 className="text-neutral-200 text-4xl font-semibold">Numa</h1></Link>
-            
-            <label className="absolute top-[25px] right-6 z-[200] d-swap d-swap-rotate lg:hidden outline-none">
+        <nav className="h-[80px] z-[200] sticky top-0 flex place-items-center place-content-between bg-tertiary">
+            <div className="h-[80px] w-full relative z-[200] flex place-items-center place-content-between bg-tertiary pl-[30px] pr-[10px]">
+                <Link href="/"><h1 className="text-neutral-200 text-4xl font-semibold">Numa</h1></Link>
+            </div>
+            <label className="absolute top-[25px] right-6 z-[250] d-swap d-swap-rotate lg:hidden outline-none">
                 {/* this hidden checkbox controls the state */}
                 <input type="checkbox" onClick={handleMenu} />
 
@@ -51,8 +52,8 @@ const Nav = () => {
                     points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
                 </svg>
             </label>
-            <div className="lg:hidden h-[200px] w-2/3 max-w-[300px] fixed z-[90] rounded-bl-[100%] flex place-content-center top-[80px] right-0 translate-x-100 translate-y-[-100%] bg-black py-[30px] transition-all duration-[.5s] ease-in-menu" ref={menuMobile}>
-                <ul className="h-[100vh] flex flex-col place-items-start gap-[15px] pl-[50px]">
+            <div className="lg:hidden h-[200px] z-[100] w-2/3 max-w-[300px] fixed rounded-bl-[100%] flex place-content-center top-[79px] right-0 translate-x-100 translate-y-[-100%] bg-tertiary transition-all duration-[.5s] ease-in-menu" ref={menuMobile}>
+                <ul className="h-[130px] flex flex-col place-items-start place-content-center gap-[15px] pl-[80px]">
                     {
                         status === "unauthenticated" ? (
                             <>
