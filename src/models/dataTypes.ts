@@ -37,3 +37,13 @@ export interface ModalProps {
     exitButton: boolean;
     style: "Success" | "Warning" | "Error";
 }
+
+export interface User {
+    id: number;
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+    transactions?: Transaction[];
+    categories?: Category[];
+}

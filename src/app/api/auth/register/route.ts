@@ -34,8 +34,26 @@ export async function POST(request: NextRequest) {
         const {password: _, ...user} = newUser;
         return NextResponse.json(user);
     } catch (error) {
-        console.log(error);
-                if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
-                else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
+        if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
+        else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
     }
+};
+
+export async function GET(request: NextRequest) {
+    try {
+        const email = await request.json();
+
+        const itExists = await prisma.user.findFirst({
+            where: {
+                email: email
+            },
+        });
+
+        if(!itExists) return NextResponse.json("Email Válido.", { status: 203 });
+        
+        return NextResponse.json(itExists);
+    } catch (error) {
+        if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
+        else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
+    };
 };

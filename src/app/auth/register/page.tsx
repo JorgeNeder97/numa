@@ -2,17 +2,29 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Modal from "@/components/Modal";
+import { useEmailForValidation } from "@/hooks/useEmailsForValidation";
 
 
 const RegisterPage = () => {
 
+    // Maneja el Modal
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    // Maneja el spinner de carga
     const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
 
+    
+
+    // React Hook Form
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
+    // Permite redirigir
     const router = useRouter();
 
+    // Envía la petición POST al backend
     const onSubmit = handleSubmit(async (data) => {
+        // Spinner de carga
         setLoadingFetch(true);
 
         const res = await fetch("/api/auth/register", {
@@ -30,9 +42,15 @@ const RegisterPage = () => {
 
         setLoadingFetch(false);
 
-        if(res.ok && res.status === 200) router.push("/auth/login");
+        if(res.ok && res.status === 200) setIsOpen(true);
     });
 
+    // Redirige al login
+    const onContinue = () => {
+        router.push("/auth/login");
+    };
+
+    // Se usa para comparar las contraseñas
     const pass = watch("password");
 
     return (
@@ -100,6 +118,12 @@ const RegisterPage = () => {
                                     value: 50,
                                     message: "Debes ingresar un email válido",
                                 },
+                                // Ver la forma de avisar al frontend si existe o no un usuario con ese email
+                                // validate: (value) => {
+                                    // Verifica si existe algun usuario con el mismo email
+                                    // const { userWithThatEmail, loadingUserWithThatEmail, userWithThatEmailError } = useEmailForValidation(value);
+                                    // if(!loadingUserWithThatEmail && userWithThatEmail)
+                                // }
                             })}
                         />
                         <span className={errors.email ? "error-span" : "opacity-0 h-[10px]"}>{errors.email?.message?.toString() || ""}</span>
@@ -151,6 +175,15 @@ const RegisterPage = () => {
                     </button>
                 </div>
             </form>
+
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style="Success">
+                {
+                    <div className="flex flex-col place-content-center gap-[20px]">
+                        <span className="modal-title">Operación exitosa</span>
+                        <button className="inverse-primary-button" onClick={onContinue}>Continuar</button>
+                    </div>
+                }
+            </Modal>
         </div>
     );
 };
