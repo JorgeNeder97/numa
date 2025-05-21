@@ -37,7 +37,7 @@ model Transaction {
    
   category Category @relation(fields: [categoryId], references: [id])
   type Type @relation(fields: [typeId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Category {
@@ -47,7 +47,7 @@ model Category {
     userId Int
 
 
-    user User @relation(fields: [userId], references: [id])
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     type Type @relation(fields: [typeId], references: [id])
     transactions Transaction[]
 }

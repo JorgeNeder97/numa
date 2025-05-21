@@ -5,6 +5,7 @@ import { useState } from "react";
 import Modal from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import { useSyncFormWithAutoComplete } from "@/hooks/useSyncFormWithAutoComplete";
+import VolverAtras from "@/components/VolverAtras";
 
 
 const MyAccountPage = () => {
@@ -68,6 +69,7 @@ const MyAccountPage = () => {
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
             <form className="form" ref={formRef} onSubmit={onSubmit}>
+                <VolverAtras href="/dashboard/settings" />
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Datos Personales</h2>

@@ -7,37 +7,43 @@ import { useSession } from "next-auth/react";
 import { useTypes } from "@/hooks/useTypes";
 import Modal from "@/components/Modal";
 import { useRouter } from "next/navigation";
+import { useSyncFormWithAutoComplete } from "@/hooks/useSyncFormWithAutoComplete";
+import VolverAtras from "@/components/VolverAtras";
 
 const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
 
     // Redirige al usuario
     const router = useRouter();
 
+    
     // Manejan el Modal y su estilo/contenido
     const [isOpen, setIsOpen] = useState<boolean>(false); 
-    const [isError, setIsError] = useState<boolean>(false); 
-
+    const [isError, setIsError] = useState<boolean>(false);
+    
     // Maneja el spinner de carga
     const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
-
+    
     // Obtener el id con los params de la url
     const categoryParams = use(params);
     const categoryId = Number(categoryParams.id); 
     
     // Obtener el usuario logueado
     const { data: session, status } = useSession();
-
+    
     // Obtener el tipo de categoría (ingreso y egreso) y las categorías
     const { types } = useTypes();
     const { category } = useCategory(categoryId);   
 
     // React-hook-form
-    const { register, setValue, handleSubmit, formState: { errors } } = useForm();
+    const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm();
+    
+    // Sincroniza los datos de los inputs con React-hook-form
+    const formRef = useSyncFormWithAutoComplete(reset);
 
     // Setea automaticamente el tipeId de la categoría
     useEffect(() => {
         if (category?.typeId) {
-          setValue("typeId", category.typeId);
+            setValue("typeId", category.typeId);
         }
     }, [category, setValue]);
 
@@ -87,7 +93,8 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
 
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
-            <form className="form" onSubmit={onSubmit}>
+            <form className="form" ref={formRef} onSubmit={onSubmit}>
+                <VolverAtras href="/dashboard/categories" />
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Editar Categoría</h2>

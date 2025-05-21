@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useSyncFormWithAutoComplete } from "@/hooks/useSyncFormWithAutoComplete";
+import Link from "next/link";
 
 const LoginPage = () => {
 
@@ -78,6 +79,11 @@ const LoginPage = () => {
                         />
                         <span className={errors.password || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}{backError === "La contraseña ingresada es incorrecta." && backError}</span>
                     </div>
+
+                    <Link href="/auth/register" className="text-[.875rem] text-tertiary text-right self-end flex flex-col gap-[5px]">
+                        <p className="text-darkPrimary">¿No tienes una cuenta aún?</p>
+                        <p className="underline">Registrate aquí</p>
+                    </Link>
                 </div>
 
                 <div className="label-input">

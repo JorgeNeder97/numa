@@ -35,7 +35,7 @@ export interface ModalProps {
     onClose: () => void;
     children: ReactNode;
     exitButton: boolean;
-    style: "Success" | "Warning" | "Error";
+    style: "Success" | "Warning" | "Error" | "Black";
 }
 
 export interface User {

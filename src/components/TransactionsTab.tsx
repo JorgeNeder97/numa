@@ -91,7 +91,7 @@ const TransactionsTab = () => {
                 </tbody>
             </table>
 
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={true} style="Warning">
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={true} style="Black">
                 {
                     transactions?.map((tx) => ( 
                         tx.id === id &&
@@ -99,7 +99,7 @@ const TransactionsTab = () => {
                             <div className="flex flex-col place-content-center gap-[15px]">
                                 <span className="text-2xl font-bold text-center">{tx.typeId == 1 ? "Ingreso" : "Egreso"}</span>
                                 <span className="text-lg text-start border-t-1 py-5"><span className="text-xl font-bold tracking-wide">Categoría</span>: {tx.category.name}</span>
-                                <span className="text-lg text-start pb-5"><span className="text-xl font-bold tracking-wide">Descripción</span>: {tx.description}</span>
+                                <span className="text-lg text-start pb-5"><span className="text-xl font-bold tracking-wide">Descripción</span>: {tx.description ? tx.description : "Sin descripción"}</span>
                                 <span className="text-lg text-start"><span className="text-xl font-bold tracking-wide">Monto:</span> {tx.typeId == 1 ? "$" + tx.amount : "-$" + tx.amount}</span>
                             </div>
                             <button className="secondary-button" onClick={() => deleteTransaction()}>

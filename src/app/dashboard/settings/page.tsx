@@ -15,18 +15,18 @@ const Settings = () => {
                         <RightArrowIcon />
                     </div>
                 </Link>
-                <Link href="" className="w-full">
+                <Link href="/dashboard/settings/changepassword" className="w-full">
                     <div className="settingsLinks">
                         <span>Cambiar contraseña</span>
                         <RightArrowIcon />
                     </div>
                 </Link>
-                <div className="w-full">
+                <Link href="/dashboard/settings/deleteaccount" className="w-full">
                     <div className="settingsLinks">
                         <span>Cerrar cuenta</span>
                         <RightArrowIcon />
                     </div>
-                </div>
+                </Link>
             </div>
         </section>
     </PageTransition>

@@ -1,5 +1,6 @@
 "use client";
 import Modal from "@/components/Modal";
+import VolverAtras from "@/components/VolverAtras";
 import { useExpenseCategories } from "@/hooks/useExpenseCategories";
 import { getActualDate } from "@/utils/general/formatDates";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ const ExpensePage = () => {
     // Manejan el modal y su estilo/contenido
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
+    const [isFirst, setIsFirst] = useState<boolean>(false);
 
     // Maneja el spinner de carga
     const [loadingFetch, setLoadingFetch] = useState<boolean>(false);
@@ -26,7 +28,10 @@ const ExpensePage = () => {
     
      // Verifica que hayan categorías de ingresos
     useEffect(() => {
-        if(!loadingExpenseCategories && expenseCategories.length === 0) setIsOpen(true);
+        if(!loadingExpenseCategories && expenseCategories.length === 0) {
+            setIsFirst(true);
+            setIsOpen(true);
+        }
     }, [loadingExpenseCategories, expenseCategories])
 
     // onSubmit...
@@ -79,8 +84,9 @@ const ExpensePage = () => {
     }
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex flex-col place-items-center place-content-center gap-[10px] py-[50px]">
             <form className="form" onSubmit={onSubmit}>
+                <VolverAtras href="/dashboard/transactions" />
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Nuevo Egreso</h2>
@@ -134,12 +140,7 @@ const ExpensePage = () => {
                         <label htmlFor="description">Descripción</label>
                         <textarea
                             className="input h-[100px] py-3"
-                            {...register("description", {
-                                required: {
-                                    value: true,
-                                    message: "Debes agregar una descripción al ingreso"
-                                }
-                            })}
+                            {...register("description")}
                         ></textarea>
                         <span className={errors.description ? "error-span" : "opacity-0 h-[10px]"}>{errors?.description?.message?.toString()}</span>
                     </div>
@@ -153,13 +154,13 @@ const ExpensePage = () => {
                 </button>
             </form>
 
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style={isError ? "Error" : "Success"}>
+            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style={isError ? "Error" : isFirst ? "Black" : "Success"}>
                 {
                     !loadingExpenseCategories && expenseCategories.length === 0 ? 
                         <div className="flex flex-col place-content-center gap-[20px]">
                             <span className="modal-title">No tienes categorías de Egresos</span>
                             <p className="modal-text">Para generar un nuevo egreso debes tener al menos una <span className="font-semibold">categoría de egresos</span></p>
-                            <button className="inverse-primary-button" onClick={handleGenerate}>Generar categoría</button>
+                            <button className="primary-button" onClick={handleGenerate}>Generar categoría</button>
                         </div>
                     :
                     isError ?

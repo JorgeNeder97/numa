@@ -4,6 +4,7 @@ import Modal from "@/components/Modal";
 import { useForm } from "react-hook-form";
 import { useTypes } from "@/hooks/useTypes";
 import { useRouter } from "next/navigation";
+import VolverAtras from "@/components/VolverAtras";
 
 const newCategoryPage = () => {
     
@@ -65,6 +66,7 @@ const newCategoryPage = () => {
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[30px]">
             <form className="form" onSubmit={onSubmit}>
+                <VolverAtras href="/dashboard/categories" />
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Nueva Categoría</h2>

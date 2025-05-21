@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         });
     
         if(userFound) return NextResponse.json({ message: "El email pertenece a una cuenta existente" }, { status: 400 });
-        const hashedPassword = await bcrypt.hash(data.password, 10);
+        const hashedPassword = await bcrypt.hash(data.password, 12);
     
         const newUser = await prisma.user.create({
             data: {
@@ -46,7 +46,7 @@ export async function PATCH(request: NextRequest) {
             where: {
                 email: {
                     equals: data.email,
-                    mode: 'insensitive',
+                    mode: "insensitive",
                 },
             },
         });
@@ -68,5 +68,24 @@ export async function PATCH(request: NextRequest) {
     } catch (error) {
         if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
         else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
-    }
+    };
+};
+
+export async function DELETE(request: NextRequest) {
+    try {
+        const data = await request.json();
+    
+        const userDeleted = await prisma.user.delete({
+            where: {
+                id: data.id,
+            },
+        });
+    
+        if(!userDeleted) return NextResponse.json("El usuario no existe", { status: 400 });
+    
+        return NextResponse.json(userDeleted);
+    } catch (error) {
+        if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
+        else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
+    };
 }

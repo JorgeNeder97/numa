@@ -56,7 +56,7 @@ const Nav = () => {
                         status === "unauthenticated" ? (
                             <>
                                 <li>
-                                    <Link href="/" className="text-xl text-white">Home</Link>
+                                    <Link href="/" className="text-xl text-white">Inicio</Link>
                                 </li>
                                 <li>
                                     <Link href="/auth/login" className="text-xl text-white">Acceder</Link>
@@ -72,7 +72,7 @@ const Nav = () => {
                         ) : (
                             <>
                                 <li>
-                                    <Link href="/" className="text-xl text-white">Home</Link>
+                                    <Link href="/" className="text-xl text-white">Inicio</Link>
                                 </li>
                                 <li className="text-xl text-white" onClick={() => signOut()}>Cerrar Sesión</li>
                             </>

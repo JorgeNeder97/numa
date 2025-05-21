@@ -37,6 +37,7 @@
 
 @layer components {
     .form {
+        position: relative;
         display: flex;
         max-width: 433px;
         width: 80vw;
