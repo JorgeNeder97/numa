@@ -9,15 +9,14 @@ export async function POST(request: NextRequest) {
     
         const userFound = await prisma.user.findFirst({
             where: {
-                email: data.email,
+                email: {
+                    equals: data.email,
+                    mode: 'insensitive',
+                },
             },
         });
     
-        // Este y otros console log son solo para solucionar el problema de abajo...
-        console.log(userFound)
-    
-        // No esta funcionando este if y si entra a el...
-        if(userFound) return NextResponse.json({ message: "El email ingresado corresponde a un usuario existente", status: 400 });
+        if(userFound) return NextResponse.json({ message: "El email pertenece a una cuenta existente" }, { status: 400 });
         const hashedPassword = await bcrypt.hash(data.password, 10);
     
         const newUser = await prisma.user.create({
@@ -39,21 +38,35 @@ export async function POST(request: NextRequest) {
     }
 };
 
-export async function GET(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
     try {
-        const email = await request.json();
-
-        const itExists = await prisma.user.findFirst({
+        const data = await request.json();
+    
+        const userFound = await prisma.user.findFirst({
             where: {
-                email: email
+                email: {
+                    equals: data.email,
+                    mode: 'insensitive',
+                },
             },
         });
-
-        if(!itExists) return NextResponse.json("Email Válido.", { status: 203 });
+    
+        if(!userFound) return NextResponse.json("El usuario que intentas modificar no existe", { status: 400 });
         
-        return NextResponse.json(itExists);
+        const userModified = await prisma.user.update({
+            data: {
+                name: data.name,
+                lastname: data.lastname,
+                email: data.email,
+            },
+            where: {
+                id: userFound.id
+            },
+        });
+    
+        return NextResponse.json(userModified);
     } catch (error) {
         if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });
         else if(error instanceof PrismaClientUnknownRequestError) return NextResponse.json({ message: error.message }, { status: 500 });
-    };
-};
+    }
+}

@@ -1,11 +1,9 @@
-import { fetchToGet } from "./general/fetch";
-
-export async function getEmails(email: string) {
+export async function getUser(id: number) {
     try {
         const res = await fetch("/api/auth/register", {
             method: "GET",
             body: JSON.stringify({
-                email: email,
+                id: id
             }),
             headers: {
                 "Content-Type": "application/json",

@@ -3,9 +3,19 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Modal from "@/components/Modal";
+import { useSession } from "next-auth/react";
+import { useSyncFormWithAutoComplete } from "@/hooks/useSyncFormWithAutoComplete";
 
 
-const RegisterPage = () => {
+const MyAccountPage = () => {
+
+    // React Hook Form
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+    const { data: session, update } = useSession();
+    const user = session?.user;
+
+    const formRef = useSyncFormWithAutoComplete(reset);
 
     // Maneja el Modal
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -15,25 +25,22 @@ const RegisterPage = () => {
 
     // Guarda los errores que vienen del backend
     const [errorBackend, setErrorBackend] = useState<string>();
+    
 
-    // React Hook Form
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
-
-    // Permite redirigir
+    // Permite refrescar la página
     const router = useRouter();
 
-    // Envía la petición POST al backend
+    // Envía la petición PATCH al backend
     const onSubmit = handleSubmit(async (data) => {
         // Spinner de carga
         setLoadingFetch(true);
 
         const res = await fetch("/api/auth/register", {
-            method: "POST",
+            method: "PATCH",
             body: JSON.stringify({
                 name: data.name,
                 lastname: data.lastname,
                 email: data.email,
-                password: data.password,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -42,27 +49,28 @@ const RegisterPage = () => {
 
         setLoadingFetch(false);
 
-        if(res.ok && res.status === 200) setIsOpen(true);
+        if(res.ok && res.status === 200) {
+            await update();
+            setIsOpen(true);
+        }
         else {
             const errorMessage = await res.json();
             setErrorBackend(errorMessage.message);
         }
     });
 
-    // Redirige al login
-    const onContinue = () => {
-        router.push("/auth/login");
+    // Refresca la página
+    const onContinue = async () => {
+        setIsOpen(false);
+        router.refresh();
     };
-
-    // Se usa para comparar las contraseñas
-    const pass = watch("password");
 
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
-            <form className="form" onSubmit={onSubmit}>
+            <form className="form" ref={formRef} onSubmit={onSubmit}>
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5">
-                        <h2 className="w-full text-3xl font-medium">Registrarse</h2>
+                        <h2 className="w-full text-3xl font-medium">Datos Personales</h2>
                     </div>
                     <div className="label-input">
                         <label htmlFor="name" className="label">Nombre</label>
@@ -82,7 +90,8 @@ const RegisterPage = () => {
                                     value: 3,
                                     message: "Debes ingresar un nombre válido",
                                 },
-                            })}    
+                            })}
+                            defaultValue={user?.name}
                         />
                         <span className={errors.name ? "error-span" : "opacity-0 h-[10px]"}>{errors.name?.message?.toString() || ""}</span>
                     </div>
@@ -105,6 +114,7 @@ const RegisterPage = () => {
                                     message: "Debes ingresar un apellido válido",
                                 },
                             })}    
+                            defaultValue={user?.lastname}
                         />
                         <span className={errors.lastname ? "error-span" : "opacity-0 h-[10px]"}>{errors.lastname?.message?.toString() || ""}</span>
                     </div>
@@ -123,44 +133,9 @@ const RegisterPage = () => {
                                     message: "Debes ingresar un email válido",
                                 },
                             })}
+                            defaultValue={user?.email}
                         />
                         <span className={errors.email || errorBackend ? "error-span" : "opacity-0 h-[10px]"}>{errors.email?.message?.toString() || errorBackend || ""}</span>
-                    </div>
-                    <div className="label-input">
-                        <label htmlFor="password" className="label">Contraseña</label>
-                        <input 
-                            type="password" 
-                            className="input" 
-                            {...register("password", {
-                                required: {
-                                    value: true,
-                                    message: "Debes ingresar una contraseña",
-                                },
-                                minLength: {
-                                    value: 6,
-                                    message: "Debes ingresar una contraseña válida"
-                                }
-                            })}
-                        />
-                        <span className={errors.password ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}</span>
-                    </div>
-                    <div className="label-input">
-                        <label htmlFor="confirmPassword" className="label">Confirmar contraseña</label>
-                        <input 
-                            type="password" 
-                            className="input" 
-                            {...register("confirmPassword", {
-                                required: {
-                                    value: true,
-                                    message: "Debes confirmar la contraseña",
-                                },
-                                validate: (value) => {
-                                    if(pass === value) return true;
-                                    return "Las contraseñas no coinciden";
-                                }
-                            })}
-                        />
-                        <span className={errors.confirmPassword ? "error-span" : "opacity-0 h-[10px]"}>{errors.confirmPassword?.message?.toString() || ""}</span>
                     </div>
                 </div>
 
@@ -168,7 +143,7 @@ const RegisterPage = () => {
                     <button className="translate-y-[20px] primary-button w-full">
                         {
                             loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
-                            : "Registrarse"
+                            : "Guardar Cambios"
                         }
                     </button>
                 </div>
@@ -186,4 +161,4 @@ const RegisterPage = () => {
     );
 };
 
-export default RegisterPage;
+export default MyAccountPage;

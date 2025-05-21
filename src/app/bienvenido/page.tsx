@@ -10,7 +10,6 @@ const Bienvenido = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            console.log("REDIRECTING!!!")
             router.push("/dashboard");
         }, 4500);
     }, []);
