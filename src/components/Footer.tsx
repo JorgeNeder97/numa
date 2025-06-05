@@ -54,7 +54,7 @@ const Footer = () => {
         </footer>
     );
     else if(status === "loading") return (
-        <footer className={pathname === "/bienvenido" ? "hidden" : `bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-center`}>
+        <footer className={pathname === "/bienvenido" ? "hidden" : `bg-tertiary text-white w-full h-[90px] flex px-[20px] place-items-center place-content-center`}>
             <span className="d-loading d-loading-spinner text-primary"></span>
         </footer>
     );
