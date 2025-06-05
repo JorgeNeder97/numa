@@ -9,7 +9,8 @@
     --ease-in-menu: cubic-bezier(0.35,0.02,0.27,0.77);
     
     --color-almostwhite: #EEEEEE;
-    --color-lightGrey: #DDDDDD;
+    --color-lightGray: #DDDDDD;
+    --color-grayBackground: #D9D9D9;
     --color-primary: #00BC7D;
     --color-secondary: #CCFFEE;
     --color-tertiary: #00754E;
@@ -222,5 +223,19 @@
         justify-content: space-between;
         padding-bottom: 10px;
         border-bottom: 1px solid var(--color-darkPrimary);
+    }
+
+
+    /* Efects */
+
+    .fromBlurFade {
+        opacity: 0;
+        filter: blur(6px);
+        transition: all .8s ease-out;
+    }
+
+    .fromBlurFade.reveal-visible {
+        opacity: 1;
+        filter: blur(0px);
     }
 }
