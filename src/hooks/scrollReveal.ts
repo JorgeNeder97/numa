@@ -42,17 +42,19 @@ const revealElements = () => {
         opacity: 0,
         duration: 800,
         easing: "ease-out",
+        interval: 400,
         delay: 500
     });
 
     sr.reveal(".fadeIn", {
         distance: "0px",
         opacity: 0,
-        duration: 2500,
+        duration: 2000,
         easing: "ease-out",
         delay: 0,
-        interval: 1500,
+        interval: 1000,
     });
+
 };
 
 export default revealElements;

@@ -238,4 +238,11 @@
         opacity: 1;
         filter: blur(0px);
     }
+
+    /* Cards */
+
+    .featureCard {
+        @apply flex flex-col gap-[15px] place-items-center place-content-center rounded-2xl
+        /* Seguir dando estilos */
+    }
 }
