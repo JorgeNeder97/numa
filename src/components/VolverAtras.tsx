@@ -1,4 +1,4 @@
-import BackButton from "@/assets/icons/backButton";
+import BackButton from "@/assets/icons/BackButton";
 import Link from "next/link";
 import React, { useState } from "react";
 

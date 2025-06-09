@@ -23,6 +23,7 @@ const revealElements = () => {
     sr.reveal(".fromBottom", {
         origin: "bottom",
         delay: 50,
+        interval: 100,
     });
 
     sr.reveal(".fromLeft", {

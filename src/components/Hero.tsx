@@ -1,13 +1,9 @@
 "use client";
-import revealElements from "@/hooks/scrollReveal";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Hero = () => {
     const [loading, setLoading] = useState<boolean>(false);
-    useEffect(() => {
-        revealElements();
-    }, [])
 
     return (
         <div className="w-full grid grid-cols-[20px_1fr_1.5fr_1fr_1fr_20px] grid-rows-3 translate-y-[-30px]">
@@ -26,7 +22,7 @@ const Hero = () => {
                     { loading ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
                     : "Probar Gratis" }
                 </Link>
-                <Link href="" className="fromLeft text-[1rem] inverse-primary-button py-[8px] w-[50vw] max-w-[200px] min-w-[185px] min-h-[25px] h-[40px] flex place-content-center place-items-center">
+                <Link href="/#funcionalidades" className="fromLeft text-[1rem] inverse-primary-button py-[8px] w-[50vw] max-w-[200px] min-w-[185px] min-h-[25px] h-[40px] flex place-content-center place-items-center">
                     Ver Funcionalidades
                 </Link>
             </div>

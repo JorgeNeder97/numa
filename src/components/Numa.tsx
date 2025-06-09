@@ -1,11 +1,4 @@
-import revealElements from "@/hooks/scrollReveal";
-import { useEffect } from "react";
-
 const Numa = () => {
-
-    useEffect(() => {
-        revealElements();
-    }, []);
 
     return (
         <div className="w-full text-primary flex flex-col place-items-center place-content-center gap-[30vh] translate-y-[-10vh]">

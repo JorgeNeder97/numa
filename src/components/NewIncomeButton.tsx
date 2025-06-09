@@ -16,7 +16,7 @@ const NewIncomeButton = () => {
             <div className="w-[38px] h-[38px] flex place-items-center place-content-center">
                 {
                     loading ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
-                    : <IncomeIcon />
+                    : <IncomeIcon stroke="white" />
                 }
             </div>
         </Link>
