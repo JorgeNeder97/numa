@@ -47,3 +47,11 @@ export interface User {
     transactions?: Transaction[];
     categories?: Category[];
 }
+
+export interface Testimonio {
+    nombre: string;
+    rol: string;
+    texto: string;
+    estrellas: number;
+    img: string;
+};

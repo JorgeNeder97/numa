@@ -22,7 +22,7 @@ const HomePage = () => {
             <section id="diseño" className="w-full pb-[10vh] min-h-[calc(100vh-80px)]">
                 <DesignFeatures />
             </section>
-            <section id="testimonios" className="w-full pb-[10vh]">
+            <section id="testimonios" className="w-full pb-[5vh]">
                 <Testimonios />
             </section>
         </div>

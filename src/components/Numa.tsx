@@ -9,7 +9,7 @@ const Numa = () => {
             </div>
             <div className="flex flex-col place-items-center place-content-center gap-[40px]">
                 <h2 className="fadeIn text-[3rem] font-bold">Numa</h2>
-                <span className="fadeIn text-[0.875rem] font-semibold">Invertí en vos</span>
+                <span className="fadeIn text-[1rem] font-semibold">Invertí en vos</span>
             </div>
         </div>
     );
