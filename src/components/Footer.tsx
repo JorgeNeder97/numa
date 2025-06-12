@@ -60,10 +60,10 @@ const Footer = () => {
     );
     
     else return (
-        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-tertiary w-full h-[70px] flex px-[20px] place-items-center`}>
-            <div className="w-full flex place-items-center place-content-start">
-                <h2 className="text-white text-[1rem] font-semibold">Designed & Developed by</h2>
-
+        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-tertiary w-full flex px-[3vh] py-[3vh] place-items-center`}>
+            <div className="w-full mb-[3vh] flex place-items-center place-content-start">
+                <p className="text-white text-[1rem] font-semibold max-w-[100px]">Diseño y Desarrollo</p>
+                <span className="w-[50px] text-white">Jorge Neder</span>
             </div>
             <span className="absolute bottom-1 right-3 text-neutral-100 text-[10px]">
                 © 2025 Numa. Todos los derechos reservados.

@@ -29,7 +29,7 @@ const HomePage = () => {
                 <DesignFeatures />
             </section>
             
-            <section id="testimonios" className="w-full pb-[5vh]">
+            <section id="testimonios" className="w-full pb-[8vh]">
                 <Testimonios />
             </section>
             
