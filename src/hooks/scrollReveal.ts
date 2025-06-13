@@ -58,7 +58,7 @@ const revealElements = () => {
         duration: 2000,
         easing: "ease-out",
         delay: 0,
-        interval: 900,
+        interval: 700,
     });
 
 };

@@ -63,24 +63,24 @@ const Footer = () => {
     );
     
     else return (
-        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-black text-white w-full flex flex-col pl-[3vh] pr-[5px] py-[3vh] gap-[5vh] place-items-center place-content-center`}>
-            <div className="w-full flex place-items-start place-content-between gap-[10px]">    
-                <div className="w-full flex flex-col place-items-start place-content-center gap-[10px]">
+        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-black text-white w-full flex flex-col lg:flex-row pl-[3vh] lg:pl-[50px] pr-[5px] py-[3vh] gap-[5vh] place-items-center place-content-center lg:place-content-between`}>
+            <div className="w-full flex place-items-start place-content-between lg:place-content-start gap-[10px] lg:gap-[20px]">    
+                <div className="w-full lg:w-[30%] flex flex-col place-items-start place-content-center gap-[10px]">
                     <span className="fromLeft text-[1.2rem] font-semibold">Recursos</span>
                     <div className="text-[.875rem] font-light flex flex-col place-items-start gap-[5px]">
-                        <a href="/politicas_numa.pdf" download="Políticas_de_Privacidad_Numa.pdf" className="fromLeft">Políticas de Privacidad</a>
-                        <a href="mailto:jorge.neder97@gmail.com" className="fromLeft">Contacto</a>
+                        <a href="/politicas_numa.pdf" download="Políticas_de_Privacidad_Numa.pdf" className="fromLeft hover:text-primary transition-all duration-[.3s] ease-in-out">Políticas de Privacidad</a>
+                        <a href="mailto:jorge.neder97@gmail.com" className="fromLeft hover:text-primary transition-all duration-[.3s] ease-in-out">Contacto</a>
                     </div>
                 </div>
 
-                <div className="w-full flex flex-col place-items-center place-content-center gap-[10px]">
+                <div className="w-full lg:w-[30%] flex flex-col place-items-center place-content-center gap-[10px]">
                     <span className="fromRight text-[1.2rem] font-semibold">Redes Sociales</span>
                     <Link href="https://github.com/JorgeNeder97" className="fromRight">
                         <GitHub />
                     </Link>
                 </div>
             </div>
-            <div className="w-full mb-[3vh] flex place-items-center place-content-center gap-[10px]">
+            <div className="w-[40%] mb-[3vh] flex place-items-center place-content-center gap-[10px]">
                 <p className="fromLeftSync text-white text-[1rem] font-normal max-w-[120px]">Designed & Developed by</p>
                 <Image src="/mp.png" className="fromRight w-[130px]" width={200} height={120} alt="Jorge Neder" />
             </div>

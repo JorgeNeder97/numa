@@ -23,19 +23,19 @@ const Nav = () => {
     const toggleMenu = () => setIsChecked(prev => !prev);
 
     return (
-        <nav className={pathname === "/bienvenido" ? "hidden" : `h-[80px] lg:h-[50px] w-full z-[200] sticky top-0 flex place-items-center place-content-between bg-tertiary`}>
-            <div className="h-[80px] lg:h-[50px] relative z-[200] flex place-items-center place-content-between bg-tertiary pl-[30px] pr-[10px]">
+        <nav className={pathname === "/bienvenido" ? "hidden" : `h-[80px] lg:h-[65px] w-full z-[200] sticky top-0 flex place-items-center place-content-between bg-tertiary`}>
+            <div className="h-[80px] lg:h-[65px] relative z-[200] flex place-items-center place-content-between bg-tertiary pl-[30px] pr-[10px]">
                 <Link href="/"><h1 className="text-neutral-200 text-4xl lg:text-[1.8rem] font-semibold">Numa</h1></Link>
             </div>
             <div className="hidden lg:block absolute top-[0px] right-[30px] z-[200]">
                 {status === "unauthenticated" ?
-                    <ul className="w-full h-[50px] flex place-items-center gap-[20px]">
+                    <ul className="w-full h-[65px] flex place-items-center gap-[20px]">
                         <Link href="/" className="text-[1rem] text-white">Inicio</Link>
                         <Link href="/auth/login" className="text-[1rem] text-white">Acceder</Link>
                         <Link href="/auth/register" className="text-[1rem] text-white">Registrarse</Link>
                     </ul>
                 : status === "authenticated" ?
-                    <ul className="w-full h-[50px] flex place-items-center gap-[20px]">
+                    <ul className="w-full h-[65px] flex place-items-center gap-[20px]">
                         <Link href="/" className="text-[1rem] text-white">Inicio</Link>
                         <span className="text-[1rem] text-white" onClick={() => signOut()}>Cerrar Sesión</span>
                     </ul>

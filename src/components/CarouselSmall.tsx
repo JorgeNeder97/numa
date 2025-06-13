@@ -44,7 +44,7 @@ const CarouselSmall = ({testimonios} : { testimonios: Testimonio[]}) => {
     }, [selectedTestify]);
 
     return (
-        <div className="fromCenter w-[90%] h-[218px] px-[15px] py-[25px] flex flex-col gap-[20px] place-items-center rounded-md shadow-card-center">
+        <div className="fromCenter w-[90%] lg:w-[60%] lg:max-w-[600px] h-[218px] px-[15px] py-[25px] flex flex-col gap-[20px] place-items-center rounded-md shadow-card-center">
             <div className="flex place-items-center gap-[25px] self-start pl-[20px]">
 
                 <div className="w-[60px] h-[60px] min-w-[60px] min-h-[60px] rounded-full overflow-hidden relative">

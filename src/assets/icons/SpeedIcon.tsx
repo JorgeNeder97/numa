@@ -1,8 +1,8 @@
-const SpeedIcon = () => {
+const SpeedIcon = ({ width, height } : { width: string, height: string }) => {
     return (
         <svg
-            width="26"
-            height="22"
+            width={width}
+            height={height}
             viewBox="0 0 26 22"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
