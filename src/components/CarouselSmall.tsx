@@ -52,6 +52,7 @@ const CarouselSmall = ({testimonios} : { testimonios: Testimonio[]}) => {
                         src={selectedTestify.img}
                         className="object-cover"
                         fill
+                        sizes="60px 60px"
                         alt={selectedTestify.nombre}
                     />
                 </div>

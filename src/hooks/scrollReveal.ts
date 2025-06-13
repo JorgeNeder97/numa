@@ -32,6 +32,11 @@ const revealElements = () => {
         interval: 150,
     });
 
+    sr.reveal(".fromLeftSync", {
+        origin: "left",
+        delay: 50,
+    });
+
     sr.reveal(".fromRight", {
         origin: "right",
         delay: 50,

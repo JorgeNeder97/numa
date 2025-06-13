@@ -13,19 +13,19 @@ const HomePage = () => {
             {/* Ejecuta el hook de scroll reveal */}
             <ScrollRevealClient />
             
-            <section id="hero" className="w-full min-h-[calc(100vh-80px-0px)] bg-[url('/backgrounds/Hero.webp')] bg-cover bg-bottom flex place-items-center place-content-center">
+            <section id="hero" className="w-full min-h-[calc(100vh-80px-0px)] lg:min-h-[calc(100vh-50px)] bg-[url('/backgrounds/Hero.webp')] bg-cover bg-bottom lg:bg-center flex place-items-center place-content-center">
                 <Hero />
             </section>
             
-            <section id="numa" className="w-full min-h-[calc(100vh-80px)] flex place-items-center place-content-center">
+            <section id="numa" className="w-full min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-50px)] flex place-items-center place-content-center">
                 <Numa />
             </section>
             
-            <section id="funcionalidades" className="w-full scroll-mt-[80px] pb-[10vh] flex place-content-center">
+            <section id="funcionalidades" className="w-full scroll-mt-[80px] lg:min-h-[calc(100vh-50px)] pb-[10vh] flex place-content-center">
                 <Features />
             </section>
             
-            <section id="diseño" className="w-full pb-[10vh] min-h-[calc(100vh-80px)]">
+            <section id="diseño" className="w-full pb-[10vh] min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-50px)]">
                 <DesignFeatures />
             </section>
             
@@ -33,7 +33,7 @@ const HomePage = () => {
                 <Testimonios />
             </section>
             
-            <section id="lastCTA" className="w-full min-h-[calc(100vh-80px)] bg-[url('/backgrounds/LastCTA.jpg')] bg-cover bg-bottom flex place-items-center place-content-center">
+            <section id="lastCTA" className="w-full min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-50px)] bg-[url('/backgrounds/LastCTA.jpg')] bg-cover bg-bottom flex place-items-center place-content-center">
                 <LastCTA />
             </section>
         </div>

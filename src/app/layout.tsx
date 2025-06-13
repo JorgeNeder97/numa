@@ -4,7 +4,7 @@ import Nav from "@/components/Nav";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import { Kanit } from "next/font/google";
-import Footer from "@/components/Footer";
+import FooterClient from "@/components/FooterClient";
 
 const kanit = Kanit({
     weight: ["200", "300", "400", "500", "600", "700"],
@@ -28,7 +28,7 @@ export default function RootLayout({
             <Providers>
                 <Nav />
                 {children}
-                <Footer />
+                <FooterClient />
             </Providers>
         </body>
         </html>

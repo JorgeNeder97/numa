@@ -4,6 +4,7 @@ import revealElements from "@/hooks/scrollReveal";
 
 const ScrollReveal = () => {
     useEffect(() => {
+        window.scrollTo(0, 0);
         revealElements();
     }, []);
 

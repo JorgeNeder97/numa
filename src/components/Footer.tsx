@@ -7,6 +7,9 @@ import DashboardIcon from "@/assets/icons/DashboardIcon";
 import CategoriesIcon from "@/assets/icons/CategoriesIcon";
 import TransactionsIcon from "@/assets/icons/TransactionsIcon";
 import SettingsIcon from "@/assets/icons/SettingsIcon";
+import Image from "next/image";
+import GitHub from "@/assets/icons/GitHub";
+import revealElements from "@/hooks/scrollReveal";
 
 const Footer = () => {
 
@@ -54,16 +57,32 @@ const Footer = () => {
         </footer>
     );
     else if(status === "loading") return (
-        <footer className={pathname === "/bienvenido" ? "hidden" : `bg-tertiary text-white w-full h-[90px] flex px-[20px] place-items-center place-content-center`}>
+        <footer className={pathname === "/bienvenido" ? "hidden" : `bg-black text-white w-full h-[90px] flex px-[20px] place-items-center place-content-center`}>
             <span className="d-loading d-loading-spinner text-primary"></span>
         </footer>
     );
     
     else return (
-        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-tertiary w-full flex px-[3vh] py-[3vh] place-items-center`}>
-            <div className="w-full mb-[3vh] flex place-items-center place-content-start">
-                <p className="text-white text-[1rem] font-semibold max-w-[100px]">Diseño y Desarrollo</p>
-                <span className="w-[50px] text-white">Jorge Neder</span>
+        <footer className={pathname === "/bienvenido" ? "hidden" : `relative bg-black text-white w-full flex flex-col pl-[3vh] pr-[5px] py-[3vh] gap-[5vh] place-items-center place-content-center`}>
+            <div className="w-full flex place-items-start place-content-between gap-[10px]">    
+                <div className="w-full flex flex-col place-items-start place-content-center gap-[10px]">
+                    <span className="fromLeft text-[1.2rem] font-semibold">Recursos</span>
+                    <div className="text-[.875rem] font-light flex flex-col place-items-start gap-[5px]">
+                        <a href="/politicas_numa.pdf" download="Políticas_de_Privacidad_Numa.pdf" className="fromLeft">Políticas de Privacidad</a>
+                        <a href="mailto:jorge.neder97@gmail.com" className="fromLeft">Contacto</a>
+                    </div>
+                </div>
+
+                <div className="w-full flex flex-col place-items-center place-content-center gap-[10px]">
+                    <span className="fromRight text-[1.2rem] font-semibold">Redes Sociales</span>
+                    <Link href="https://github.com/JorgeNeder97" className="fromRight">
+                        <GitHub />
+                    </Link>
+                </div>
+            </div>
+            <div className="w-full mb-[3vh] flex place-items-center place-content-center gap-[10px]">
+                <p className="fromLeftSync text-white text-[1rem] font-normal max-w-[120px]">Designed & Developed by</p>
+                <Image src="/mp.png" className="fromRight w-[130px]" width={200} height={120} alt="Jorge Neder" />
             </div>
             <span className="absolute bottom-1 right-3 text-neutral-100 text-[10px]">
                 © 2025 Numa. Todos los derechos reservados.
