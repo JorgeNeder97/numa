@@ -62,11 +62,13 @@
         align-items: center;
         justify-content: center;
         gap: 50px;
-        background-color: #FAFAFA;
-        box-shadow: 5px 5px 15px #CCCCCC;
-        border-radius: 15px;
+        color: var(--color-neutral-200);
+        background-color: rgba(255, 255, 255, .1);
+        box-shadow: 5px 5px 15px #333;
+        border-radius: 10px;
         padding: 50px 30px;
         padding-bottom: 80px;
+        @apply lg:w-[50%]
     }
 
     .label-input {
@@ -79,6 +81,7 @@
 
     .label {
         font-weight: 500;
+        @apply lg:text-[.875rem]
     }
 
     .input {
@@ -89,6 +92,7 @@
         border-radius: 5px;
         color: #FFFFFF;
         padding-left: 10px;
+        @apply lg:h-[35px] lg:text-[.875rem]
     }
 
     .input:focus {
@@ -111,6 +115,7 @@
         font-size: 13px;
         color: var(--color-red-700);
         transition: all .3s ease-in-out;
+        @apply lg:text-[.75rem]
     }
     
     .error-option {
@@ -132,12 +137,14 @@
     }
 
     .primary-button:hover {
-        background-color: var(--color-tertiary);
+        background-color: var(--color-black);
+        color: var(--color-neutral-200);
         cursor: pointer;
     }
 
     .primary-button:active {
-        background-color: var(--color-tertiary);
+        background-color: var(--color-neutral-300);
+        color: var(--color-tertiary);
         cursor: pointer;
     }
 
@@ -151,7 +158,8 @@
     }
 
     .inverse-primary-button:hover {
-        background-color: var(--color-neutral-200);
+        background-color: var(--color-black);
+        color: var(--color-neutral-200);
         cursor: pointer;
     }
 

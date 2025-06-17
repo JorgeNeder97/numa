@@ -21,15 +21,15 @@ const HomePage = () => {
                 <Numa />
             </section>
             
-            <section id="funcionalidades" className="w-full scroll-mt-[80px] lg:min-h-[calc(100vh-50px)] pb-[10vh] lg:pb-[15vh] flex place-content-center">
+            <section id="funcionalidades" className="w-full scroll-mt-[80px] lg:min-h-[calc(100vh-50px)] pb-[10vh] md:pb-[15vh] flex place-content-center">
                 <Features />
             </section>
             
-            <section id="diseño" className="w-full pb-[10vh] lg:pb-[15vh] min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-50px)]">
+            <section id="diseño" className="w-full pb-[10vh] md:pb-[15vh] min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-50px)]">
                 <DesignFeatures />
             </section>
             
-            <section id="testimonios" className="w-full pb-[8vh] lg:pb-[13vh]">
+            <section id="testimonios" className="w-full pb-[8vh] md:pb-[13vh]">
                 <Testimonios />
             </section>
             

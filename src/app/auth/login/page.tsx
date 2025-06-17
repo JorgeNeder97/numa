@@ -35,7 +35,7 @@ const LoginPage = () => {
     });
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center place-items-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] bg-[url('/backgrounds/LastCTA.jpg')] relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
             <form className="form" ref={formRef} onSubmit={onSubmit}>
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5">
@@ -80,8 +80,8 @@ const LoginPage = () => {
                         <span className={errors.password || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}{backError === "La contraseña ingresada es incorrecta." && backError}</span>
                     </div>
 
-                    <Link href="/auth/register" className="text-[.875rem] text-tertiary text-right self-end flex flex-col gap-[5px]">
-                        <p className="text-darkPrimary">¿No tienes una cuenta aún?</p>
+                    <Link href="/auth/register" className="text-[.875rem] text-white text-right self-end flex flex-col gap-[5px]">
+                        <p className="text-neutral-200">¿No tienes una cuenta aún?</p>
                         <p className="underline">Registrate aquí</p>
                     </Link>
                 </div>

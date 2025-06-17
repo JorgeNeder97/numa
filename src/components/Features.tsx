@@ -7,7 +7,7 @@ import SpeedIcon from "@/assets/icons/SpeedIcon";
 const Features = () => {
 
     return (
-        <div className="w-full flex flex-col place-items-center gap-[10vh] lg:gap-[15vh]">
+        <div className="w-full flex flex-col place-items-center gap-[10vh] md:gap-[15vh]">
 
             <div className="w-full flex flex-col place-items-center gap-[20px]">
                 <div className="fromLeft w-[45%] self-start border-b-2 pt-[1px] border-primary"></div>
@@ -18,10 +18,10 @@ const Features = () => {
                 <div className="fromRight w-[45%] self-end border-b-2 pt-[1px] border-primary"></div>
             </div>
 
-            <div className="grid grid-cols-2 grid-rows-2 gap-[10px] lg:gap-x-[50px] gap-y-[20px] lg:gap-y-[50px] px-[10px]">
+            <div className="grid grid-cols-2 grid-rows-2 gap-[10px] sm:gap-x-[20px] md:gap-x-[25px] lg:gap-x-[50px] gap-y-[20px] lg:gap-y-[50px] px-[10px]">
             
                 <div className="featureCard fromBottom">
-                    <h4 className="text-[1rem] lg:text-[1.5rem]">Ingresos y Egresos</h4>
+                    <h4 className="text-[1rem] lg:text-[1.1rem]">Ingresos y Egresos</h4>
 
                     {/* Mobile Version */}
                     <div className="lg:hidden flex place-items-center gap-[10px]">
@@ -36,11 +36,11 @@ const Features = () => {
                     </div>
 
 
-                    <p className="text-[.75rem] lg:text-[1.1rem] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Creá categorías personalizadas y registrá movimientos facilmente</p>
+                    <p className="text-[.75rem] md:text-[.875rem] lg:text-[1rem] sm:max-w-[200px] md:max-w-[250px] md:leading-[18px] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Creá categorías personalizadas y registrá movimientos facilmente</p>
                 </div>
             
                 <div className="featureCard fromBottom">
-                    <h4 className="text-[1rem] lg:text-[1.5rem]">Gráfico de Gastos</h4>
+                    <h4 className="text-[1rem] lg:text-[1.1rem]">Gráfico de Gastos</h4>
 
                     {/* Mobile Version */}
                     <div className="lg:hidden">
@@ -52,11 +52,11 @@ const Features = () => {
                         <PieIcon width="30px" height="30px" />
                     </div>
 
-                    <p className="text-[.75rem] lg:text-[1.1rem] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Visualizá tus egresos del mes con un gráfico de torta claro y útil</p>
+                    <p className="text-[.75rem] md:text-[.875rem] lg:text-[1rem] sm:max-w-[200px] md:max-w-[250px] md:leading-[18px] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Visualizá tus egresos del mes con un gráfico de torta claro y útil</p>
                 </div>
             
                 <div className="featureCard fromBottom">
-                    <h4 className="text-[1rem] lg:text-[1.5rem]">Historial y Control</h4>
+                    <h4 className="text-[1rem] lg:text-[1.1rem]">Historial y Control</h4>
 
                     {/* Mobile Version */}
                     <div className="lg:hidden">
@@ -68,11 +68,11 @@ const Features = () => {
                         <CalendarIcon width="30px" height="33px" />
                     </div>
 
-                    <p className="text-[.75rem] lg:text-[1.1rem] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Consultá tu historial y descubrí cuál fue tu último ingreso y egreso</p>
+                    <p className="text-[.75rem] md:text-[.875rem] lg:text-[1rem] sm:max-w-[200px] md:max-w-[250px] md:leading-[18px] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Consultá tu historial y descubrí cuál fue tu último ingreso y egreso</p>
                 </div>
             
                 <div className="featureCard fromBottom">
-                    <h4 className="text-[1rem] lg:text-[1.5rem]">Gestión optimizada</h4>
+                    <h4 className="text-[1rem] lg:text-[1.1rem]">Gestión optimizada</h4>
 
                     {/* Mobile Version */}
                     <div className="lg:hidden">
@@ -84,7 +84,7 @@ const Features = () => {
                         <SpeedIcon width="36px" height="32px" />
                     </div>
 
-                    <p className="text-[.75rem] lg:text-[1.1rem] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Eliminá y gestioná tus transacciones facilmente en cuestión de segundos</p>
+                    <p className="text-[.75rem] md:text-[.875rem] lg:text-[1rem] sm:max-w-[200px] md:max-w-[250px] md:leading-[18px] lg:max-w-[400px] lg:leading-[24px] tracking-wide leading-[15px] text-gray-700">Eliminá y gestioná tus transacciones facilmente en cuestión de segundos</p>
                 </div>
             </div>
         </div>

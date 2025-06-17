@@ -58,10 +58,10 @@ const RegisterPage = () => {
     const pass = watch("password");
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
-            <form className="form" onSubmit={onSubmit}>
+        <div className="w-full min-h-[calc(100vh-150px)] bg-[url('/backgrounds/LastCTA.jpg')] relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
+            <form className="form from" onSubmit={onSubmit}>
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
-                    <div className="label-input mb-5">
+                    <div className="label-input mb-5 lg:hidden">
                         <h2 className="w-full text-3xl font-medium">Registrarse</h2>
                     </div>
                     <div className="label-input">
@@ -173,6 +173,15 @@ const RegisterPage = () => {
                     </button>
                 </div>
             </form>
+
+            <div className="hidden w-[40%] max-w-[450px] lg:flex flex-col place-items-start place-content-center gap-[45px]">
+                <h4 className="text-[2rem] max-w-[450px] text-neutral-100 leading-[35px] font-bold">Registrate y empezá a formar parte de Numa</h4>
+                <p className="text-[1rem] max-w-[410px] text-neutral-200 tracking-wide leading-[25px] text-justify">Sabemos que cada comienzo puede ser el primer paso hacia algo grande. Con Numa vas a poder llevar un control claro y sencillo de tus finanzas: registrá tus ingresos y egresos, y visualizá tus gastos mensuales en un gráfico fácil de entender.</p>
+                <h4 className="text-[2rem] max-w-[450px] text-neutral-100 leading-[35px] font-bold">Tomá el control de tus finanzas, sin complicaciones</h4>
+                <p className="text-[1rem] max-w-[410px] text-neutral-200 tracking-wide leading-[25px] text-justify">No necesitás ser un experto para organizar tus cuentas. Numa está pensado para ayudarte a entender en qué se va tu plata, cómo podés mejorar tus hábitos y tomar decisiones más conscientes. Es simple, rápido y pensado para vos.</p>
+                <p className="text-[1.1rem] max-w-[410px] text-white font-medium tracking-wide">Tu recorrido hacia unas finanzas más ordenadas empieza acá</p>
+                
+            </div>
 
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style="Success">
                 {
