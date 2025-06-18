@@ -37,7 +37,7 @@ const LoginPage = () => {
     return (
         <div className="w-full min-h-[calc(100vh-150px)] bg-[url('/backgrounds/LastCTA.jpg')] relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
             <form className="form" ref={formRef} onSubmit={onSubmit}>
-                <div className="w-full flex flex-col place-items-center gap-[20px]">
+                <div className="w-full flex flex-col place-items-center gap-[20px] max-w-[300px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Acceso</h2>
                     </div>
@@ -80,10 +80,12 @@ const LoginPage = () => {
                         <span className={errors.password || backError ? "error-span" : "opacity-0 h-[10px]"}>{errors.password?.message?.toString() || ""}{backError === "La contraseña ingresada es incorrecta." && backError}</span>
                     </div>
 
-                    <Link href="/auth/register" className="text-[.875rem] text-white text-right self-end flex flex-col gap-[5px]">
+                    <div className="text-[.875rem] text-right self-end flex flex-col gap-[5px] pr-[5px]">
                         <p className="text-neutral-200">¿No tienes una cuenta aún?</p>
-                        <p className="underline">Registrate aquí</p>
-                    </Link>
+                        <Link href="/auth/register">
+                            <p className="text-neutral-200 underline pr-[5px] hover:text-white transition-all duration-[.3s] ease-in-out">Registrate aquí</p>
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="label-input">
