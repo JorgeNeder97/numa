@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import VolverAtras from "@/components/VolverAtras";
 
 const ChangePasswordPage = () => {
@@ -43,6 +44,7 @@ const ChangePasswordPage = () => {
         if (res.ok && res.status === 200) {
             setStyleModal("Success");
             setIsOpen(true);
+            signOut();
         }
         else {
             setStyleModal("Error");

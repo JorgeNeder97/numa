@@ -82,7 +82,7 @@ export async function DELETE(request: NextRequest) {
         });
     
         if(!userDeleted) return NextResponse.json("El usuario no existe", { status: 400 });
-    
+        
         return NextResponse.json(userDeleted);
     } catch (error) {
         if(error instanceof Error) return NextResponse.json({ message: error.message }, { status: 500 });

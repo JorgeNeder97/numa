@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 const Nav = () => {
 
@@ -23,16 +24,19 @@ const Nav = () => {
     const toggleMenu = () => setIsChecked(prev => !prev);
 
     return (
-        <nav className={pathname === "/bienvenido" ? "hidden" : `h-[80px] lg:h-[65px] w-full z-[300] sticky top-0 flex place-items-center place-content-between bg-tertiary`}>
-            <div className="h-[80px] lg:h-[65px] relative z-[200] flex place-items-center place-content-between bg-tertiary pl-[30px] pr-[10px]">
-                <Link href="/"><h1 className="text-neutral-200 text-4xl lg:text-[1.8rem] font-semibold">Numa</h1></Link>
+        <nav className={pathname === "/bienvenido" ? "hidden" : `h-[80px] lg:h-[65px] w-full z-[300] lg:absolute sticky top-0 flex place-items-center place-content-between bg-tertiary lg:bg-transparent`}>
+            <div className="h-[80px] lg:h-[65px] relative z-[200] flex place-items-center bg-tertiary lg:bg-transparent pl-[30px] pr-[10px]">
+                <Link href="/" className="flex place-items-center gap-[10px]">
+                    <Image src="/favicon.ico" alt="Numa Logo" width={50} height={50} className="lg:w-[30px] h-[30px]" />
+                    <h1 className="text-neutral-200 lg:text-tertiary text-4xl lg:text-[1.8rem] font-semibold">Numa</h1>
+                </Link>
             </div>
             <div className="hidden lg:block absolute top-[0px] right-[30px] z-[200]">
                 {status === "unauthenticated" ?
                     <ul className="w-full h-[65px] flex place-items-center gap-[20px]">
-                        <Link href="/" className="text-[1rem] text-white hover:text-primary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Inicio</Link>
-                        <Link href="/auth/login" className="text-[1rem] text-white hover:text-primary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Acceder</Link>
-                        <Link href="/auth/register" className="text-[1rem] text-white hover:text-primary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Registrarse</Link>
+                        <Link href="/" className="text-[1rem] text-white hover:text-tertiary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Inicio</Link>
+                        <Link href="/auth/login" className="text-[1rem] text-white hover:text-tertiary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Acceder</Link>
+                        <Link href="/auth/register" className="text-[1rem] text-white hover:text-tertiary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Registrarse</Link>
                     </ul>
                 : status === "authenticated" ?
                     <ul className="w-full h-[65px] flex place-items-center gap-[20px]">

@@ -13,7 +13,7 @@ const HomePage = () => {
             {/* Ejecuta el hook de scroll reveal */}
             <ScrollRevealClient />
             
-            <section id="hero" className="w-full min-h-[calc(100vh-80px-0px)] lg:min-h-[calc(100vh-50px)] bg-[url('/backgrounds/Hero.webp')] bg-cover bg-bottom lg:bg-center flex place-items-center place-content-center">
+            <section id="hero" className="w-full min-h-[calc(100vh-80px-0px)] lg:min-h-[calc(100vh)] bg-[url('/backgrounds/Hero.png')] bg-cover bg-bottom lg:bg-center flex place-items-center place-content-center">
                 <Hero />
             </section>
             

@@ -1,4 +1,4 @@
-const ExpenseIcon = ({stroke, width, height} : { stroke: string, width: string, height: string }) => {
+const ExpenseIcon = ({stroke, width, height} : { stroke: string, width?: string, height?: string }) => {
     return (
         <svg
             width={width}
