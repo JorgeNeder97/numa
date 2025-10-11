@@ -6,13 +6,12 @@ const Hero = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     return (
-        <div className="w-full grid grid-cols-[20px_1fr_1.5fr_1fr_1fr_20px] md:grid-cols-[50px_1fr_1.5fr_1fr_1fr_50px] lg:grid-cols-[100px_1fr_1.5fr_1fr_1fr_100px] grid-rows-3 translate-y-[0px]">
-                <div className="col-span-5 col-start-2 row-start-1 mb-[clamp(10px,5vh,50px)] flex flex-col place-content-end">
-                    
-                    <h2 className="fromLeft max-w-[300px] sm:max-w-[400px] text-tertiary font-bold text-[2rem] sm:text-[2.2rem] md:text-[2.3rem]">Cultivá tu bienestar financiero</h2>
-                </div>
-            <div className="col-span-2 col-start-2 row-start-2 mb-[clamp(20px,7vh,100px)]">
-                <p className="fromLeft max-w-[180px] sm:max-w-[280px] text-tertiary tracking-wider text-[1rem] sm:text-[1rem] lg:text-[1.1rem] lg:tracking-wide lg:leading-[30px] lg:text-justify">Controlá tus ingresos y egresos, analizá tus hábitos y mejorá tu salud financiera desde hoy</p>
+        <div className="w-full place-items-start grid grid-cols-[20px_1fr_1.5fr_1fr_1fr_20px] md:grid-cols-[50px_1fr_1.5fr_1fr_1fr_50px] lg:grid-cols-[200px_1fr_1.5fr_1fr_1fr_100px] grid-rows-4 md:grid-rows-3 translate-y-[0px]">
+            <div className="col-span-5 col-start-2 row-start-1 mb-[clamp(10px,5vh,50px)] flex flex-col place-content-end">
+                <h2 className="fromLeft max-w-[380px] sm:max-w-[400px] md:max-w-[400px] text-tertiary font-bold text-4xl sm:text-[2.2rem] md:text-4xl">Cultivá tu bienestar financiero</h2>
+            </div>
+            <div className="col-span-3 col-start-2 row-start-2 mb-[clamp(20px,7vh,100px)]">
+                <p className="fromLeft max-w-[360px] sm:max-w-[280px] md:max-w-[300px] text-tertiary tracking-wider text-[1.2rem] sm:text-[1rem] md:text-lg lg:text-[1.1rem] lg:tracking-wide lg:leading-[30px] lg:text-justify">Controlá tus ingresos y egresos, analizá tus hábitos y mejorá tu salud financiera desde hoy</p>
             </div>
             <div className="col-span-3 col-start-2 row-start-3 flex flex-col place-content-center gap-[20px]">
                 <Link 

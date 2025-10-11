@@ -10,15 +10,15 @@ const Features = () => {
         <div className="w-full flex flex-col place-items-center gap-[10vh] md:gap-[15vh]">
 
             <div className="w-full flex flex-col place-items-center gap-[20px]">
-                <div className="fromLeft w-[45%] self-start border-b-2 pt-[1px] border-primary"></div>
-                <div className="flex flex-col place-items-center place-content-center gap-[10px] text-primary">
+                <div className="fromLeft w-[45%] self-start border-b-2 pt-[1px] border-tertiary"></div>
+                <div className="flex flex-col place-items-center place-content-center gap-[10px] text-tertiary">
                     <h3 className="fromRight font-bold text-[2rem] lg:text-[2.5rem]">Funcionalidades</h3>
                     <span className="fromLeft font-light text-[1rem] lg:text-[1.1rem]">Conocé las funcionalidades clave de numa</span>
                 </div>
-                <div className="fromRight w-[45%] self-end border-b-2 pt-[1px] border-primary"></div>
+                <div className="fromRight w-[45%] self-end border-b-2 pt-[1px] border-tertiary"></div>
             </div>
 
-            <div className="grid grid-cols-2 grid-rows-2 gap-[10px] sm:gap-x-[20px] md:gap-x-[25px] lg:gap-x-[50px] gap-y-[20px] lg:gap-y-[50px] px-[10px]">
+            <div className="grid grid-cols-2 grid-rows-2 gap-[10px] text-black sm:gap-x-[20px] md:gap-x-[25px] lg:gap-x-[50px] gap-y-[20px] lg:gap-y-[50px] px-[10px]">
             
                 <div className="featureCard fromBottom">
                     <h4 className="text-[1rem] lg:text-[1.1rem]">Ingresos y Egresos</h4>

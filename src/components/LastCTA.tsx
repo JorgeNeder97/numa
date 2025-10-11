@@ -7,8 +7,8 @@ const LastCTA = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
     return (
-        <div className="w-full min-h-[calc(100vh-50px)] bg-backgroundMockup flex flex-col place-items-center place-content-center gap-[5vh] lg:gap-[10vh]">
-            <div className="flex flex-col place-items-center place-content-center gap-[20px] lg:gap-[30px] text-primary">
+        <div className="w-full min-h-[calc(100vh-50px)] flex flex-col place-items-center place-content-center gap-[5vh] lg:gap-[10vh]">
+            <div className="flex flex-col place-items-center place-content-center gap-[20px] lg:gap-[30px] text-tertiary">
                 <h3 className="fromTop font-bold text-[2rem] lg:text-[2.2rem]">
                     Invertí en vos hoy
                 </h3>
@@ -20,7 +20,7 @@ const LastCTA = () => {
             <Link
                 href="/auth/register"
                 onClick={() => setLoading(true)}
-                className="fromTop text-[1rem] lg:text-[1.1rem] inverse-primary-button py-[8px] w-[45vw] max-w-[180px] lg:max-w-[220px] min-h-[25px] h-[40px] lg:h-[50px] flex place-content-center place-items-center"
+                className="fromTop text-[1rem] lg:text-[1.1rem] primary-button py-[8px] w-[45vw] max-w-[180px] lg:max-w-[220px] min-h-[25px] h-[40px] lg:h-[50px] flex place-content-center place-items-center"
             >
                 {loading ? (
                     <span className="d-loading d-loading-spinner text-neutral-200"></span>

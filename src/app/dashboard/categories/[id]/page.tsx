@@ -130,8 +130,8 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                             {   
                                 types.length > 0 ? 
                                 types.map((type, i) => (
-                                    <option key={i} value={type.id}>{type.name == "income" ? "Ingreso" : "Egreso"}</option>
-                                )) : (<option className="italic" disabled>Cargando...</option>)
+                                    <option key={i} className="text-black" value={type.id}>{type.name == "income" ? "Ingreso" : "Egreso"}</option>
+                                )) : (<option className="italic text-black" disabled>Cargando...</option>)
                             }
                         </select>
                         <span className={errors.typeId ? "error-span" : "opacity-0 h-[10px]"}>{errors?.typeId?.message?.toString()}</span>

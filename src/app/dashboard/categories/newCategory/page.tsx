@@ -106,11 +106,12 @@ const newCategoryPage = () => {
                                         <option className="loading-option" value="" disabled>Cargando...</option>
                                     :
                                         types.length > 0 ? 
-                                            types.map((type, i) => (<option key={i} value={type.id}>{type.name == "income" ? "Ingreso" : "Egreso"}</option>)) 
-                                        : (<option className="italic" disabled>Aún no existe ningun tipo...</option>)
-                                : <option className="error-option" value="" disabled>Se produjo un error.</option>
+                                            types.map((type, i) => (<option className="text-black" key={i} value={type.id}>{type.name == "income" ? "Ingreso" : "Egreso"}</option>)) 
+                                        : (<option className="italic text-black" disabled>Aún no existe ningun tipo...</option>)
+                                : <option className="error-option text-black" value="" disabled>Se produjo un error.</option>
                             }
                         </select>
+                        
                         <span className={errors.typeId ? "error-span" : "opacity-0 h-[10px]"}>{errors?.typeId?.message?.toString()}</span>
                     </div>
                 </div>

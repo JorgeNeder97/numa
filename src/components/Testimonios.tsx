@@ -43,8 +43,8 @@ const Testimonios = () => {
     return (
         <div className="w-full flex flex-col place-items-center gap-[8vh] md:gap-[13vh]">
             <div className="w-full flex flex-col place-items-center gap-[20px]">
-                <div className="fromLeft w-[45%] self-start border-b-2 pt-[1px] border-primary"></div>
-                <div className="flex flex-col place-items-center place-content-center gap-[10px] text-primary">
+                <div className="fromLeft w-[45%] self-start border-b-2 pt-[1px] border-tertiary"></div>
+                <div className="flex flex-col place-items-center place-content-center gap-[10px] text-tertiary">
                     <h3 className="fromRight font-bold text-[2rem] lg:text-[2.5rem]">
                         Resultados con Numa
                     </h3>
@@ -52,7 +52,7 @@ const Testimonios = () => {
                         Transformamos su forma de ver la plata
                     </span>
                 </div>
-                <div className="fromRight w-[45%] self-end border-b-2 pt-[1px] border-primary"></div>
+                <div className="fromRight w-[45%] self-end border-b-2 pt-[1px] border-tertiary"></div>
             </div>
 
             <div className="w-full flex place-content-center">

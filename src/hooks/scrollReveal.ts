@@ -48,7 +48,6 @@ const revealElements = () => {
         opacity: 0,
         duration: 800,
         easing: "ease-out",
-        interval: 400,
         delay: 500
     });
 

@@ -93,7 +93,7 @@ const IncomePage = () => {
                     </div>
                     <div className="label-input relative">
                         <label htmlFor="amount" className="label">Monto</label>
-                        <p className="absolute top-[29px] left-3 text-lg z-20 text-white">$</p>
+                        <p className="absolute top-[38px] lg:top-[36px] left-3 text-lg z-20 text-white">$</p>
                         <input 
                             type="text" 
                             className="input pl-[25px]" 
@@ -126,11 +126,11 @@ const IncomePage = () => {
                             {   
                                 !incomeCategoriesError ?
                                     (loadingIncomeCategories ? 
-                                        <option className="loading-option" value="" disabled>Cargando...</option> 
+                                        <option className="loading-option text-black" value="" disabled>Cargando...</option> 
                                     : incomeCategories.length > 0 ? 
-                                            incomeCategories.map((category, i) => (<option key={i} value={category.id}>{category.name}</option>)) 
-                                        : (<option className="italic" disabled>No creaste ninguna categoría aún</option>)) 
-                                : <option className="error-option" value="" disabled>Se produjo un error</option>
+                                            incomeCategories.map((category, i) => (<option key={i} className="text-black" value={category.id}>{category.name}</option>)) 
+                                        : (<option className="italic text-black" disabled>No creaste ninguna categoría aún</option>)) 
+                                : <option className="error-option text-black" value="" disabled>Se produjo un error</option>
                             }
                         </select>
                         <span className={errors.categoryId ? "error-span" : "opacity-0 h-[10px]"}>{errors?.categoryId?.message?.toString()}</span>

@@ -35,17 +35,19 @@ const LoginPage = () => {
     });
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] bg-[url('/backgrounds/LastCTA.jpg')] relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
-            <form className="form" ref={formRef} onSubmit={onSubmit}>
+        <div className="w-full h-[100vh] lg:h-[100vh] bg-tertiary relative bg-cover flex place-items-center place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
+            <Link href="/" className="absolute text-grayBackground top-[20px] right-[40px] lg:top-[20px] lg:right-[40px] hover:cursor-pointer hover:text-white transition-all duration-[.3s] ease-in-out">Volver</Link>
+            <form className="form max-h-[500px]" ref={formRef} onSubmit={onSubmit}>
+                <div className="label-input mb-5">
+                    <h2 className="w-full text-3xl font-medium">Acceso</h2>
+                </div>
                 <div className="w-full flex flex-col place-items-center gap-[20px] max-w-[300px]">
-                    <div className="label-input mb-5">
-                        <h2 className="w-full text-3xl font-medium">Acceso</h2>
-                    </div>
                     <div className="label-input">
                         <label htmlFor="email" className="label">Email</label>
                         <input 
                             type="email" 
-                            className="input" 
+                            className="input"
+                            placeholder="Ingresa tu email aquí" 
                             {...register("email", {
                                 required: {
                                     value: true,
@@ -65,6 +67,7 @@ const LoginPage = () => {
                         <input 
                             type="password" 
                             className="input" 
+                            placeholder="Ingresa tu contraseña aquí"
                             {...register("password", {
                                 required: {
                                     value: true,

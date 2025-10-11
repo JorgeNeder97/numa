@@ -20,7 +20,7 @@ const DashboardPage = () => {
     
     return (
         <PageTransition>
-            <div className="w-full min-h-[calc(100vh-150px)] pt-[30px] flex flex-col gap-[20px]">
+            <div className="w-full min-h-[calc(100vh-150px)] pt-[30px] flex flex-col gap-[20px] place-content-between">
 
                 <div className="bg-lightGray flex flex-col place-items-center gap-[40px]">
 
@@ -32,7 +32,7 @@ const DashboardPage = () => {
                                     <span className="loading loading-spinner text-success"></span> 
                                 : transactionsError ? 
                                     "X" 
-                                : <CountUp from={0} to={total} separator="." direction="up" duration={.3} className="count-up-text" />}
+                                : <CountUp from={0} to={total} separator="." direction="up" duration={.08} className="count-up-text" />}
                             </div>
                         </div>
                         <div className="w-full h-[100px] pr-[15px] flex place-content-end">
@@ -45,9 +45,11 @@ const DashboardPage = () => {
                         <NewExpenseButton />
                     </section>
 
-                    <section className="w-full bg-white flex pt-[40px] pb-[20px] px-[25px] place-items-start place-content-between gap-[30px]">
-                        <LastIncome />
-                        <LastExpense />
+                    <section className="w-full bg-white pt-[40px] pb-[20px] px-[25px] ">
+                        <div className="flex place-items-start place-content-between gap-[30px]">
+                            <LastIncome />
+                            <LastExpense />
+                        </div>
                     </section>
 
                 </div>

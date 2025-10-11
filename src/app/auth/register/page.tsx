@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Modal from "@/components/Modal";
+import Link from "next/link";
 
 
 const RegisterPage = () => {
@@ -58,8 +59,9 @@ const RegisterPage = () => {
     const pass = watch("password");
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] bg-[url('/backgrounds/LastCTA.jpg')] relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
-            <form className="form from" onSubmit={onSubmit}>
+        <div className="w-full min-h-[100vh] bg-tertiary relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center pt-[100px] py-[50px]">
+            <Link href="/" className="absolute text-grayBackground top-[20px] right-[40px] lg:top-[20px] lg:right-[40px] hover:cursor-pointer hover:text-white transition-all duration-[.3s] ease-in-out">Volver</Link>
+            <form className="form" onSubmit={onSubmit}>
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
                     <div className="label-input mb-5 lg:hidden">
                         <h2 className="w-full text-3xl font-medium">Registrarse</h2>
@@ -69,6 +71,7 @@ const RegisterPage = () => {
                         <input 
                             type="text" 
                             className="input" 
+                            placeholder="Ingresa tu nombre aquí"
                             {...register("name", {
                                 required: {
                                     value: true,
@@ -91,6 +94,7 @@ const RegisterPage = () => {
                         <input 
                             type="text" 
                             className="input" 
+                            placeholder="Ingresa tu apellido aquí"
                             {...register("lastname", {
                                 required: {
                                     value: true,
@@ -113,6 +117,7 @@ const RegisterPage = () => {
                         <input 
                             type="email" 
                             className="input" 
+                            placeholder="Ingresa tu email aquí"
                             {...register("email", {
                                 required: {
                                     value: true,
@@ -131,6 +136,7 @@ const RegisterPage = () => {
                         <input 
                             type="password" 
                             className="input" 
+                            placeholder="Ingresa tu contraseña aquí"
                             {...register("password", {
                                 required: {
                                     value: true,
@@ -149,6 +155,7 @@ const RegisterPage = () => {
                         <input 
                             type="password" 
                             className="input" 
+                            placeholder="Confirma tu contraseña aquí"
                             {...register("confirmPassword", {
                                 required: {
                                     value: true,

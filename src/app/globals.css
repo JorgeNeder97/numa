@@ -11,13 +11,16 @@
     
     --ease-in-menu: cubic-bezier(0.35,0.02,0.27,0.77);
     
-    --color-backgroundMockup: rgba(0, 0, 0, .75);
+    --color-backgroundMockup: rgba(0, 0, 0, .85);
     --color-almostwhite: #EEEEEE;
     --color-lightGray: #DDDDDD;
     --color-grayBackground: #D9D9D9;
     --color-primary: #00BC7D;
     --color-secondary: #CCFFEE;
     --color-tertiary: #00754E;
+    --color-tertiary-hover: #1F8F5F;
+    --color-tertiary-light: #2F9F6F;
+    --color-form-background: #1A8360;
     --color-darkPrimary: #003322;
     --color-white: #FFFFFF;
     --color-black: #000000;
@@ -53,6 +56,7 @@
 }
 
 @layer components {
+    
     .form {
         position: relative;
         display: flex;
@@ -63,12 +67,12 @@
         justify-content: center;
         gap: 50px;
         color: var(--color-neutral-200);
-        background-color: rgba(255, 255, 255, .1);
+        background-color: var(--color-form-background);
         box-shadow: 5px 5px 15px #333;
         border-radius: 10px;
         padding: 50px 30px;
         padding-bottom: 80px;
-        @apply lg:w-[50%]
+        @apply lg:w-[50%]        
     }
 
     .label-input {
@@ -81,22 +85,24 @@
 
     .label {
         font-weight: 500;
-        @apply lg:text-[.875rem]
+        @apply text-lg
     }
 
     .input {
         height: 40px;
         width: 100%;
         max-width: 300px;
-        background-color: #222222;
-        border-radius: 5px;
+        background-color: none;
+        border-radius: 0px;
+        border-bottom: 2px solid var(--color-tertiary);
         color: #FFFFFF;
-        padding-left: 10px;
+        padding-left: 3px;
         @apply lg:h-[35px] lg:text-[.875rem]
     }
 
     .input:focus {
-        outline: 2px solid var(--color-emerald-500);
+        outline: none;
+        border-bottom:2px solid var(--color-tertiary-light);
     }
     
     /* Esto evita que el autollenado del navegador cambie el color del input */
@@ -113,7 +119,7 @@
     .error-span {
         height: 10px;
         font-size: 13px;
-        color: var(--color-red-700);
+        color: var(--color-error);
         transition: all .3s ease-in-out;
         @apply lg:text-[.75rem]
     }
@@ -134,11 +140,12 @@
         display: inline-block;
         text-decoration: none;
         text-align: center;
+        box-shadow: 2px 2px 5px black;
     }
 
     .primary-button:hover {
-        background-color: var(--color-black);
-        color: var(--color-neutral-200);
+        background-color: var(--color-tertiary-hover);
+        
         cursor: pointer;
     }
 
@@ -266,7 +273,7 @@
     /* Cards */
 
     .featureCard {
-        @apply flex flex-col gap-[15px] px-[25px] py-[15px] place-items-center place-content-start rounded-2xl shadow-card
+        @apply flex flex-col bg-almostwhite/20 gap-[15px] px-[25px] py-[15px] place-items-center place-content-start rounded-2xl shadow-card
         /* Seguir dando estilos */
     }
 }

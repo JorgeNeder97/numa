@@ -13,8 +13,8 @@ const VolverAtras = ({ href } : { href: string }) => {
             className="w-[40px] h-[40px] absolute top-2 right-2 flex place-items-center place-content-center"
         >
             {loadingBack ? (
-                <div className="w-[33.32px] h-[33.33px] rounded-xl bg-tertiary flex place-items-center place-content-center">
-                    <span className="d-loading d-loading-spinner text-neutral-200"></span>
+                <div className="w-[33.32px] h-[33.33px] rounded-xl bg-white flex place-items-center place-content-center">
+                    <span className="d-loading d-loading-spinner text-tertiary"></span>
                 </div>
             ) : (
                 <BackButton />
