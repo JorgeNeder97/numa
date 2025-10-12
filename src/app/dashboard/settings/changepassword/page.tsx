@@ -66,7 +66,7 @@ const ChangePasswordPage = () => {
         <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
             <form className="form" onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/settings" />
-                <div className="w-full flex flex-col place-items-center gap-[20px]">
+                <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Cambiar Contraseña</h2>
                     </div>
@@ -75,7 +75,7 @@ const ChangePasswordPage = () => {
                         <label htmlFor="password" className="label">Contraseña Actual</label>
                         <input 
                             type="password" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("password", {
                                 required: {
                                     value: true,
@@ -95,7 +95,7 @@ const ChangePasswordPage = () => {
                         <label htmlFor="newPassword" className="label">Nueva Contraseña</label>
                         <input 
                             type="password" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("newPassword", {
                                 required: {
                                     value: true,
@@ -114,7 +114,7 @@ const ChangePasswordPage = () => {
                         <label htmlFor="confirmPassword" className="label">Confirmar contraseña</label>
                         <input 
                             type="password" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("confirmPassword", {
                                 required: {
                                     value: true,

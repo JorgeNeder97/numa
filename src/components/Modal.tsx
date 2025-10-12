@@ -17,12 +17,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, exitButton, st
 
     return (
         <div className="fixed inset-0 z-[2500] flex items-center justify-center bg-black/50">
-            <div className={`rounded-lg shadow-lg p-6 relative w-[90%] max-w-md animate-fadeIn ${style === "Success" ? "bg-tertiary" : style === "Error" ? "bg-error" : style === "Warning" ? "bg-darkPrimary" : style === "Black" ? "bg-black" : ""}`}>
+            <div className={`rounded-lg shadow-lg p-6 relative w-[90%] max-w-md animate-fadeIn ${style === "Success" ? "bg-tertiary" : style === "Error" ? "bg-errorDark" : style === "Warning" ? "bg-darkPrimary" : style === "Black" ? "bg-black" : ""}`}>
                 {
                     exitButton ? 
                         <button
                             onClick={onClose}
-                            className="absolute top-[15px] right-[15px] text-neutral-200 hover:text-white"
+                            className="absolute top-[15px] right-[15px] text-neutral-200 hover:text-white hover:cursor-pointer"
                         >
                             ✖
                         </button>

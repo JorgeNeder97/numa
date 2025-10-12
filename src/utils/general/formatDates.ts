@@ -22,6 +22,11 @@ export function formatDate(date: Date | string) {
     return fecha.setLocale('es').toFormat("dd/MM");
 };
 
+export function formatDateToDDMMYYYY(date: Date | string) {
+    const fecha = typeof date === "string" ? DateTime.fromISO(date) : DateTime.fromJSDate(date);
+    return fecha.setLocale('es').toFormat("dd/MM/yyyy");
+}
+
 export function formatDateToText(date: Date | string) {
     const fecha = typeof date === "string" ? DateTime.fromISO(date) : DateTime.fromJSDate(date);
     return fecha.setLocale('es').toFormat("dd LLL. yyyy");

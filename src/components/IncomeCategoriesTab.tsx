@@ -42,7 +42,7 @@ const IncomeCategoriesTab = () => {
     }
 
     return (
-        <div className="overflow-x-auto rounded bg-almostwhite shadow-medium">
+        <div className="w-full overflow-x-auto rounded bg-almostwhite shadow-medium">
             <table className="w-full rounded overflow-visible">
                 {/* head */}
                 <thead>

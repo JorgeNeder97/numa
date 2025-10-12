@@ -38,19 +38,19 @@ const Footer = () => {
     return (
         <footer className={pathname === "/bienvenido" || pathname === "/auth/login" || pathname === "/auth/register" ? "hidden" : `lg:hidden bg-tertiary text-white w-full h-[90px] sticky bottom-0 flex px-[20px] place-items-center place-content-around`}>
             <Link href="/dashboard" className={linkDashboard("/dashboard")}>
-                <DashboardIcon />
+                <DashboardIcon width="38px" height="38px" stroke="white" />
                 <span className="navigationIconText">Dashboard</span>
             </Link>
             <Link href="/dashboard/categories" className={linkClass("/dashboard/categories")}>
-                <CategoriesIcon />
+                <CategoriesIcon width="28px" height="28px" stroke="white" />
                 <span className="navigationIconText">Categorías</span>
             </Link>
             <Link href="/dashboard/transactions" className={linkClass("/dashboard/transactions")}>
-                <TransactionsIcon />
+                <TransactionsIcon width="38px" height="38px" stroke="white" />
                 <span className="navigationIconText">Transacciones</span>
             </Link>
             <Link href="/dashboard/settings" className={linkClass("/dashboard/settings")}>
-                <SettingsIcon />
+                <SettingsIcon width="38px" height="38px" stroke="white" />
                 <span className="navigationIconText">Ajustes</span>
             </Link>
         </footer>

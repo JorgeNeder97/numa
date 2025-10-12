@@ -84,19 +84,19 @@ const ExpensePage = () => {
     }
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex flex-col place-items-center place-content-center gap-[10px] py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex flex-col place-items-center place-content-center gap-[10px] py-[50px] lg:py-[20px]">
             <form className="form" onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/transactions" />
-                <div className="w-full flex flex-col place-items-center gap-[20px]">
+                <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Nuevo Egreso</h2>
                     </div>
                     <div className="label-input relative">
                         <label htmlFor="amount" className="label">Monto</label>
-                        <p className="absolute top-[38px] lg:top-[36px] left-3 text-lg z-20 text-white">$</p>
+                        <p className="absolute top-[38px] lg:top-[36px] left-3 text-lg z-20 text-white lg:text-darkPrimary">$</p>
                         <input 
                             type="text" 
-                            className="input pl-[25px]" 
+                            className="input pl-[25px] input-dashboard-lg" 
                             {...register("amount", {
                                 required: {
                                     value: true,
@@ -113,7 +113,7 @@ const ExpensePage = () => {
                     <div className="label-input">
                         <label htmlFor="category">Categoría</label>
                         <select
-                            className="input"
+                            className="input input-dashboard-lg"
                             {...register("categoryId", {
                                 required: {
                                     value: true,
@@ -139,14 +139,14 @@ const ExpensePage = () => {
                     <div className="label-input">
                         <label htmlFor="description">Descripción</label>
                         <textarea
-                            className="input h-[100px] py-3"
+                            className="input h-[100px] py-3 input-dashboard-lg"
                             {...register("description")}
                         ></textarea>
                         <span className={errors.description ? "error-span" : "opacity-0 h-[10px]"}>{errors?.description?.message?.toString()}</span>
                     </div>
                 </div>
 
-                <button className="primary-button w-full text-[1rem]">
+                <button className="primary-button lg:max-w-[300px] w-full text-[1rem]">
                     {
                         loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
                         : "Generar Egreso"

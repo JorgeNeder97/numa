@@ -8,6 +8,7 @@
     --shadow-medium: 5px 5px 15px #CCCCCC;
     --shadow-card: 2px 2px 4px rgba(0, 0, 0, .25);
     --shadow-card-center: 0px 0px 4px rgba(0, 0, 0, .25);
+    --shadow-button: 2px 2px 5px #666;
     
     --ease-in-menu: cubic-bezier(0.35,0.02,0.27,0.77);
     
@@ -16,17 +17,18 @@
     --color-lightGray: #DDDDDD;
     --color-grayBackground: #D9D9D9;
     --color-primary: #00BC7D;
-    --color-secondary: #CCFFEE;
+    --color-secondary: #EFFFEF;
     --color-tertiary: #00754E;
     --color-tertiary-hover: #1F8F5F;
     --color-tertiary-light: #2F9F6F;
     --color-form-background: #1A8360;
     --color-darkPrimary: #003322;
+    --color-darkPrimary-hover: #005544;
     --color-white: #FFFFFF;
     --color-black: #000000;
     --color-error: #F01C00;
     --color-errorLight: #FFBDBD;
-    --color-errorDark: #330000;
+    --color-errorDark: #990000;
     --color-info: #337AFF;
 
     --animate-fadeIn: fade 0.3s ease-out;
@@ -57,6 +59,10 @@
 
 @layer components {
     
+    select:hover {
+        cursor: pointer;
+    }
+
     .form {
         position: relative;
         display: flex;
@@ -72,7 +78,9 @@
         border-radius: 10px;
         padding: 50px 30px;
         padding-bottom: 80px;
-        @apply lg:w-[50%]        
+        @apply lg:relative lg:flex lg:max-w-full lg:w-full lg:px-[50px] lg:py-[0px] lg:flex-col 
+        lg:place-items-start lg:place-content-start lg:bg-transparent lg:text-darkPrimary 
+        lg:gap-[80px] lg:shadow-none       
     }
 
     .label-input {
@@ -99,6 +107,10 @@
         padding-left: 3px;
         @apply lg:h-[35px] lg:text-[.875rem]
     }
+    
+    .input-dashboard-lg {
+        @apply lg:text-darkPrimary
+    }
 
     .input:focus {
         outline: none;
@@ -107,7 +119,7 @@
     
     /* Esto evita que el autollenado del navegador cambie el color del input */
     .input:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0 1000px #222222 inset;
+        -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset;
         -webkit-text-fill-color: #FFFFFF;
     }
 
@@ -165,8 +177,7 @@
     }
 
     .inverse-primary-button:hover {
-        background-color: var(--color-black);
-        color: var(--color-neutral-200);
+        background-color: #FFFFFF;
         cursor: pointer;
     }
 
@@ -176,7 +187,7 @@
     }
 
     .secondary-button {
-        background-color: var(--color-error);
+        background-color: var(--color-errorDark);
         color: #FFFFFF;
         min-height: 44px;
         padding: 10px 20px;
@@ -196,7 +207,7 @@
 
     .inverse-secondary-button {
         background-color: var(--color-neutral-300);
-        color: var(--color-error);
+        color: var(--color-errorDark);
         min-height: 44px;
         padding: 10px 20px;
         border-radius: 5px;

@@ -9,7 +9,7 @@ const NewExpenseButton = () => {
         <Link
             href="/dashboard/transactions/new/expense"
             onClick={() => setLoading(true)}
-            className="bg-white min-w-[120px] flex place-items-center gap-[10px] px-[10px] py-[5px] rounded-[5px]"
+            className="bg-white lg:bg-almostwhite min-w-[120px] shadow-button flex place-items-center gap-[10px] px-[10px] py-[5px] rounded-[5px] hover:bg-white transition-all duration-[.3s] ease-in-out"
         >
             <span className="text-darkPrimary text-[1rem]">Nuevo Egreso</span>
             <div className="w-[1px] h-[20px] bg-darkPrimary rounded-[50%]"></div>

@@ -69,7 +69,7 @@ const TransactionsPie = ({ type }: { type: number }) => {
 
     if(!loadingAmountPerCategory && amountPerCategory.length == 0) return (
         <div className="w-full min-h-[200px] flex flex-col gap-[20px] place-content-center place-items-center">
-            <span className="">Aún no registraste ningún movimiento</span>            
+            <span className="">Aún no registraste ningún gasto</span>            
         </div>
     );
 

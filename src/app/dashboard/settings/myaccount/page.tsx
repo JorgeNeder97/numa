@@ -75,7 +75,7 @@ const MyAccountPage = () => {
         <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
             <form className="form" ref={formRef} onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/settings" />
-                <div className="w-full flex flex-col place-items-center gap-[20px]">
+                <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Datos Personales</h2>
                     </div>
@@ -83,7 +83,7 @@ const MyAccountPage = () => {
                         <label htmlFor="name" className="label">Nombre</label>
                         <input 
                             type="text" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("name", {
                                 required: {
                                     value: true,
@@ -106,7 +106,7 @@ const MyAccountPage = () => {
                         <label htmlFor="lastname" className="label">Apellido</label>
                         <input 
                             type="text" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("lastname", {
                                 required: {
                                     value: true,
@@ -128,7 +128,7 @@ const MyAccountPage = () => {
                     <div className="label-input">
                         <label htmlFor="genreId" className="label">Género</label>
                         <select
-                            className="input"
+                            className="input input-dashboard-lg"
                             {...register("genreId", {
                                 required: {
                                     value: true,
@@ -156,7 +156,7 @@ const MyAccountPage = () => {
                         <label htmlFor="email" className="label">Email</label>
                         <input 
                             type="email" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("email", {
                                 required: {
                                     value: true,

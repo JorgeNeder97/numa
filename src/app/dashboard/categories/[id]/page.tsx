@@ -92,10 +92,10 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
     }
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px]">
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[50px] lg:py-[0px]">
             <form className="form" ref={formRef} onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/categories" />
-                <div className="w-full flex flex-col place-items-center gap-[20px]">
+                <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Editar Categoría</h2>
                     </div>
@@ -103,7 +103,7 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                         <label htmlFor="name" className="label">Nombre</label>
                         <input 
                             type="text" 
-                            className="input" 
+                            className="input input-dashboard-lg" 
                             {...register("name", {
                                 required: {
                                     value: true,
@@ -118,7 +118,7 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                     <div className="label-input">
                         <label htmlFor="typeId">Tipo de categoría</label>
                         <select
-                            className="input"
+                            className="input input-dashboard-lg"
                             {...register("typeId", {
                                 required: {
                                     value: true,
@@ -138,7 +138,7 @@ const editCategoryPage: React.FC<CategoryParams> = ({ params }) => {
                     </div>
                 </div>
 
-                <button className="primary-button w-full text-[1rem]">
+                <button className="primary-button w-full lg:max-w-[300px] text-[1rem]">
                     {
                         loadingFetch ? <span className="d-loading d-loading-spinner text-neutral-200"></span>
                         : "Guardar Cambios"

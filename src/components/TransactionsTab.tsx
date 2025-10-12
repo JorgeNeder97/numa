@@ -1,7 +1,7 @@
 "use client";
 import EditIcon from "@/assets/icons/EditIcon";
 import { useTransactionsWithCategory } from "@/hooks/useTransactionsWithCategory";
-import { formatDate } from "@/utils/general/formatDates";
+import { formatDate, formatDateToDDMMYYYY } from "@/utils/general/formatDates";
 import { useState } from "react";
 import Modal from "./Modal";
 
@@ -76,7 +76,7 @@ const TransactionsTab = () => {
                             : transactions.map((tx, i) => (
                                 <tr key={i} className="font-light border-b-1 border-t-1 border-neutral-200">
                                     <td className="w-[80%] text-left text-lg pl-5 pr-5 py-2">{tx.category.name}</td>
-                                    <td className="pr-3"><EditIcon className="w-[20px] h-[20px]" onClick={() => {setIsOpen(true); setId(tx.id);}} /></td>
+                                    <td className="pr-3 hover:cursor-pointer"><EditIcon className="w-[20px] h-[20px]" onClick={() => {setIsOpen(true); setId(tx.id);}} /></td>
                                     
                                     <td className="w-[80%] text-left pr-5 py-2">
                                         <div className="flex flex-col place-items-end text-sm">
@@ -101,6 +101,7 @@ const TransactionsTab = () => {
                                 <span className="text-lg text-start border-t-1 py-5"><span className="text-xl font-bold tracking-wide">Categoría</span>: {tx.category.name}</span>
                                 <span className="text-lg text-start pb-5"><span className="text-xl font-bold tracking-wide">Descripción</span>: {tx.description ? tx.description : "Sin descripción"}</span>
                                 <span className="text-lg text-start"><span className="text-xl font-bold tracking-wide">Monto:</span> {tx.typeId == 1 ? "$" + tx.amount : "-$" + tx.amount}</span>
+                                <span className="text-lg text-start"><span className="text-xl font-bold tracking-wide">Fecha:</span> {formatDateToDDMMYYYY(tx.date)}</span>
                             </div>
                             <button className="secondary-button" onClick={() => deleteTransaction()}>
                                 {

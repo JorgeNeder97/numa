@@ -58,19 +58,19 @@ const ChangePasswordPage = () => {
 
     return (
         <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
-            <form className="form">
+            <form className="form lg:place-items-start">
                 <VolverAtras href="/dashboard/settings" />
                 <div className="label-input mb-5">
-                    <h2 className="w-full text-center text-3xl font-medium">
+                    <h2 className="w-full text-center lg:text-left text-3xl font-medium">
                         Cerrar Cuenta
                     </h2>
                 </div>
 
-                <div className="flex flex-col gap-[10px] place-items-center">
+                <div className="flex flex-col gap-[10px] place-items-center lg:place-items-start">
                     <h4 className="text-[1.3rem] text-error">⚠ Atención ⚠</h4>
-                    <div className="flex flex-col gap-[3px] place-items-center">
-                        <p className="text-center text-[1rem] italic tracking-wide">Estas a punto de eliminar tu cuenta.</p>
-                        <p className="text-center text-[1rem] italic tracking-wide">Esta acción es permanente. Todos tus datos, incluyendo tus categorías y transacciones, serán eliminados y no se podrán recuperar.</p>
+                    <div className="flex flex-col gap-[3px] place-items-center lg:place-items-start lg:w-[400px]">
+                        <p className="text-center lg:text-left text-[1rem] italic tracking-wide">Estas a punto de eliminar tu cuenta.</p>
+                        <p className="text-center lg:text-left text-[1rem] italic tracking-wide">Esta acción es permanente. Todos tus datos, incluyendo tus categorías y transacciones, serán eliminados y no se podrán recuperar.</p>
                     </div>
                 </div>
 
@@ -96,15 +96,15 @@ const ChangePasswordPage = () => {
                         <span className="modal-title">
                             ¿Estás seguro de que quieres eliminar tu cuenta?
                         </span>
-                        <div className="w-full flex place-items-center place-content-center gap-[10px]">
+                        <div className="w-full flex flex-wrap place-items-center place-content-center gap-[10px]">
                             <button
-                                className="secondary-button"
+                                className="secondary-button w-[160px] lg:w-[160px]"
                                 onClick={() => onSubmit(userId)}
                             >
                                 Eliminar Cuenta
                             </button>
                             <button
-                                className="primary-button"
+                                className="primary-button w-[160px] lg:w-[160px]"
                                 onClick={() => setIsWarningOpen(false)}
                             >
                                 Cancelar

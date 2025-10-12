@@ -25,7 +25,7 @@ const Nav = () => {
 
     return (
         <>
-            <nav className={pathname === "/bienvenido" || pathname.startsWith("/auth") || pathname.startsWith("/dashboard") ? "hidden" : `h-[80px] lg:h-[65px] w-full z-[300] lg:absolute sticky top-0 flex place-items-center place-content-between bg-tertiary lg:bg-transparent`}>
+            <nav className={pathname === "/bienvenido" || pathname.startsWith("/auth") || pathname.startsWith("/dashboard") ? "lg:hidden" : `h-[80px] lg:h-[65px] w-full z-[300] lg:absolute sticky top-0 flex place-items-center place-content-between bg-tertiary lg:bg-transparent`}>
                 <div className="h-[80px] lg:h-[65px] relative z-[200] flex place-items-center bg-tertiary lg:bg-transparent pl-[30px] pr-[10px]">
                     <Link href="/" className="flex place-items-center gap-[10px]">
                         <Image src="/favicon.ico" alt="Numa Logo" width={50} height={50} className="lg:w-[30px] lg:h-[30px] h-[50px]" />

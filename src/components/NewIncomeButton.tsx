@@ -9,7 +9,7 @@ const NewIncomeButton = () => {
         <Link
             href="/dashboard/transactions/new/income"
             onClick={() => setLoading(true)}
-            className="bg-tertiary min-w-[120px] h-[50px] flex place-items-center gap-[10px] px-[10px] py-[5px] rounded-[5px]"
+            className="bg-tertiary min-w-[120px] h-[50px] shadow-button flex place-items-center gap-[10px] px-[10px] py-[5px] rounded-[5px] hover:bg-tertiary-hover transition-all duration-[.3s] ease-in-out"
         >
             <span className="text-white text-[1rem]">Nuevo Ingreso</span>
             <div className="w-[1px] h-[20px] bg-neutral-200 rounded-[50%]"></div>
