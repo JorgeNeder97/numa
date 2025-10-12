@@ -1,6 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useGenres } from "@/hooks/useGenres";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import Link from "next/link";
@@ -20,6 +21,9 @@ const RegisterPage = () => {
     // React Hook Form
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
+    // Hook de géneros
+    const { genres, loadingGenres, genresError } = useGenres();
+
     // Permite redirigir
     const router = useRouter();
 
@@ -33,6 +37,7 @@ const RegisterPage = () => {
             body: JSON.stringify({
                 name: data.name,
                 lastname: data.lastname,
+                genreId: Number(data.genreId),
                 email: data.email,
                 password: data.password,
             }),
@@ -111,6 +116,33 @@ const RegisterPage = () => {
                             })}    
                         />
                         <span className={errors.lastname ? "error-span" : "opacity-0 h-[10px]"}>{errors.lastname?.message?.toString() || ""}</span>
+                    </div>
+                    <div className="label-input">
+                        <label htmlFor="genreId" className="label">Género</label>
+                        <select
+                            className="input"
+                            {...register("genreId", {
+                                required: {
+                                    value: true,
+                                    message: "Debes elegir una opción"
+                                }
+                            })}
+                            defaultValue=""
+                        >
+                            <option value="" disabled hidden>Selecciona tu género</option>
+                            {   
+                                !genresError ?
+                                    loadingGenres ?
+                                        <option className="loading-option" value="" disabled>Cargando...</option>
+                                    :
+                                        genres.length > 0 ? 
+                                            genres.map((genre, i) => (<option className="text-black" key={i} value={genre.id}>{genre.name == "male" ? "Masculino" : "Femenino"}</option>)) 
+                                        : (<option className="italic text-black" disabled>Aún no existe ningun tipo...</option>)
+                                : <option className="error-option text-black" value="" disabled>Se produjo un error.</option>
+                            }
+                        </select>
+                        
+                        <span className={errors.genreId ? "error-span" : "opacity-0 h-[10px]"}>{errors?.genreId?.message?.toString()}</span>
                     </div>
                     <div className="label-input">
                         <label htmlFor="email" className="label">Email</label>

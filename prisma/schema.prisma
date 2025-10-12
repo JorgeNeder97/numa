@@ -19,8 +19,9 @@ model User {
   lastname String
   email String @unique
   password String
+  genreId Int
 
-
+  genre Genre @relation(fields: [genreId], references: [id])
   transactions Transaction[]
   categories Category[]
 }
@@ -59,4 +60,11 @@ model Type {
     
     transactions Transaction[]
     categories Category[]
+}
+
+model Genre {
+  id Int @id @default(autoincrement())
+  name String @unique
+
+  users User[]
 }

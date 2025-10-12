@@ -30,6 +30,7 @@ export const authOptions: AuthOptions = {
                         id: userFound.id.toString(),
                         name: userFound.name,
                         lastname: userFound.lastname,
+                        genreId: userFound.genreId,
                         email: userFound.email,
                     };
                 };
@@ -47,6 +48,7 @@ export const authOptions: AuthOptions = {
                 token.id = user.id;
                 token.name = user.name;
                 token.lastname = user.lastname;
+                token.genreId = user.genreId;
                 token.email = user.email;
             } else if (token.id) {
                 // Este codigo actualiza la sesión si el token ya existe (sirve para modificar los datos del usuario en tiempo real)
@@ -56,6 +58,7 @@ export const authOptions: AuthOptions = {
                 if (userUpdated) {
                     token.name = userUpdated.name;
                     token.lastname = userUpdated.lastname;
+                    token.genreId = userUpdated.genreId;
                     token.email = userUpdated.email;
                 };
             }
@@ -66,6 +69,7 @@ export const authOptions: AuthOptions = {
                 session.user.id = token.id;
                 session.user.name = token.name;
                 session.user.lastname = token.lastname;
+                session.user.genreId = token.genreId;
                 session.user.email = token.email;
             }
             return session;

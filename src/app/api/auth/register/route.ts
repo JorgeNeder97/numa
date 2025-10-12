@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
             data: {
                 name: data.name,
                 lastname: data.lastname,
+                genreId: data.genreId,
                 email: data.email,
                 password: hashedPassword,
             },
@@ -57,6 +58,7 @@ export async function PATCH(request: NextRequest) {
             data: {
                 name: data.name,
                 lastname: data.lastname,
+                genre: data.genre,
                 email: data.email,
             },
             where: {

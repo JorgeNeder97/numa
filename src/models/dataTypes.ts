@@ -30,6 +30,11 @@ export interface Types {
     name: string;
 }
 
+export interface Genres {
+    id: number;
+    name: string;
+}
+
 export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -42,6 +47,7 @@ export interface User {
     id: number;
     name: string;
     lastName: string;
+    genreId: number;
     email: string;
     password: string;
     transactions?: Transaction[];

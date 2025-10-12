@@ -24,7 +24,7 @@ const DashboardPage = () => {
 
                 <div className="bg-lightGray flex flex-col place-items-center gap-[40px]">
 
-                    <section className="w-full h-[90px] bg-white flex place-items-start place-content-between rounded-b-3xl border-b-4 border-primary">
+                    <section className="w-full h-[90px] bg-white flex place-items-start place-content-between rounded-b-3xl border-b-4 border-tertiary-light shadow-md">
                         <div className="h-[100px] pl-5 flex flex-col place-items-start gap-[10px]">
                             <div className="d-stat-title text-[.875rem]">Saldo disponible</div>
                             <div className="d-stat-value font-normal">

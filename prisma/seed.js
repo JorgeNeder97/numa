@@ -15,6 +15,20 @@ async function main() {
             name: "expense",
         },
     });
+    const male = await prisma.genre.upsert({
+        where: { name: "male" },
+        update: {},
+        create: {
+            name: "male",
+        },
+    });
+    const female = await prisma.genre.upsert({
+        where: { name: "female" },
+        update: {},
+        create: {
+            name: "female",
+        }
+    });
 };
 main()
   .then(() => {

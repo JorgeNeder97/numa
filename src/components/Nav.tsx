@@ -41,8 +41,9 @@ const Nav = () => {
                         </ul>
                     : status === "authenticated" ?
                         <ul className="w-full h-[65px] flex place-items-center gap-[20px]">
-                            <Link href="/" className="text-[1rem] text-white">Inicio</Link>
-                            <span className="text-[1rem] text-white hover:cursor-pointer" onClick={() => signOut()}>Cerrar Sesión</span>
+                            <Link href="/" className="text-[1rem] text-white hover:text-tertiary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Inicio</Link>
+                            <Link href="/dashboard" className="text-[1rem] text-white hover:text-tertiary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out">Dashboard</Link>
+                            <span className="text-[1rem] text-white hover:cursor-pointer hover:text-tertiary hover:translate-x-[1px] transition-all duration-[.3s] ease-in-out" onClick={() => signOut()}>Cerrar Sesión</span>
                         </ul>
                     : ""
                     }

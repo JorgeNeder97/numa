@@ -6,6 +6,7 @@ declare module "next-auth" {
             id: string;
             name: string;
             lastname: string;
+            genreId: number;
             email: string;
         };
     };
@@ -14,6 +15,7 @@ declare module "next-auth" {
         id: string;
         name: string;
         lastname: string;
+        genreId: number;
         email: string;
     };
 };
@@ -23,6 +25,7 @@ declare module "next-auth/jwt" {
         id: string;
         name: string;
         lastname: string;
+        genreId: number;
         email: string;
     };
 };
