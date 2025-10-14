@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import VolverAtras from "@/components/VolverAtras";
+import VolverAtrasButton from "@/components/VolverAtrasButton";
 
 const ChangePasswordPage = () => {
     // Trae los datos del usuario en sesión
@@ -57,8 +58,11 @@ const ChangePasswordPage = () => {
     };
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
-            <form className="form lg:place-items-start">
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center lg:place-content-start lg:pt-0 py-[50px]">
+            <div className="hidden lg:flex lg:absolute lg:z-[100] lg:top-[30px] lg:right-[50px]">
+                <VolverAtrasButton href="/dashboard/settings" />
+            </div>
+            <form className="form lg:place-items-start lg:mt-[30px]">
                 <VolverAtras href="/dashboard/settings" />
                 <div className="label-input mb-5">
                     <h2 className="w-full text-center lg:text-left text-3xl font-medium">

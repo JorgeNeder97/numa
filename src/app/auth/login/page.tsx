@@ -37,7 +37,7 @@ const LoginPage = () => {
     return (
         <div className="w-full h-[100vh] lg:h-[100vh] bg-tertiary relative bg-cover flex place-items-center place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center py-[50px]">
             <Link href="/" className="absolute text-grayBackground top-[20px] right-[40px] lg:top-[20px] lg:right-[40px] hover:cursor-pointer hover:text-white transition-all duration-[.3s] ease-in-out">Volver</Link>
-            <form className="form max-h-[500px]" ref={formRef} onSubmit={onSubmit}>
+            <form className="form-auth max-h-[500px]" ref={formRef} onSubmit={onSubmit}>
                 <div className="label-input mb-5">
                     <h2 className="w-full text-3xl font-medium">Acceso</h2>
                 </div>

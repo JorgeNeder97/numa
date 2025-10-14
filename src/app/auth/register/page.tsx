@@ -5,6 +5,9 @@ import { useGenres } from "@/hooks/useGenres";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import Link from "next/link";
+import Testimonios from "@/components/Testimonios";
+import CarouselSmall from "@/components/CarouselSmall";
+import Image from "next/image";
 
 
 const RegisterPage = () => {
@@ -66,9 +69,9 @@ const RegisterPage = () => {
     return (
         <div className="w-full min-h-[100vh] bg-tertiary relative bg-cover flex place-content-center lg:gap-[100px] lg:place-items-start lg:place-content-center pt-[100px] py-[50px]">
             <Link href="/" className="absolute text-grayBackground top-[20px] right-[40px] lg:top-[20px] lg:right-[40px] hover:cursor-pointer hover:text-white transition-all duration-[.3s] ease-in-out">Volver</Link>
-            <form className="form" onSubmit={onSubmit}>
+            <form className="form-auth" onSubmit={onSubmit}>
                 <div className="w-full flex flex-col place-items-center gap-[20px]">
-                    <div className="label-input mb-5 lg:hidden">
+                    <div className="label-input mb-5">
                         <h2 className="w-full text-3xl font-medium">Registrarse</h2>
                     </div>
                     <div className="label-input">
@@ -201,7 +204,17 @@ const RegisterPage = () => {
                         />
                         <span className={errors.confirmPassword ? "error-span" : "opacity-0 h-[10px]"}>{errors.confirmPassword?.message?.toString() || ""}</span>
                     </div>
+                            
+                    <div className="label-input">
+                        <div className="text-[.875rem] text-right self-end flex flex-col gap-[5px] pr-[5px]">
+                            <p className="text-neutral-200">¿Ya tenés una cuenta?</p>
+                            <Link href="/auth/login">
+                                <p className="text-neutral-200 underline pr-[5px] hover:text-white transition-all duration-[.3s] ease-in-out">Inicia sesión aquí</p>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
+
 
                 <div className="label-input">
                     <button className="translate-y-[20px] primary-button w-full">
@@ -214,12 +227,15 @@ const RegisterPage = () => {
             </form>
 
             <div className="hidden w-[40%] max-w-[450px] lg:flex flex-col place-items-start place-content-center gap-[45px]">
-                <h4 className="text-[2rem] max-w-[450px] text-neutral-100 leading-[35px] font-bold">Registrate y empezá a formar parte de Numa</h4>
+                <h4 className="text-[2rem] max-w-[450px] text-neutral-100 leading-[35px] font-bold">Comenzá a formar parte de Numa</h4>
                 <p className="text-[1rem] max-w-[410px] text-neutral-200 tracking-wide leading-[25px] text-justify">Sabemos que cada comienzo puede ser el primer paso hacia algo grande. Con Numa vas a poder llevar un control claro y sencillo de tus finanzas: registrá tus ingresos y egresos, y visualizá tus gastos mensuales en un gráfico fácil de entender.</p>
                 <h4 className="text-[2rem] max-w-[450px] text-neutral-100 leading-[35px] font-bold">Tomá el control de tus finanzas, sin complicaciones</h4>
                 <p className="text-[1rem] max-w-[410px] text-neutral-200 tracking-wide leading-[25px] text-justify">No necesitás ser un experto para organizar tus cuentas. Numa está pensado para ayudarte a entender en qué se va tu plata, cómo podés mejorar tus hábitos y tomar decisiones más conscientes. Es simple, rápido y pensado para vos.</p>
-                <p className="text-[1.1rem] max-w-[410px] text-white font-medium tracking-wide">Tu recorrido hacia unas finanzas más ordenadas empieza acá</p>
-                
+                <p className="text-[1.1rem] max-w-[410px] text-white text-center font-medium tracking-wide">Tu recorrido hacia unas finanzas más ordenadas empieza acá</p>
+                <Link href="/" className="flex flex-col shadow-form place-items-center mt-auto bg-form-background w-full max-w-[430px] py-[70px] rounded-xl ">
+                    <Image src="/favicon.ico" alt="Numa Logo" width={100} height={100} className="w-[100px] h-[100px] mb-[10px]" />
+                    <h2 className="text-neutral-200 text-5xl font-semibold">Numa</h2>
+                </Link>
             </div>
 
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} exitButton={false} style="Success">

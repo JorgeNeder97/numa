@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useSyncFormWithAutoComplete } from "@/hooks/useSyncFormWithAutoComplete";
 import VolverAtras from "@/components/VolverAtras";
 import { useGenres } from "@/hooks/useGenres";
+import VolverAtrasButton from "@/components/VolverAtrasButton";
 
 
 const MyAccountPage = () => {
@@ -72,8 +73,11 @@ const MyAccountPage = () => {
     };
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center py-[50px]">
-            <form className="form" ref={formRef} onSubmit={onSubmit}>
+        <div className="w-full min-h-[calc(100vh-150px)] flex place-content-center lg:place-content-start py-[50px] lg:pt-0">
+            <div className="hidden lg:flex lg:absolute lg:z-[100] lg:top-[30px] lg:right-[50px]">
+                <VolverAtrasButton href="/dashboard/settings" />
+            </div>
+            <form className="form lg:mt-[30px]" ref={formRef} onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/settings" />
                 <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">

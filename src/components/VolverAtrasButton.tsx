@@ -1,17 +1,16 @@
+import Link from "next/link";
 import React from "react";
 
-type Props = {};
-
-const VolverAtrasButton = (props: Props) => {
+const VolverAtrasButton = ({ href }: { href: string }) => {
     return (
-        <button
-            type="button"
-            className="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold border-4 border-white group"
+        <Link
+            href={href}
+            className="bg-white lg:bg-tertiary-hover flex place-items-center pl-[30px] hover:cursor-pointer text-center w-[140px] rounded-lg h-[40px] relative text-white text-xl font-semibold group"
         >
-            <div className="bg-tertiary rounded-xl h-12 w-1/4 grid place-items-center absolute left-0 top-0 group-hover:w-full z-10 duration-500">
+            <div className="bg-tertiary-light rounded-lg h-[40px] w-1/4 grid place-items-center absolute left-0 top-0 group-hover:w-full z-10 duration-[.3s] ease-in-out">
                 <svg
-                    width="25px"
-                    height="25px"
+                    width="20px"
+                    height="20px"
                     viewBox="0 0 1024 1024"
                     xmlns="http://www.w3.org/2000/svg"
                 >
@@ -25,8 +24,8 @@ const VolverAtrasButton = (props: Props) => {
                     ></path>
                 </svg>
             </div>
-            <p className="translate-x-4">Volver Atras</p>
-        </button>
+            <p className="translate-x-4 text-sm">Volver Atras</p>
+        </Link>
     );
 };
 

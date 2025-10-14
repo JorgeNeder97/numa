@@ -1,6 +1,7 @@
 "use client";
 import Modal from "@/components/Modal";
 import VolverAtras from "@/components/VolverAtras";
+import VolverAtrasButton from "@/components/VolverAtrasButton";
 import { useExpenseCategories } from "@/hooks/useExpenseCategories";
 import { getActualDate } from "@/utils/general/formatDates";
 import { useRouter } from "next/navigation";
@@ -84,8 +85,11 @@ const ExpensePage = () => {
     }
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex flex-col place-items-center place-content-center gap-[10px] py-[50px] lg:py-[20px]">
-            <form className="form" onSubmit={onSubmit}>
+        <div className="w-full min-h-[calc(100vh-150px)] flex flex-col place-items-center lg:place-content-start place-content-center gap-[10px] py-[50px] lg:py-[20px]">
+            <div className="hidden lg:flex lg:absolute lg:z-[100] lg:top-[30px] lg:right-[50px]">
+                <VolverAtrasButton href="/dashboard/transactions" />
+            </div>
+            <form className="form lg:mt-[10px]" onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/transactions" />
                 <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">

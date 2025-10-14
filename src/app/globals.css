@@ -9,6 +9,7 @@
     --shadow-card: 2px 2px 4px rgba(0, 0, 0, .25);
     --shadow-card-center: 0px 0px 4px rgba(0, 0, 0, .25);
     --shadow-button: 2px 2px 5px #666;
+    --shadow-form: 5px 5px 15px #333;
     
     --ease-in-menu: cubic-bezier(0.35,0.02,0.27,0.77);
     
@@ -74,13 +75,30 @@
         gap: 50px;
         color: var(--color-neutral-200);
         background-color: var(--color-form-background);
-        box-shadow: 5px 5px 15px #333;
+        box-shadow: var(--shadow-form);
         border-radius: 10px;
         padding: 50px 30px;
         padding-bottom: 80px;
         @apply lg:relative lg:flex lg:max-w-full lg:w-full lg:px-[50px] lg:py-[0px] lg:flex-col 
         lg:place-items-start lg:place-content-start lg:bg-transparent lg:text-darkPrimary 
         lg:gap-[80px] lg:shadow-none       
+    }
+
+    .form-auth {
+        position: relative;
+        display: flex;
+        max-width: 433px;
+        width: 80vw;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        color: var(--color-neutral-200);
+        background-color: var(--color-form-background);
+        box-shadow: 5px 5px 15px #333;
+        border-radius: 10px;
+        padding: 50px 30px;
+        padding-bottom: 80px;
     }
 
     .label-input {
@@ -118,10 +136,20 @@
     }
     
     /* Esto evita que el autollenado del navegador cambie el color del input */
+    input.input:-webkit-autofill,
+    textarea.input:-webkit-autofill,
+    select.input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+        box-shadow: 0 0 0px 1000px transparent inset !important;
+        -webkit-text-fill-color: var(--color-white) !important;
+        background-color: transparent !important;
+        transition: background-color 9999s ease-in-out 0s !important;
+    }
+    
     .input:-webkit-autofill {
         -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset;
-        -webkit-text-fill-color: #FFFFFF;
     }
+
 
     .loading-option {
         font-weight: var(--font-weight-extralight);

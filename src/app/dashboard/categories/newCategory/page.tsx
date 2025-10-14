@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useTypes } from "@/hooks/useTypes";
 import { useRouter } from "next/navigation";
 import VolverAtras from "@/components/VolverAtras";
+import VolverAtrasButton from "@/components/VolverAtrasButton";
 
 const newCategoryPage = () => {
     
@@ -64,8 +65,11 @@ const newCategoryPage = () => {
     }
 
     return (
-        <div className="w-full min-h-[calc(100vh-150px)] flex place-items-center place-content-center py-[30px] lg:py-[0px]">
-            <form className="form" onSubmit={onSubmit}>
+        <div className="w-full min-h-[calc(100vh-150px)] relative flex place-items-center lg:place-items-start place-content-center py-[30px] lg:py-[0px]">
+            <div className="hidden lg:flex lg:absolute lg:z-[100] lg:top-[30px] lg:right-[50px]">
+                <VolverAtrasButton href="/dashboard/categories" />
+            </div>
+            <form className="form lg:mt-[30px]" onSubmit={onSubmit}>
                 <VolverAtras href="/dashboard/categories" />
                 <div className="w-full flex flex-col place-items-center lg:place-items-start gap-[20px]">
                     <div className="label-input mb-5">

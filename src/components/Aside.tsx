@@ -41,25 +41,25 @@ const Aside = () => {
                         </Link>
                     </li>
                     <li className="h-[40px] flex place-items-center">
-                        <Link href="/dashboard/categories" className={`flex place-items-center place-content-center gap-[5px] ${pathname === "/dashboard/categories" ? "text-white" : "text-white/50"}`}>
+                        <Link href="/dashboard/categories" className={`flex place-items-center place-content-center gap-[5px] ${pathname.startsWith("/dashboard/categories") ? "text-white" : "text-white/50"}`}>
                             <div className="w-[30px] flex place-items-end place-content-center">
-                                <CategoriesIcon width="20px" height="20px" stroke={pathname === "/dashboard/categories" ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"} /> 
+                                <CategoriesIcon width="20px" height="20px" stroke={pathname.startsWith("/dashboard/categories") ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"} /> 
                             </div>
                             Categorías
                         </Link>
                     </li>
                     <li className="h-[40px] flex place-items-center">
-                        <Link href="/dashboard/transactions" className={`flex place-items-center place-content-center gap-[5px] ${pathname === "/dashboard/transactions" ? "text-white" : "text-white/50"}`}>
+                        <Link href="/dashboard/transactions" className={`flex place-items-center place-content-center gap-[5px] ${pathname.startsWith("/dashboard/transactions") ? "text-white" : "text-white/50"}`}>
                             <div className="w-[30px] flex place-items-end place-content-center">
-                                <TransactionsIcon width="25px" height="25px" stroke={pathname === "/dashboard/transactions" ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"} /> 
+                                <TransactionsIcon width="25px" height="25px" stroke={pathname.startsWith("/dashboard/transactions") ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"} /> 
                             </div>
                             Transacciones
                         </Link>
                     </li>
                     <li className="h-[40px] w-[150px] flex place-items-center">
-                        <Link href="/dashboard/settings" className={`flex place-items-center place-content-center gap-[5px] ${pathname === "/dashboard/settings" ? "text-white" : "text-white/50"}`}>
+                        <Link href="/dashboard/settings" className={`flex place-items-center place-content-center gap-[5px] ${pathname.startsWith("/dashboard/settings") ? "text-white" : "text-white/50"}`}>
                             <div className="w-[30px] flex place-items-end place-content-center">
-                                <SettingsIcon width="20px" height="20px" stroke={pathname === "/dashboard/settings" ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"} /> 
+                                <SettingsIcon width="20px" height="20px" stroke={pathname.startsWith("/dashboard/settings") ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"} /> 
                             </div>
                             Ajustes
                         </Link>
