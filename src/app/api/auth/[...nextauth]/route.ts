@@ -5,6 +5,6 @@ import { authOptions } from "@/libs/authOptions";
 // import CredentialsProvider from "next-auth/providers/credentials";
 
 
-const handler = NextAuth(authOptions);
+export const { handler } = NextAuth(authOptions);
 
-export { handler as GET, handler as POST, handler as PATCH, handler as DELETE };
+export const { GET, POST } = handler;
