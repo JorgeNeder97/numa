@@ -18,7 +18,8 @@ export const useTransactions = () => {
                     // Check if it's an expense or an income, if it's an expense substract, otherwise plus
                    return tx.typeId && tx.typeId == 1 ? acc + Number(tx.amount) : acc - Number(tx.amount);
                 }, 0);
-                totalAmount > 0 ? setTotal(totalAmount) : setTotal(0);
+                if(totalAmount > 0) setTotal(totalAmount);
+                else setTotal(0);
             } catch (error) {
                 setTransactionsError("No se pudieron obtener las transacciones.");
                 console.log(error);
