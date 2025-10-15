@@ -7,7 +7,6 @@ import DashboardIcon from "@/assets/icons/DashboardIcon";
 import CategoriesIcon from "@/assets/icons/CategoriesIcon";
 import TransactionsIcon from "@/assets/icons/TransactionsIcon";
 import SettingsIcon from "@/assets/icons/SettingsIcon";
-import path from 'path';
 
 const Aside = () => {
 

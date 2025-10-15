@@ -102,7 +102,7 @@ const MyAccountPage = () => {
                                     message: "Debes ingresar un nombre válido",
                                 },
                             })}
-                            defaultValue={user?.name}
+                            defaultValue={user?.name ?? ""}
                         />
                         <span className={errors.name ? "error-span" : "opacity-0 h-[10px]"}>{errors.name?.message?.toString() || ""}</span>
                     </div>
@@ -125,7 +125,7 @@ const MyAccountPage = () => {
                                     message: "Debes ingresar un apellido válido",
                                 },
                             })}    
-                            defaultValue={user?.lastname}
+                            defaultValue={user?.lastname ?? ""}
                         />
                         <span className={errors.lastname ? "error-span" : "opacity-0 h-[10px]"}>{errors.lastname?.message?.toString() || ""}</span>
                     </div>

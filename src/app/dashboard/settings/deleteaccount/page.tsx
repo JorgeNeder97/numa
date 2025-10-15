@@ -10,7 +10,7 @@ import VolverAtrasButton from "@/components/VolverAtrasButton";
 const ChangePasswordPage = () => {
     // Trae los datos del usuario en sesión
     const { data: session } = useSession();
-    const userId = Number(session?.user.id);
+    const userId = Number(session?.user?.id);
 
     // Maneja el Modal
     const [isOpen, setIsOpen] = useState<boolean>(false);

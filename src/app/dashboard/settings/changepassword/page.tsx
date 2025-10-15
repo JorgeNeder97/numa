@@ -12,7 +12,7 @@ const ChangePasswordPage = () => {
 
     // Trae los datos del usuario en sesión
     const { data: session } = useSession();
-    const userId = session?.user.id;
+    const userId = session?.user?.id;
 
     // Maneja el Modal
     const [isOpen, setIsOpen] = useState<boolean>(false);
