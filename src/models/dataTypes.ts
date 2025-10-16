@@ -22,7 +22,7 @@ export interface Category {
 };
 
 export interface CategoryParams {
-    params: Promise<{ id: number }>;
+    params: Promise<{ id: string }>;
 };
 
 export interface Types {
