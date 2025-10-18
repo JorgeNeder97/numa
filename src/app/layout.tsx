@@ -10,6 +10,8 @@ const kanit = Kanit({
     weight: ["200", "300", "400", "500", "600", "700"],
     style: ["italic", "normal"],
     subsets: ["latin", "latin-ext"],
+    display: "swap",
+    preload: false,
 });
 
 export const metadata: Metadata = {
