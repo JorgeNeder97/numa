@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../[...nextauth]/route";
+import { authOptions } from "@/libs/authOptions";
 import { PrismaClientKnownRequestError, PrismaClientUnknownRequestError } from "@prisma/client/runtime/library";
 
 
