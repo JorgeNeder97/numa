@@ -10,9 +10,6 @@
     --shadow-card-center: 0px 0px 4px rgba(0, 0, 0, .25);
     --shadow-button: 2px 2px 5px #666;
     --shadow-form: 5px 5px 15px #333;
-
-    --default-font-family: 'Kanit', ui-sans-serif, system-ui, sans-serif;
-    --font-kanit: 'Kanit', ui-sans-serif, system-ui, sans-serif;
     
     --ease-in-menu: cubic-bezier(0.35,0.02,0.27,0.77);
     
