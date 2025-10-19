@@ -70,6 +70,15 @@ const Aside = () => {
             </div>
         </div>
     );
+
+    else if(status === "loading")
+    return (
+        <div className="hidden lg:flex flex-col lg:fixed lg:place-items-center lg:place-content-center gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
+            <span className="d-loading d-loading-spinner text-white"></span>
+        </div>
+    );
+
+    else return null;
 };
 
 export default Aside;
