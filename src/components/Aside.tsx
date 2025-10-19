@@ -14,6 +14,9 @@ const Aside = () => {
     const { data: session, status } = useSession();
     const router = useRouter();
 
+    useEffect(() => {
+        router.refresh();
+    }, [status]);
 
     if(status === "authenticated")
     return (
