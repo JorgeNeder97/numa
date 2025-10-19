@@ -78,7 +78,11 @@ const Aside = () => {
         </div>
     );
 
-    else return null;
+    else return (
+        <div className="hidden lg:flex flex-col lg:fixed lg:place-items-center lg:place-content-center gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
+            <span className="text-white">Sin Autorización</span>
+        </div>
+    );
 };
 
 export default Aside;
