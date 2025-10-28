@@ -11,16 +11,9 @@ import SettingsIcon from "@/assets/icons/SettingsIcon";
 const Aside = () => {
 
     const pathname = usePathname();
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
 
-    if(status === "loading")
-    return (
-        <div className="hidden lg:flex flex-col lg:fixed lg:place-items-center lg:place-content-center gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
-            <span className="d-loading d-loading-spinner text-white"></span>
-        </div>
-    );
-
-    if(status === "authenticated")
+    
     return (
         <div className="hidden lg:flex flex-col lg:fixed gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
             <div className="w-full flex flex-col place-items-center gap-[30px] pt-[50px]">
@@ -28,7 +21,7 @@ const Aside = () => {
                     <Image src="/favicon.ico" alt="Numa Logo" width={70} height={70} className="w-[70px] h-[70px] mb-[10px]" />
                     <h2 className="text-neutral-200 text-4xl font-semibold">Numa</h2>
                 </Link>
-                <span className="text-white text-[.875rem]">Hola, {session.user?.name}</span>
+                <span className="text-white text-[.875rem]">Hola, {session && session.user?.name}</span>
                 <div className="w-[250px] translate-y-[10px] border-white/50 border-b-[.5px]"></div>
             </div>
             <div className="w-full flex place-items-center place-content-center">
@@ -70,12 +63,6 @@ const Aside = () => {
             <div className="w-full relative h-full">
                 <span className="absolute bottom-4 right-6 text-[1rem] text-white/50 hover:cursor-pointer hover:text-white transition-all duration-[.3s] ease-in-out" onClick={() => signOut()}>Cerrar Sesión</span>
             </div>
-        </div>
-    );
-
-    else return (
-        <div className="hidden lg:flex flex-col lg:fixed lg:place-items-center lg:place-content-center gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
-            <span className="text-white">Sin Autorización</span>
         </div>
     );
 };
