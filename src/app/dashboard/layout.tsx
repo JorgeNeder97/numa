@@ -12,11 +12,13 @@ export default function DashboardLayout({
     const pathname = usePathname();
 
     return (
-        <AnimatePresence mode="wait">
+        <>
             <AsideClient />
-            <div key={pathname} className="min-h-[calc(100vh-80px-90px)] lg:min-h-[100vh] lg:ml-[300px]">
-                {children}
-            </div>
-        </AnimatePresence>
+            <AnimatePresence mode="wait">
+                <div key={pathname} className="min-h-[calc(100vh-80px-90px)] lg:min-h-[100vh] lg:ml-[300px]">
+                    {children}
+                </div>
+            </AnimatePresence>
+        </>
     );
 };
