@@ -1,6 +1,5 @@
 "use client";
-import { useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,11 +12,13 @@ const Aside = () => {
 
     const pathname = usePathname();
     const { data: session, status } = useSession();
-    const router = useRouter();
 
-    useEffect(() => {
-        router.refresh();
-    }, [status]);
+    if(status === "loading")
+    return (
+        <div className="hidden lg:flex flex-col lg:fixed lg:place-items-center lg:place-content-center gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
+            <span className="d-loading d-loading-spinner text-white"></span>
+        </div>
+    );
 
     if(status === "authenticated")
     return (
@@ -69,13 +70,6 @@ const Aside = () => {
             <div className="w-full relative h-full">
                 <span className="absolute bottom-4 right-6 text-[1rem] text-white/50 hover:cursor-pointer hover:text-white transition-all duration-[.3s] ease-in-out" onClick={() => signOut()}>Cerrar Sesión</span>
             </div>
-        </div>
-    );
-
-    else if(status === "loading")
-    return (
-        <div className="hidden lg:flex flex-col lg:fixed lg:place-items-center lg:place-content-center gap-[40px] top-0 left-0 z-[50] w-[300px] h-[100vh] bg-tertiary-light">
-            <span className="d-loading d-loading-spinner text-white"></span>
         </div>
     );
 
